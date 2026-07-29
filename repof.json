@@ -1,0 +1,150 @@
+{
+  "name": "kkerneldev - repo",
+  "identifier": "dev.kkernel.repkernel",
+  "subtitle": "anime!",
+  "description": "Welcome to my source! Here you'll find all of my apps.",
+  "iconURL": "https://avatars.githubusercontent.com/u/250387405?s=400&u=9e0aec13cb369e8dadc5f84d4f625b2b6558d108&v=4",
+  "website": "https://github.com/kkerneldev/repkernel",
+  "tintColor": "#6156e2",
+  "featuredApps": [
+    "tv.anilibria.anilibria",
+    "me.keet.HDRezka",
+    "com.nxtcoreee3.WaffleStore",
+    "ph.telegra.Telegraphold",
+    "com.google.ios.youtube",
+    "ph.telegra.Telegraph"
+  ],
+  "headerURL": "https://avatars.mds.yandex.net/i?id=216dd3ccc39e3ddc88d0ac8dc44208a6f05c6020-5496468-images-thumbs&n=13",
+  "apps": [
+    {
+      "name": "Whitegram",
+      "bundleIdentifier": "ph.telegra.Telegraph",
+      "developerName": "Example Developer",
+      "subtitle": "An awesome app.",
+      "localizedDescription": "This is an awesome app only available on AltStore.",
+      "iconURL": "https://i.imgur.com/sHfH8pO.png",
+      "tintColor": "#7f7f7f",
+      "category": "other",
+      "screenshots": [],
+      "versions": [
+        {
+          "downloadURL": "https://raw.githubusercontent.com/kkerneldev/repkernel/main/ipa/whitegram.ipa",
+          "size": 175800000,
+          "version": "12.9.2",
+          "date": "2026-07-29T18:52:00+03:00"
+        }
+      ]
+    },
+    {
+      "name": "YouTube++",
+      "bundleIdentifier": "com.google.ios.youtube",
+      "developerName": "Example Developer",
+      "subtitle": "An awesome app.",
+      "localizedDescription": "This is an awesome app only available on AltStore.",
+      "iconURL": "https://i.imgur.com/3qlyeDF.png",
+      "tintColor": "#fc0434",
+      "category": "other",
+      "screenshots": [],
+      "versions": [
+        {
+          "downloadURL": "https://raw.githubusercontent.com/kkerneldev/repkernel/main/ipa/youtubeplus.ipa",
+          "size": 134500000,
+          "version": "21.15.5",
+          "date": "2026-07-29T18:51:00+03:00"
+        }
+      ]
+    },
+    {
+      "name": "Telegram",
+      "bundleIdentifier": "ph.telegra.Telegraphold",
+      "developerName": "Example Developer",
+      "subtitle": "An awesome app.",
+      "localizedDescription": "This is an awesome app only available on AltStore.",
+      "iconURL": "https://i.imgur.com/HTzWM7F.png",
+      "tintColor": "#31a7dc",
+      "category": "other",
+      "screenshots": [],
+      "versions": [
+        {
+          "downloadURL": "https://raw.githubusercontent.com/kkerneldev/repkernel/main/ipa/telegramold.ipa",
+          "size": 64000000,
+          "version": "9.4",
+          "date": "2026-07-29T18:50:00+03:00"
+        }
+      ]
+    },
+    {
+      "name": "WaffleStore",
+      "bundleIdentifier": "com.nxtcoreee3.WaffleStore",
+      "developerName": "Example Developer",
+      "subtitle": "An awesome app.",
+      "localizedDescription": "This is an awesome app only available on AltStore.",
+      "iconURL": "https://i.imgur.com/tM3t7gy.png",
+      "tintColor": "#24b4fc",
+      "category": "other",
+      "screenshots": [],
+      "versions": [
+        {
+          "downloadURL": "https://raw.githubusercontent.com/kkerneldev/repkernel/main/ipa/WaffleStore.ipa",
+          "size": 3100000,
+          "version": "2.2",
+          "date": "2026-07-29T18:49:00+03:00"
+        }
+      ]
+    },
+    {
+      "name": "AniLiberty",
+      "bundleIdentifier": "tv.anilibria.anilibria",
+      "developerName": "Example Developer",
+      "subtitle": "An awesome app.",
+      "localizedDescription": "This is an awesome app only available on AltStore.",
+      "iconURL": "https://i.imgur.com/WgBCpMf.png",
+      "tintColor": "#fc6464",
+      "category": "other",
+      "screenshots": [],
+      "versions": [
+        {
+          "downloadURL": "https://raw.githubusercontent.com/kkerneldev/repkernel/main/ipa/anilibria.ipa",
+          "size": 4000000,
+          "version": "2.7.0",
+          "date": "2026-07-29T18:49:00+03:00"
+        }
+      ]
+    },
+    {
+      "name": "HDrezka",
+      "bundleIdentifier": "me.keet.HDRezka",
+      "developerName": "KernelDev",
+      "subtitle": "HDrezka for IOS",
+      "localizedDescription": "Тебе нравится смотреть кино дома? Привык после работы или учебы, приходя домой, сразу же включать телевизор или компьютер? Не хочешь посещать кинотеатр, но и от новых фильмов не готов отказаться? Это вовсе не беда! Главное найти приятное положительное решение - предлагаем тебе смотреть фильмы в HD онлайн бесплатно на данной странице! Все лучшие новинки кино 2025 и 2026 года и новые сериалы ты можешь смотреть здесь в любое время!",
+      "iconURL": "https://i.imgur.com/ZhtHgcj.png",
+      "tintColor": "#fc5c04",
+      "category": "other",
+      "screenshots": [],
+      "versions": [
+        {
+          "downloadURL": "https://raw.githubusercontent.com/kkerneldev/repkernel/main/ipa/HDRezka.ipa",
+          "size": 7200000,
+          "version": "1.6.0",
+          "buildVersion": "001",
+          "date": "2026-07-29T18:42:00+03:00",
+          "localizedDescription": "release ",
+          "minOSVersion": "12.0"
+        }
+      ]
+    }
+  ],
+  "news": [
+    {
+      "title": "WOW NEW APP IN REPOSITORY :3",
+      "identifier": "news_nrncvger2p",
+      "caption": "by Kkerneldev",
+      "date": "2026-07-29T21:52:00+03:00",
+      "tintColor": "#ff0052",
+      "imageURL": "https://www.anilibria.tv/img/29_1.png",
+      "notify": true,
+      "url": "https://github.com/kkerneldev/repkernel",
+      "appID": "tv.anilibria.anilibria"
+    }
+  ]
+}
