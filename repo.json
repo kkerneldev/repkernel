@@ -1,0 +1,240 @@
+{
+  "name": "kkerneldev - repo",
+  "subtitle": "anime!",
+  "description": "Welcome to my source! Here you'll find all of my apps.",
+  "iconURL": "https://avatars.githubusercontent.com/u/250387405?s=400&u=9e0aec13cb369e8dadc5f84d4f625b2b6558d108&v=4",
+  "website": "",
+  "patreonURL": "",
+  "tintColor": "#6156e2",
+  "featuredApps": [
+    "tv.anilibria.anilibria",
+    "me.keet.HDRezka",
+    "com.nxtcoreee3.WaffleStore",
+    "ph.telegra.Telegraphold",
+    "com.google.ios.youtube",
+    "ph.telegra.Telegraph"
+  ],
+  "headerURL": "https://avatars.mds.yandex.net/i?id=216dd3ccc39e3ddc88d0ac8dc44208a6f05c6020-5496468-images-thumbs&n=13",
+  "apps": [
+    {
+      "name": "Whitegram",
+      "bundleIdentifier": "ph.telegra.Telegraph",
+      "marketplaceID": "",
+      "developerName": "Example Developer",
+      "subtitle": "An awesome app.",
+      "localizedDescription": "This is an awesome app only available on AltStore.",
+      "iconURL": "https://i.imgur.com/sHfH8pO.png",
+      "tintColor": "#7f7f7f",
+      "category": "other",
+      "screenshots": [],
+      "versions": [
+        {
+          "downloadURL": "https://raw.githubusercontent.com/kkerneldev/repkernel/main/ipa/whitegram.ipa",
+          "size": 175800000,
+          "version": "12.9.2",
+          "buildVersion": null,
+          "date": "2026-07-29T18:52:00+03:00",
+          "localizedDescription": null,
+          "minOSVersion": null
+        }
+      ],
+      "appPermissions": {
+        "entitlements": [],
+        "privacy": {
+          "NSCameraUsageDescription": "We need this so that you can take and share photos and videos.",
+          "NSContactsUsageDescription": "Whitegram stores your contacts heavily encrypted in the cloud to let you connect with your friends across all your devices.",
+          "NSFaceIDUsageDescription": "You can use Face ID to unlock the app.",
+          "NSLocationAlwaysUsageDescription": "When you send your location to your friends, Whitegram needs access to show them a map. You also need this to send locations from an Apple Watch.",
+          "NSLocationWhenInUseUsageDescription": "When you send your location to your friends, Whitegram needs access to show them a map.",
+          "NSMicrophoneUsageDescription": "We need this so that you can record and share voice messages and videos with sound.",
+          "NSMotionUsageDescription": "When you send your location to your friends, Whitegram needs access to show them a map.",
+          "NSPhotoLibraryAddUsageDescription": "We need this so that you can share photos and videos from your photo library.",
+          "NSPhotoLibraryUsageDescription": "We need this so that you can share photos and videos from your photo library.",
+          "NSSiriUsageDescription": "You can use Siri to send messages.",
+          "NSSpeechRecognitionUsageDescription": "We need this to transcribe audio messages on your request."
+        }
+      },
+      "patreon": {}
+    },
+    {
+      "name": "YouTube++",
+      "bundleIdentifier": "com.google.ios.youtube",
+      "marketplaceID": "",
+      "developerName": "Example Developer",
+      "subtitle": "An awesome app.",
+      "localizedDescription": "This is an awesome app only available on AltStore.",
+      "iconURL": "https://i.imgur.com/3qlyeDF.png",
+      "tintColor": "#fc0434",
+      "category": "other",
+      "screenshots": [],
+      "versions": [
+        {
+          "downloadURL": "https://raw.githubusercontent.com/kkerneldev/repkernel/main/ipa/youtubeplus.ipa",
+          "size": 134500000,
+          "version": "21.15.5",
+          "buildVersion": null,
+          "date": "2026-07-29T18:51:00+03:00",
+          "localizedDescription": null,
+          "minOSVersion": null
+        }
+      ],
+      "appPermissions": {
+        "entitlements": [],
+        "privacy": {
+          "NSAppleMusicUsageDescription": "This lets you add your own audio files to your videos.",
+          "NSBluetoothPeripheralUsageDescription": "YouTube needs bluetooth access to scan for nearby Cast devices.",
+          "NSCameraUsageDescription": "This lets you create videos using the app.",
+          "NSContactsUsageDescription": "Your contacts will be sent to YouTube servers to help you find friends to share videos with.",
+          "NSLocalNetworkUsageDescription": "Access to your network allows YouTube to discover and connect to devices such as your TV.",
+          "NSLocationWhenInUseUsageDescription": "This enables local content discovery, improved recommendations, and enhanced search results.",
+          "NSMicrophoneUsageDescription": "This lets you include audio with your videos and search using your voice.",
+          "NSPhotoLibraryUsageDescription": "This lets you upload media you've already created.",
+          "NSUserTrackingUsageDescription": "To personalize ads and provide ad measurement, YouTube will link activity from this app with activity from non-Google apps and websites."
+        }
+      },
+      "patreon": {}
+    },
+    {
+      "name": "Telegram",
+      "bundleIdentifier": "ph.telegra.Telegraphold",
+      "marketplaceID": "",
+      "developerName": "Example Developer",
+      "subtitle": "An awesome app.",
+      "localizedDescription": "This is an awesome app only available on AltStore.",
+      "iconURL": "https://i.imgur.com/HTzWM7F.png",
+      "tintColor": "#31a7dc",
+      "category": "other",
+      "screenshots": [],
+      "versions": [
+        {
+          "downloadURL": "https://raw.githubusercontent.com/kkerneldev/repkernel/main/ipa/telegramold.ipa",
+          "size": 64000000,
+          "version": "9.4",
+          "buildVersion": null,
+          "date": "2026-07-29T18:50:00+03:00",
+          "localizedDescription": null,
+          "minOSVersion": null
+        }
+      ],
+      "appPermissions": {
+        "entitlements": [],
+        "privacy": {
+          "NSCameraUsageDescription": "We need this so that you can take and share photos and videos.",
+          "NSContactsUsageDescription": "Telegram stores your contacts heavily encrypted in the cloud to let you connect with your friends across all your devices.",
+          "NSFaceIDUsageDescription": "You can use Face ID to unlock the app.",
+          "NSLocationAlwaysUsageDescription": "When you send your location to your friends, Telegram needs access to show them a map. You also need this to send locations from an Apple Watch.",
+          "NSLocationWhenInUseUsageDescription": "When you send your location to your friends, Telegram needs access to show them a map.",
+          "NSMicrophoneUsageDescription": "We need this so that you can record and share voice messages and videos with sound.",
+          "NSMotionUsageDescription": "When you send your location to your friends, Telegram needs access to show them a map.",
+          "NSPhotoLibraryAddUsageDescription": "We need this so that you can share photos and videos from your photo library.",
+          "NSPhotoLibraryUsageDescription": "We need this so that you can share photos and videos from your photo library.",
+          "NSSiriUsageDescription": "You can use Siri to send messages.",
+          "NSSpeechRecognitionUsageDescription": "We need this to transcribe audio messages on your request."
+        }
+      },
+      "patreon": {}
+    },
+    {
+      "name": "WaffleStore",
+      "bundleIdentifier": "com.nxtcoreee3.WaffleStore",
+      "marketplaceID": "",
+      "developerName": "Example Developer",
+      "subtitle": "An awesome app.",
+      "localizedDescription": "This is an awesome app only available on AltStore.",
+      "iconURL": "https://i.imgur.com/tM3t7gy.png",
+      "tintColor": "#24b4fc",
+      "category": "other",
+      "screenshots": [],
+      "versions": [
+        {
+          "downloadURL": "https://raw.githubusercontent.com/kkerneldev/repkernel/main/ipa/WaffleStore.ipa",
+          "size": 3100000,
+          "version": "2.2",
+          "buildVersion": null,
+          "date": "2026-07-29T18:49:00+03:00",
+          "localizedDescription": null,
+          "minOSVersion": null
+        }
+      ],
+      "appPermissions": {
+        "entitlements": [],
+        "privacy": {
+          "NSAccentColorName": "AccentColor"
+        }
+      },
+      "patreon": {}
+    },
+    {
+      "name": "AniLiberty",
+      "bundleIdentifier": "tv.anilibria.anilibria",
+      "marketplaceID": "",
+      "developerName": "Example Developer",
+      "subtitle": "An awesome app.",
+      "localizedDescription": "This is an awesome app only available on AltStore.",
+      "iconURL": "https://i.imgur.com/WgBCpMf.png",
+      "tintColor": "#fc6464",
+      "category": "other",
+      "screenshots": [],
+      "versions": [
+        {
+          "downloadURL": "https://raw.githubusercontent.com/kkerneldev/repkernel/main/ipa/anilibria.ipa",
+          "size": 4000000,
+          "version": "2.7.0",
+          "buildVersion": null,
+          "date": "2026-07-29T18:49:00+03:00",
+          "localizedDescription": null,
+          "minOSVersion": null
+        }
+      ],
+      "appPermissions": {
+        "entitlements": [],
+        "privacy": {}
+      },
+      "patreon": {}
+    },
+    {
+      "name": "HDrezka",
+      "bundleIdentifier": "me.keet.HDRezka",
+      "marketplaceID": "",
+      "developerName": "KernelDev",
+      "subtitle": "HDrezka for IOS",
+      "localizedDescription": "Тебе нравится смотреть кино дома? Привык после работы или учебы, приходя домой, сразу же включать телевизор или компьютер? Не хочешь посещать кинотеатр, но и от новых фильмов не готов отказаться? Это вовсе не беда! Главное найти приятное положительное решение - предлагаем тебе смотреть фильмы в HD онлайн бесплатно на данной странице! Все лучшие новинки кино 2025 и 2026 года и новые сериалы ты можешь смотреть здесь в любое время!",
+      "iconURL": "https://i.imgur.com/ZhtHgcj.png",
+      "tintColor": "#fc5c04",
+      "category": "other",
+      "screenshots": [],
+      "versions": [
+        {
+          "downloadURL": "https://raw.githubusercontent.com/kkerneldev/repkernel/main/ipa/HDRezka.ipa",
+          "size": 7200000,
+          "version": "1.6.0",
+          "buildVersion": "001",
+          "date": "2026-07-29T18:42:00+03:00",
+          "localizedDescription": "release ",
+          "minOSVersion": "12.0"
+        }
+      ],
+      "appPermissions": {
+        "entitlements": [],
+        "privacy": {
+          "NSAccentColorName": "AccentColor",
+          "NSPhotoLibraryUsageDescription": "Разрешите доступ к галерее для скачивания видео"
+        }
+      },
+      "patreon": {}
+    }
+  ],
+  "news": [
+    {
+      "title": "WOW NEW APP IN REPOSITORY :3",
+      "identifier": "news_nrncvger2p",
+      "caption": "by Kkerneldev",
+      "date": "2026-07-29T21:52",
+      "tintColor": "#ff0052",
+      "imageURL": "https://www.anilibria.tv/img/29_1.png",
+      "notify": true,
+      "url": "https://example.com/new_feature_details",
+      "appID": "tv.anilibria.anilibria"
+    }
+  ]
+}
