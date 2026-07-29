@@ -10,7 +10,6 @@
     "tv.anilibria.anilibria",
     "me.keet.HDRezka",
     "com.nxtcoreee3.WaffleStore",
-    "ph.telegra.Telegraphold",
     "com.google.ios.youtube",
     "ph.telegra.Telegraph"
   ],
@@ -90,46 +89,6 @@
           "NSMicrophoneUsageDescription": "This lets you include audio with your videos and search using your voice.",
           "NSPhotoLibraryUsageDescription": "This lets you upload media you've already created.",
           "NSUserTrackingUsageDescription": "To personalize ads and provide ad measurement, YouTube will link activity from this app with activity from non-Google apps and websites."
-        }
-      },
-      "patreon": {}
-    },
-    {
-      "name": "Telegram",
-      "bundleIdentifier": "ph.telegra.Telegraphold",
-      "marketplaceID": "",
-      "developerName": "Example Developer",
-      "subtitle": "An awesome app.",
-      "localizedDescription": "This is an awesome app only available on AltStore.",
-      "iconURL": "https://i.imgur.com/HTzWM7F.png",
-      "tintColor": "#31a7dc",
-      "category": "other",
-      "screenshots": [],
-      "versions": [
-        {
-          "downloadURL": "https://raw.githubusercontent.com/kkerneldev/repkernel/main/ipa/telegramold.ipa",
-          "size": 64000000,
-          "version": "9.4",
-          "buildVersion": null,
-          "date": "2026-07-29T18:50:00+03:00",
-          "localizedDescription": null,
-          "minOSVersion": null
-        }
-      ],
-      "appPermissions": {
-        "entitlements": [],
-        "privacy": {
-          "NSCameraUsageDescription": "We need this so that you can take and share photos and videos.",
-          "NSContactsUsageDescription": "Telegram stores your contacts heavily encrypted in the cloud to let you connect with your friends across all your devices.",
-          "NSFaceIDUsageDescription": "You can use Face ID to unlock the app.",
-          "NSLocationAlwaysUsageDescription": "When you send your location to your friends, Telegram needs access to show them a map. You also need this to send locations from an Apple Watch.",
-          "NSLocationWhenInUseUsageDescription": "When you send your location to your friends, Telegram needs access to show them a map.",
-          "NSMicrophoneUsageDescription": "We need this so that you can record and share voice messages and videos with sound.",
-          "NSMotionUsageDescription": "When you send your location to your friends, Telegram needs access to show them a map.",
-          "NSPhotoLibraryAddUsageDescription": "We need this so that you can share photos and videos from your photo library.",
-          "NSPhotoLibraryUsageDescription": "We need this so that you can share photos and videos from your photo library.",
-          "NSSiriUsageDescription": "You can use Siri to send messages.",
-          "NSSpeechRecognitionUsageDescription": "We need this to transcribe audio messages on your request."
         }
       },
       "patreon": {}
