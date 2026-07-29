@@ -16,6 +16,46 @@
   "headerURL": "https://avatars.mds.yandex.net/i?id=216dd3ccc39e3ddc88d0ac8dc44208a6f05c6020-5496468-images-thumbs&n=13",
   "apps": [
     {
+      "name": "Telegram",
+      "bundleIdentifier": "com.q2e0zx2ocx.uov7essaup",
+      "marketplaceID": "",
+      "developerName": "Example Developer",
+      "subtitle": "An awesome app.",
+      "localizedDescription": "This is an awesome app only available on AltStore.",
+      "iconURL": "https://i.imgur.com/CYcM11i.png",
+      "tintColor": "#31a7dc",
+      "category": "other",
+      "screenshots": [],
+      "versions": [
+        {
+          "downloadURL": "https://raw.githubusercontent.com/kkerneldev/repkernel/main/ipa/telegramold.ipa",
+          "size": 64000000,
+          "version": "9.4",
+          "buildVersion": null,
+          "date": "2026-07-29T19:36:00+03:00",
+          "localizedDescription": null,
+          "minOSVersion": null
+        }
+      ],
+      "appPermissions": {
+        "entitlements": [],
+        "privacy": {
+          "NSCameraUsageDescription": "We need this so that you can take and share photos and videos.",
+          "NSContactsUsageDescription": "Telegram stores your contacts heavily encrypted in the cloud to let you connect with your friends across all your devices.",
+          "NSFaceIDUsageDescription": "You can use Face ID to unlock the app.",
+          "NSLocationAlwaysUsageDescription": "When you send your location to your friends, Telegram needs access to show them a map. You also need this to send locations from an Apple Watch.",
+          "NSLocationWhenInUseUsageDescription": "When you send your location to your friends, Telegram needs access to show them a map.",
+          "NSMicrophoneUsageDescription": "We need this so that you can record and share voice messages and videos with sound.",
+          "NSMotionUsageDescription": "When you send your location to your friends, Telegram needs access to show them a map.",
+          "NSPhotoLibraryAddUsageDescription": "We need this so that you can share photos and videos from your photo library.",
+          "NSPhotoLibraryUsageDescription": "We need this so that you can share photos and videos from your photo library.",
+          "NSSiriUsageDescription": "You can use Siri to send messages.",
+          "NSSpeechRecognitionUsageDescription": "We need this to transcribe audio messages on your request."
+        }
+      },
+      "patreon": {}
+    },
+    {
       "name": "Whitegram",
       "bundleIdentifier": "ph.telegra.Telegraph",
       "marketplaceID": "",
@@ -183,17 +223,5 @@
       "patreon": {}
     }
   ],
-  "news": [
-    {
-      "title": "WOW NEW APP IN REPOSITORY :3",
-      "identifier": "news_nrncvger2p",
-      "caption": "by Kkerneldev",
-      "date": "2026-07-29T21:52",
-      "tintColor": "#ff0052",
-      "imageURL": "https://www.anilibria.tv/img/29_1.png",
-      "notify": true,
-      "url": "https://example.com/new_feature_details",
-      "appID": "tv.anilibria.anilibria"
-    }
-  ]
+  "news": []
 }
