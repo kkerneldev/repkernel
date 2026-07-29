@@ -164,11 +164,11 @@
       "screenshots": [],
       "versions": [
         {
-          "downloadURL": "https://raw.githubusercontent.com/kkerneldev/repkernel/main/ipa/HDRezka.ipa",
+          "downloadURL": "https://raw.githubusercontent.com/kkerneldev/repkernel/main/ipa/hdrezka.ipa",
           "size": 7200000,
           "version": "1.6.0",
           "buildVersion": "001",
-          "date": "2026-07-29T18:42:00+03:00",
+          "date": "2026-07-29T15:42:00+03:00",
           "localizedDescription": "release ",
           "minOSVersion": "12.0"
         }
