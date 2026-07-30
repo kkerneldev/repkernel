@@ -50,7 +50,7 @@
           "buildVersion": "1",
           "date": "2026-07-29T18:52:00+03:00",
           "localizedDescription": "First AltStore release!",
-          "downloadURL": "https://raw.githubusercontent.com/kkerneldev/repkernel/main/ipa/whitegram.ipa",
+          "downloadURL": "https://github.com/kkerneldev/repkernel/raw/refs/heads/main/ipa/whitegram.ipa",
           "size": 175800000,
           "minOSVersion": "12.0"
         }
