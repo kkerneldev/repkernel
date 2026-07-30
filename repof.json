@@ -17,6 +17,63 @@
   "headerURL": "https://avatars.mds.yandex.net/i?id=216dd3ccc39e3ddc88d0ac8dc44208a6f05c6020-5496468-images-thumbs&n=13",
   "apps": [
     {
+      "name": "UNDERTALE",
+      "bundleIdentifier": "com.jockeholm.undertale",
+      "developerName": "Example Developer",
+      "subtitle": "An awesome app.",
+      "localizedDescription": "This is an awesome app only available on AltStore.",
+      "iconURL": "https://i.imgur.com/kxWaVNI.png",
+      "tintColor": "#fc0404",
+      "category": "other",
+      "screenshots": [],
+      "versions": [
+        {
+          "downloadURL": "https://github.com/kkerneldev/repkernel/raw/refs/heads/main/ipa/Undertale.ipa",
+          "size": 140600000,
+          "version": "2.0.0",
+          "date": "2026-07-30T12:11:00+03:00"
+        }
+      ]
+    },
+    {
+      "name": "VKVideo",
+      "bundleIdentifier": "com.vk.vkvideo.prod",
+      "developerName": "Example Developer",
+      "subtitle": "An awesome app.",
+      "localizedDescription": "This is an awesome app only available on AltStore.",
+      "iconURL": "https://i.imgur.com/NCWdN7m.png",
+      "tintColor": "#0474fc",
+      "category": "other",
+      "screenshots": [],
+      "versions": [
+        {
+          "downloadURL": "https://raw.githubusercontent.com/kkerneldev/repkernel/main/ipa/vkvideo.ipa",
+          "size": 307000000,
+          "version": "8.183",
+          "date": "2026-07-30T12:10:00+03:00"
+        }
+      ]
+    },
+    {
+      "name": "CapCut",
+      "bundleIdentifier": "com.lemon.lvoverseas",
+      "developerName": "Example Developer",
+      "subtitle": "An awesome app.",
+      "localizedDescription": "This is an awesome app only available on AltStore.",
+      "iconURL": "https://i.imgur.com/tXsnzIN.png",
+      "tintColor": "#6156e2",
+      "category": "other",
+      "screenshots": [],
+      "versions": [
+        {
+          "downloadURL": "https://github.com/kkerneldev/repkernel/raw/refs/heads/main/ipa/CapCut.ipa",
+          "size": 146800000,
+          "version": "12.6.0",
+          "date": "2026-07-30T12:09:00+03:00"
+        }
+      ]
+    },
+    {
       "name": "Whitegram",
       "bundleIdentifier": "ph.telegra.Telegraph",
       "developerName": "Heypain",
@@ -28,10 +85,11 @@
       "screenshots": [],
       "versions": [
         {
-          "downloadURL": "https://raw.githubusercontent.com/kkerneldev/repkernel/main/ipa/whitegram.ipa",
-          "size": 175800000,
           "version": "12.9.2",
-          "date": "2026-07-29T18:52:00+03:00"
+          "date": "2026-07-29T18:52:00+03:00",
+          "localizedDescription": "First AltStore release!",
+          "downloadURL": "https://raw.githubusercontent.com/kkerneldev/repkernel/main/ipa/whitegram.ipa",
+          "size": 175800000
         }
       ]
     },
@@ -47,10 +105,11 @@
       "screenshots": [],
       "versions": [
         {
-          "downloadURL": "https://raw.githubusercontent.com/kkerneldev/repkernel/main/ipa/youtubeplus.ipa",
-          "size": 134500000,
           "version": "21.15.5",
-          "date": "2026-07-29T18:51:00+03:00"
+          "date": "2026-07-29T18:51:00+03:00",
+          "localizedDescription": "First AltStore release!",
+          "downloadURL": "https://raw.githubusercontent.com/kkerneldev/repkernel/main/ipa/youtubeplus.ipa",
+          "size": 134500000
         }
       ]
     },
@@ -66,10 +125,11 @@
       "screenshots": [],
       "versions": [
         {
-          "downloadURL": "https://raw.githubusercontent.com/kkerneldev/repkernel/main/ipa/telegramold.ipa",
-          "size": 64000000,
           "version": "9.4",
-          "date": "2026-07-29T18:50:00+03:00"
+          "date": "2026-07-29T18:50:00+03:00",
+          "localizedDescription": "First AltStore release!",
+          "downloadURL": "https://raw.githubusercontent.com/kkerneldev/repkernel/main/ipa/telegramold.ipa",
+          "size": 64000000
         }
       ]
     },
@@ -85,10 +145,11 @@
       "screenshots": [],
       "versions": [
         {
-          "downloadURL": "https://raw.githubusercontent.com/kkerneldev/repkernel/main/ipa/WaffleStore.ipa",
-          "size": 3100000,
           "version": "2.2",
-          "date": "2026-07-29T18:49:00+03:00"
+          "date": "2026-07-29T18:49:00+03:00",
+          "localizedDescription": "First AltStore release!",
+          "downloadURL": "https://raw.githubusercontent.com/kkerneldev/repkernel/main/ipa/WaffleStore.ipa",
+          "size": 3100000
         }
       ]
     },
@@ -104,10 +165,11 @@
       "screenshots": [],
       "versions": [
         {
-          "downloadURL": "https://raw.githubusercontent.com/kkerneldev/repkernel/main/ipa/anilibria.ipa",
-          "size": 4000000,
           "version": "2.7.0",
-          "date": "2026-07-29T18:49:00+03:00"
+          "date": "2026-07-29T18:49:00+03:00",
+          "localizedDescription": "First AltStore release!",
+          "downloadURL": "https://raw.githubusercontent.com/kkerneldev/repkernel/main/ipa/anilibria.ipa",
+          "size": 4000000
         }
       ]
     },
@@ -123,16 +185,28 @@
       "screenshots": [],
       "versions": [
         {
-          "downloadURL": "https://raw.githubusercontent.com/kkerneldev/repkernel/main/ipa/hdrezka.ipa",
-          "size": 7200000,
           "version": "1.6.0",
           "date": "2026-07-29T18:42:00+03:00",
+          "localizedDescription": "First AltStore release!",
+          "downloadURL": "https://raw.githubusercontent.com/kkerneldev/repkernel/main/ipa/hdrezka.ipa",
+          "size": 7200000,
           "minOSVersion": "12.0"
         }
       ]
     }
   ],
   "news": [
+    {
+      "title": "New game and new app (Undertale - VKvideo",
+      "identifier": "news_en27h280ju",
+      "caption": "KernelDev",
+      "date": "2026-07-30T15:11:00+03:00",
+      "tintColor": "#6156e2",
+      "imageURL": "https://media1.tenor.com/m/Bv37u6GJKkkAAAAd/bar-feelre.gif",
+      "notify": true,
+      "url": "https://github.com/kkerneldev/repkernel",
+      "appID": "com.vk.vkvideo.prod"
+    },
     {
       "title": "WOW NEW APP IN REPOSITORY :3",
       "identifier": "news_nrncvger2p",
