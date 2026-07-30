@@ -1,0 +1,38 @@
+{
+  "name": "KernelDev - source",
+  "identifier": "com.kerneldev.repo",
+  "subtitle": "an app source",
+  "description": "Compatible with Feather, AltStore and SideStore.",
+  "iconURL": "https://i.pinimg.com/736x/39/69/d1/3969d118e5b89d74e8fa1501a142aca3.jpg",
+  "headerURL": "https://i.pinimg.com/736x/4a/4b/06/4a4b06bb8b32c09d022f1027008a6a80.jpg",
+  "website": "https://rep.kerneldev.qzz.io",
+  "tintColor": "#FC5C04",
+  "featuredApps": [
+    "me.keet.HDRezka"
+  ],
+  "news": [],
+  "apps": [
+    {
+      "name": "HDrezka",
+      "bundleIdentifier": "me.keet.HDRezka",
+      "developerName": "KernelDev",
+      "subtitle": "HDrezka for iOS",
+      "localizedDescription": "HDrezka for iOS",
+      "iconURL": "https://i.imgur.com/ZhtHgcj.png",
+      "tintColor": "#FC5C04",
+      "category": "other",
+      "screenshots": [],
+      "versions": [
+        {
+          "version": "1.6.0",
+          "buildVersion": "1",
+          "date": "2026-07-29T18:42:00+03:00",
+          "localizedDescription": "First AltStore release!",
+          "downloadURL": "https://raw.githubusercontent.com/kkerneldev/repkernel/main/ipa/hdrezka.ipa",
+          "size": 7200000,
+          "minOSVersion": "12.0"
+        }
+      ]
+    }
+  ]
+}
