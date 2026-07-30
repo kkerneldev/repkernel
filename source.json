@@ -31,6 +31,25 @@
           "downloadURL": "https://raw.githubusercontent.com/kkerneldev/repkernel/main/ipa/hdrezka.ipa",
           "size": 7200000,
           "minOSVersion": "12.0"
+    {
+      "name": "Whitegram",
+      "bundleIdentifier": "ph.telegra.Telegraph",
+      "developerName": "Heypain",
+      "subtitle": "замена аюграма на iOS",
+      "localizedDescription": "замена аюграма на iOS",
+      "iconURL": "https://i.imgur.com/sHfH8pO.png",
+      "tintColor": "#7F7F7F",
+      "category": "other",
+      "screenshots": [],
+      "versions": [
+        {
+          "version": "12.9.2",
+          "buildVersion": "1",
+          "date": "2026-07-29T18:52:00+03:00",
+          "localizedDescription": "First AltStore release!",
+          "downloadURL": "https://raw.githubusercontent.com/kkerneldev/repkernel/main/ipa/whitegram.ipa",
+          "size": 175800000,
+          "minOSVersion": "12.0"
         }
       ]
     }
