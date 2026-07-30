@@ -1,10 +1,10 @@
 {
   "name": "kkerneldev - repo",
-  "identifier": "dev.kkernel.repkernel",
   "subtitle": "anime!",
   "description": "я обычный разработчик",
   "iconURL": "https://avatars.githubusercontent.com/u/250387405?s=400&u=9e0aec13cb369e8dadc5f84d4f625b2b6558d108&v=4",
   "website": "https://github.com/kkerneldev/repkernel",
+  "patreonURL": "https://patreon.com/altstudio",
   "tintColor": "#6156e2",
   "featuredApps": [
     "tv.anilibria.anilibria",
@@ -19,6 +19,7 @@
     {
       "name": "UNDERTALE",
       "bundleIdentifier": "com.jockeholm.undertale",
+      "marketplaceID": "",
       "developerName": "Example Developer",
       "subtitle": "An awesome app.",
       "localizedDescription": "This is an awesome app only available on AltStore.",
@@ -31,13 +32,26 @@
           "downloadURL": "https://github.com/kkerneldev/repkernel/raw/refs/heads/main/ipa/Undertale.ipa",
           "size": 140600000,
           "version": "2.0.0",
-          "date": "2026-07-30T12:11:00+03:00"
+          "buildVersion": null,
+          "date": "2026-07-30T12:11:00+03:00",
+          "localizedDescription": null,
+          "minOSVersion": null
         }
-      ]
+      ],
+      "appPermissions": {
+        "entitlements": [],
+        "privacy": {
+          "NSMainNibFile": "MainWindow-iPhone",
+          "NSMainNibFile~ipad": "MainWindow",
+          "NSMainNibFile~iphone": "MainWindow-iPhone"
+        }
+      },
+      "patreon": {}
     },
     {
       "name": "VKVideo",
       "bundleIdentifier": "com.vk.vkvideo.prod",
+      "marketplaceID": "",
       "developerName": "Example Developer",
       "subtitle": "An awesome app.",
       "localizedDescription": "This is an awesome app only available on AltStore.",
@@ -47,16 +61,34 @@
       "screenshots": [],
       "versions": [
         {
-          "downloadURL": "https://raw.githubusercontent.com/kkerneldev/repkernel/main/ipa/vkvideo.ipa",
+          "downloadURL": "https://github.com/kkerneldev/repkernel/blob/main/ipa/vkvideo.ipa",
           "size": 307000000,
           "version": "8.183",
-          "date": "2026-07-30T12:10:00+03:00"
+          "buildVersion": null,
+          "date": "2026-07-30T12:10:00+03:00",
+          "localizedDescription": null,
+          "minOSVersion": null
         }
-      ]
+      ],
+      "appPermissions": {
+        "entitlements": [],
+        "privacy": {
+          "NSCameraUsageDescription": "Allow access to add photos and videos",
+          "NSContactsUsageDescription": "Allow access to search friends in your contacts",
+          "NSLocalNetworkUsageDescription": "",
+          "NSLocationWhenInUseUsageDescription": "Location is used when attached to a message or post and to improve recommendations for your news feed",
+          "NSMicrophoneUsageDescription": "Allow access to record videos and voice messages",
+          "NSPhotoLibraryUsageDescription": "Allow access to select photos and videos from the library",
+          "NSSpeechRecognitionUsageDescription": "Allow access to recognise voice messages",
+          "NSUserTrackingUsageDescription": "Your data will be used to deliver personalized ads to you"
+        }
+      },
+      "patreon": {}
     },
     {
       "name": "CapCut",
       "bundleIdentifier": "com.lemon.lvoverseas",
+      "marketplaceID": "",
       "developerName": "Example Developer",
       "subtitle": "An awesome app.",
       "localizedDescription": "This is an awesome app only available on AltStore.",
@@ -69,13 +101,34 @@
           "downloadURL": "https://github.com/kkerneldev/repkernel/raw/refs/heads/main/ipa/CapCut.ipa",
           "size": 146800000,
           "version": "12.6.0",
-          "date": "2026-07-30T12:09:00+03:00"
+          "buildVersion": null,
+          "date": "2026-07-30T12:09:00+03:00",
+          "localizedDescription": null,
+          "minOSVersion": null
         }
-      ]
+      ],
+      "appPermissions": {
+        "entitlements": [
+          "com.apple.developer.associated-domains",
+          "com.apple.developer.usernotifications.communication",
+          "keychain-access-groups",
+          "aps-environment",
+          "com.apple.developer.networking.wifi-info"
+        ],
+        "privacy": {
+          "NSAppleMusicUsageDescription": "Required for importing music.",
+          "NSCameraUsageDescription": "Required for recording videos.",
+          "NSMicrophoneUsageDescription": "Required for recording audio.",
+          "NSPhotoLibraryUsageDescription": "Required for importing and saving media.",
+          "NSUserTrackingUsageDescription": "Required for personalized content."
+        }
+      },
+      "patreon": {}
     },
     {
       "name": "Whitegram",
       "bundleIdentifier": "ph.telegra.Telegraph",
+      "marketplaceID": "",
       "developerName": "Heypain",
       "subtitle": "замена аюграма на айос",
       "localizedDescription": "замена аюграма на айос",
@@ -89,13 +142,21 @@
           "date": "2026-07-29T18:52:00+03:00",
           "localizedDescription": "First AltStore release!",
           "downloadURL": "https://raw.githubusercontent.com/kkerneldev/repkernel/main/ipa/whitegram.ipa",
-          "size": 175800000
+          "size": 175800000,
+          "buildVersion": null,
+          "minOSVersion": null
         }
-      ]
+      ],
+      "appPermissions": {
+        "entitlements": [],
+        "privacy": {}
+      },
+      "patreon": {}
     },
     {
       "name": "YouTube++",
       "bundleIdentifier": "com.google.ios.youtube",
+      "marketplaceID": "",
       "developerName": "Google LLC",
       "subtitle": "Версия ютуба без реклам",
       "localizedDescription": "Версия ютуба без реклам",
@@ -109,13 +170,21 @@
           "date": "2026-07-29T18:51:00+03:00",
           "localizedDescription": "First AltStore release!",
           "downloadURL": "https://raw.githubusercontent.com/kkerneldev/repkernel/main/ipa/youtubeplus.ipa",
-          "size": 134500000
+          "size": 134500000,
+          "buildVersion": null,
+          "minOSVersion": null
         }
-      ]
+      ],
+      "appPermissions": {
+        "entitlements": [],
+        "privacy": {}
+      },
+      "patreon": {}
     },
     {
       "name": "Telegram - Old",
       "bundleIdentifier": "ph.telegra.Telegraphold",
+      "marketplaceID": "",
       "developerName": "Telegram LLC",
       "subtitle": "Old verison of telegram",
       "localizedDescription": "Old verison of telegram",
@@ -129,13 +198,21 @@
           "date": "2026-07-29T18:50:00+03:00",
           "localizedDescription": "First AltStore release!",
           "downloadURL": "https://raw.githubusercontent.com/kkerneldev/repkernel/main/ipa/telegramold.ipa",
-          "size": 64000000
+          "size": 64000000,
+          "buildVersion": null,
+          "minOSVersion": null
         }
-      ]
+      ],
+      "appPermissions": {
+        "entitlements": [],
+        "privacy": {}
+      },
+      "patreon": {}
     },
     {
       "name": "WaffleStore",
       "bundleIdentifier": "com.nxtcoreee3.WaffleStore",
+      "marketplaceID": "",
       "developerName": "KernelDev",
       "subtitle": "A jailed app store app downgrader, based off of MuffinStoreJailed and PancakeStore. Supports iOS 16.4+ and does not use any exploits..",
       "localizedDescription": "A jailed app store app downgrader, based off of MuffinStoreJailed and PancakeStore. Supports iOS 16.4+ and does not use any exploits..",
@@ -149,13 +226,21 @@
           "date": "2026-07-29T18:49:00+03:00",
           "localizedDescription": "First AltStore release!",
           "downloadURL": "https://raw.githubusercontent.com/kkerneldev/repkernel/main/ipa/WaffleStore.ipa",
-          "size": 3100000
+          "size": 3100000,
+          "buildVersion": null,
+          "minOSVersion": null
         }
-      ]
+      ],
+      "appPermissions": {
+        "entitlements": [],
+        "privacy": {}
+      },
+      "patreon": {}
     },
     {
       "name": "AniLiberty",
       "bundleIdentifier": "tv.anilibria.anilibria",
+      "marketplaceID": "",
       "developerName": "Anilibria",
       "subtitle": "Удобное iOS приложение для просмотра аниме",
       "localizedDescription": "Удобное iOS приложение для просмотра аниме",
@@ -169,13 +254,21 @@
           "date": "2026-07-29T18:49:00+03:00",
           "localizedDescription": "First AltStore release!",
           "downloadURL": "https://raw.githubusercontent.com/kkerneldev/repkernel/main/ipa/anilibria.ipa",
-          "size": 4000000
+          "size": 4000000,
+          "buildVersion": null,
+          "minOSVersion": null
         }
-      ]
+      ],
+      "appPermissions": {
+        "entitlements": [],
+        "privacy": {}
+      },
+      "patreon": {}
     },
     {
       "name": "HDrezka",
       "bundleIdentifier": "me.keet.HDRezka",
+      "marketplaceID": "",
       "developerName": "KernelDev",
       "subtitle": "HDrezka for IOS",
       "localizedDescription": "HDrezka for IOS",
@@ -190,9 +283,15 @@
           "localizedDescription": "First AltStore release!",
           "downloadURL": "https://raw.githubusercontent.com/kkerneldev/repkernel/main/ipa/hdrezka.ipa",
           "size": 7200000,
+          "buildVersion": null,
           "minOSVersion": "12.0"
         }
-      ]
+      ],
+      "appPermissions": {
+        "entitlements": [],
+        "privacy": {}
+      },
+      "patreon": {}
     }
   ],
   "news": [
@@ -200,7 +299,7 @@
       "title": "New game and new app (Undertale - VKvideo",
       "identifier": "news_en27h280ju",
       "caption": "KernelDev",
-      "date": "2026-07-30T15:11:00+03:00",
+      "date": "2026-07-30T15:11",
       "tintColor": "#6156e2",
       "imageURL": "https://media1.tenor.com/m/Bv37u6GJKkkAAAAd/bar-feelre.gif",
       "notify": true,
@@ -211,7 +310,7 @@
       "title": "WOW NEW APP IN REPOSITORY :3",
       "identifier": "news_nrncvger2p",
       "caption": "by Kkerneldev",
-      "date": "2026-07-29T21:52:00+03:00",
+      "date": "2026-07-29T21:52",
       "tintColor": "#ff0052",
       "imageURL": "https://www.anilibria.tv/img/29_1.png",
       "notify": true,
