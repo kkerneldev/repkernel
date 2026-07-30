@@ -25,7 +25,7 @@
       "versions": [
         {
           "version": "1.6.0",
-          "buildVersion": "1",
+          "buildVersion": "570",
           "date": "2026-07-29T18:42:00+03:00",
           "localizedDescription": "First AltStore release!",
           "downloadURL": "https://raw.githubusercontent.com/kkerneldev/repkernel/main/ipa/hdrezka.ipa",
