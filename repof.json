@@ -108,13 +108,7 @@
         }
       ],
       "appPermissions": {
-        "entitlements": [
-          "com.apple.developer.associated-domains",
-          "com.apple.developer.usernotifications.communication",
-          "keychain-access-groups",
-          "aps-environment",
-          "com.apple.developer.networking.wifi-info"
-        ],
+        "entitlements": [],
         "privacy": {
           "NSAppleMusicUsageDescription": "Required for importing music.",
           "NSCameraUsageDescription": "Required for recording videos.",
