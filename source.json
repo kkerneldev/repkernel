@@ -47,7 +47,7 @@
       "versions": [
         {
           "version": "12.9.2",
-          "buildVersion": "1",
+          "buildVersion": "60",
           "date": "2026-07-29T18:52:00+03:00",
           "localizedDescription": "First AltStore release!",
           "downloadURL": "https://github.com/kkerneldev/repkernel/raw/refs/heads/main/ipa/whitegram.ipa",
