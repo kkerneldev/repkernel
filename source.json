@@ -31,11 +31,14 @@
           "downloadURL": "https://raw.githubusercontent.com/kkerneldev/repkernel/main/ipa/hdrezka.ipa",
           "size": 7200000,
           "minOSVersion": "12.0"
+        }
+      ]
+    },
     {
       "name": "Whitegram",
       "bundleIdentifier": "ph.telegra.Telegraph",
       "developerName": "Heypain",
-      "subtitle": "Modded Telegram Client",
+      "subtitle": "замена аюграма на iOS",
       "localizedDescription": "замена аюграма на iOS",
       "iconURL": "https://i.imgur.com/sHfH8pO.png",
       "tintColor": "#7F7F7F",
