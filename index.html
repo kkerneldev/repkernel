@@ -3,88 +3,113 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#080b12">
+  <meta name="theme-color" content="#ffffff">
   <meta name="description" content="Kernel’s Source — источник для AltStore Classic.">
-  <title>Kernel’s Source — AltStore Classic</title>
-  <link rel="preconnect" href="https://i.pinimg.com">
+  <title>Kernel’s Source</title>
+  <link rel="icon" href="https://i.pinimg.com/736x/39/69/d1/3969d118e5b89d74e8fa1501a142aca3.jpg">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="ambient ambient-one"></div><div class="ambient ambient-two"></div>
-  <header class="nav wrap">
-    <a class="brand" href="#home" aria-label="Kernel’s Source — главная">
-      <img src="https://i.pinimg.com/736x/39/69/d1/3969d118e5b89d74e8fa1501a142aca3.jpg" alt="" class="brand-icon">
-      <span>Kernel’s Source</span>
-    </a>
-    <button class="menu-toggle" aria-label="Открыть меню" aria-expanded="false">☰</button>
-    <nav class="nav-links" id="nav-links">
-      <a href="#home" class="active">Главная</a><a href="#features">Возможности</a><a href="#add">Установка</a><a href="#faq">FAQ</a>
-    </nav>
-    <a class="github-icon" href="https://github.com/" target="_blank" rel="noreferrer" aria-label="GitHub">
-      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .8a11.2 11.2 0 0 0-3.54 21.83c.56.1.76-.24.76-.54v-2.1c-3.1.67-3.76-1.32-3.76-1.32-.5-1.29-1.24-1.63-1.24-1.63-1.01-.69.08-.68.08-.68 1.12.08 1.71 1.15 1.71 1.15 1 1.7 2.62 1.21 3.26.92.1-.72.39-1.21.71-1.49-2.48-.28-5.09-1.24-5.09-5.53 0-1.22.44-2.22 1.15-3-.12-.28-.5-1.42.11-2.96 0 0 .94-.3 3.08 1.15a10.7 10.7 0 0 1 5.6 0c2.14-1.45 3.08-1.15 3.08-1.15.61 1.54.23 2.68.11 2.96.72.78 1.15 1.78 1.15 3 0 4.3-2.61 5.25-5.1 5.52.4.35.76 1.03.76 2.08v3.08c0 .3.2.65.77.54A11.2 11.2 0 0 0 12 .8Z"/></svg>
-    </a>
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="#home">
+        <img src="https://i.pinimg.com/736x/39/69/d1/3969d118e5b89d74e8fa1501a142aca3.jpg" alt="" class="brand-icon">
+        <span>Kernel’s Source</span>
+      </a>
+      <button class="menu-toggle" aria-label="Открыть меню" aria-expanded="false">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+      <nav class="nav-links" id="nav-links">
+        <a href="#home">Главная</a>
+        <a href="#about">О проекте</a>
+        <a href="#install">Установка</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+      <a class="github-link" href="https://github.com/" target="_blank" rel="noreferrer" aria-label="GitHub">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .8a11.2 11.2 0 0 0-3.54 21.83c.56.1.76-.24.76-.54v-2.1c-3.1.67-3.76-1.32-3.76-1.32-.5-1.29-1.24-1.63-1.24-1.63-1.01-.69.08-.68.08-.68 1.12.08 1.71 1.15 1.71 1.15 1 1.7 2.62 1.21 3.26.92.1-.72.39-1.21.71-1.49-2.48-.28-5.09-1.24-5.09-5.53 0-1.22.44-2.22 1.15-3-.12-.28-.5-1.42.11-2.96 0 0 .94-.3 3.08 1.15a10.7 10.7 0 0 1 5.6 0c2.14-1.45 3.08-1.15 3.08-1.15.61 1.54.23 2.68.11 2.96.72.78 1.15 1.78 1.15 3 0 4.3-2.61 5.25-5.1 5.52.4.35.76 1.03.76 2.08v3.08c0 .3.2.65.77.54A11.2 11.2 0 0 0 12 .8Z"/></svg>
+      </a>
+    </div>
   </header>
 
   <main>
-    <section class="hero wrap" id="home">
+    <section class="hero container" id="home">
       <div class="hero-copy">
-        <div class="eyebrow"><span class="status-dot"></span> ALTSTORE CLASSIC SOURCE</div>
-        <img class="hero-icon" src="https://i.pinimg.com/736x/39/69/d1/3969d118e5b89d74e8fa1501a142aca3.jpg" alt="Kernel’s Source — иконка">
+        <div class="eyebrow"><span></span> ALTSTORE CLASSIC SOURCE</div>
         <h1>Kernel’s<br><span>Source.</span></h1>
-        <p class="hero-subtitle">Твой источник. Твои возможности.</p>
-        <p class="hero-description">Удобный способ находить и добавлять проекты через AltStore Classic. Минималистично, быстро и в твоём стиле.</p>
-        <div class="hero-actions">
-          <a class="button button-primary add-source" href="#add"><span class="alt-mark">＋</span> Add to AltStore <span class="arrow">↗</span></a>
-          <a class="text-link" href="https://github.com/" target="_blank" rel="noreferrer"><span class="github-small">⌘</span> Смотреть на GitHub <span>↗</span></a>
+        <p class="lead">Нужные проекты. В одном месте.</p>
+        <p class="description">Kernel’s Source — простой способ находить и добавлять приложения через AltStore Classic. Без лишнего шума: только проект и то, что тебе нужно.</p>
+        <div class="actions">
+          <a class="button button-red add-source" href="#install">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+            Add to AltStore
+            <svg class="external" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9"/><path d="M18 13v6a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h6"/></svg>
+          </a>
+          <a class="text-link" href="https://github.com/" target="_blank" rel="noreferrer">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .8a11.2 11.2 0 0 0-3.54 21.83c.56.1.76-.24.76-.54v-2.1c-3.1.67-3.76-1.32-3.76-1.32-.5-1.29-1.24-1.63-1.24-1.63-1.01-.69.08-.68.08-.68 1.12.08 1.71 1.15 1.71 1.15 1 1.7 2.62 1.21 3.26.92.1-.72.39-1.21.71-1.49-2.48-.28-5.09-1.24-5.09-5.53 0-1.22.44-2.22 1.15-3-.12-.28-.5-1.42.11-2.96 0 0 .94-.3 3.08 1.15a10.7 10.7 0 0 1 5.6 0c2.14-1.45 3.08-1.15 3.08-1.15.61 1.54.23 2.68.11 2.96.72.78 1.15 1.78 1.15 3 0 4.3-2.61 5.25-5.1 5.52.4.35.76 1.03.76 2.08v3.08c0 .3.2.65.77.54A11.2 11.2 0 0 0 12 .8Z"/></svg>
+            GitHub <span>↗</span>
+          </a>
         </div>
-        <div class="hero-note"><span class="tiny-check">✓</span> Для AltStore Classic на iPhone и iPad</div>
+        <div class="hero-meta"><span class="meta-line"></span> Сделано для AltStore Classic</div>
       </div>
-      <div class="hero-visual" aria-label="Декоративный макет iPhone">
-        <div class="orb orb-a"></div><div class="orb orb-b"></div>
-        <div class="phone">
-          <div class="phone-frame">
-            <div class="phone-top"><span>9:41</span><span class="island"></span><span>● ▰ ▰</span></div>
-            <div class="phone-wallpaper"></div>
-            <div class="phone-app">
-              <img src="https://i.pinimg.com/736x/39/69/d1/3969d118e5b89d74e8fa1501a142aca3.jpg" alt="">
-              <span>Kernel’s Source</span>
-            </div>
-            <div class="phone-widget"><span class="widget-label">YOUR NEXT FAVORITE</span><strong>Everything<br>in one source.</strong><span class="widget-line"></span></div>
-            <div class="phone-dock"><i></i><i></i><i></i><i></i></div>
-          </div>
-        </div>
-        <div class="float-chip chip-top"><span class="chip-dot"></span> Liquid Glass inspired</div>
-        <div class="float-chip chip-bottom"><span>✦</span> Built for iOS</div>
+      <div class="hero-art" aria-hidden="true">
+        <div class="icon-shadow"></div>
+        <img class="large-icon" src="https://i.pinimg.com/736x/39/69/d1/3969d118e5b89d74e8fa1501a142aca3.jpg" alt="">
+        <div class="art-caption"><span class="caption-mark">K</span><div><strong>Kernel’s Source</strong><small>Community source</small></div></div>
       </div>
     </section>
 
-    <section class="features-section wrap" id="features">
-      <div class="section-intro"><span class="section-kicker">ПОЧЕМУ KERNEL’S SOURCE</span><h2>Чистый дизайн.<br><span>Простой доступ.</span></h2><p>Всё нужное — без визуального шума. Сайт одинаково удобно выглядит на телефоне и компьютере.</p></div>
-      <div class="feature-grid">
-        <article class="feature-card"><div class="feature-icon blue">✧</div><h3>Нативное настроение</h3><p>Стеклянные поверхности, мягкие градиенты и детали в духе новых интерфейсов iOS.</p></article>
-        <article class="feature-card"><div class="feature-icon mint">↗</div><h3>Добавление в один тап</h3><p>Кнопка ведёт прямо к добавлению источника в AltStore Classic после настройки ссылки.</p></article>
-        <article class="feature-card"><div class="feature-icon purple">⌘</div><h3>Открытый проект</h3><p>Код сайта можно хранить в GitHub, изменять и публиковать через GitHub Pages.</p></article>
-        <article class="feature-card"><div class="feature-icon amber">✦</div><h3>Адаптивность</h3><p>Макет автоматически подстраивается под экран iPhone, iPad и компьютера.</p></article>
+    <section class="about container" id="about">
+      <div class="section-heading">
+        <span class="eyebrow plain">О ПРОЕКТЕ</span>
+        <h2>Ничего лишнего.<br><span>Всё по делу.</span></h2>
+        <p>Лаконичная страница для источника AltStore Classic. Быстрый доступ, понятная навигация и открытая структура.</p>
+      </div>
+      <div class="info-list">
+        <article class="info-item">
+          <div class="info-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v18M3 12h18"/></svg></div>
+          <div><h3>Добавление в AltStore</h3><p>Одна кнопка для перехода к добавлению источника на устройстве.</p></div>
+          <span class="item-number">01</span>
+        </article>
+        <article class="info-item">
+          <div class="info-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M8 9h8M8 13h5"/></svg></div>
+          <div><h3>Простой веб-сайт</h3><p>Статические файлы без фреймворков и сложной сборки.</p></div>
+          <span class="item-number">02</span>
+        </article>
+        <article class="info-item">
+          <div class="info-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 4.5 6v5.5c0 4.5 3.1 7.7 7.5 9.5 4.4-1.8 7.5-5 7.5-9.5V6L12 3Z"/><path d="m9 12 2 2 4-4"/></svg></div>
+          <div><h3>Под твоим контролем</h3><p>Хостинг на GitHub Pages, а контент можно менять в репозитории.</p></div>
+          <span class="item-number">03</span>
+        </article>
       </div>
     </section>
 
-    <section class="install wrap" id="add">
-      <div class="install-icon"><img src="https://i.pinimg.com/736x/39/69/d1/3969d118e5b89d74e8fa1501a142aca3.jpg" alt=""></div>
-      <div class="install-copy"><span class="section-kicker">ГОТОВ НАЧАТЬ?</span><h2>Добавь Kernel’s Source</h2><p>Открой источник в AltStore Classic и посмотри, что в нём доступно.</p></div>
-      <div class="install-actions"><a class="button button-primary add-source" href="#add"><span class="alt-mark">＋</span> Add to AltStore <span class="arrow">↗</span></a><span class="small-note">Требуется AltStore Classic</span></div>
+    <section class="install container" id="install">
+      <img src="https://i.pinimg.com/736x/39/69/d1/3969d118e5b89d74e8fa1501a142aca3.jpg" alt="" class="install-icon">
+      <div class="install-copy"><span class="eyebrow plain">НАЧАТЬ</span><h2>Добавь источник.</h2><p>Открой Kernel’s Source в AltStore Classic.</p></div>
+      <a class="button button-red add-source" href="#install">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+        Add to AltStore
+        <svg class="external" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9"/><path d="M18 13v6a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h6"/></svg>
+      </a>
     </section>
 
-    <section class="faq wrap" id="faq">
-      <div><span class="section-kicker">FAQ</span><h2>Есть вопросы?</h2></div>
+    <section class="faq container" id="faq">
+      <div><span class="eyebrow plain">FAQ</span><h2>Частые вопросы</h2></div>
       <div class="faq-list">
-        <details><summary>Как добавить источник?</summary><p>Открой сайт на iPhone с установленным AltStore Classic и нажми Add to AltStore. Ссылка заработает после того, как ты укажешь адрес опубликованного source.json в файле script.js.</p></details>
-        <details><summary>Почему кнопка пока не открывает источник?</summary><p>Для кнопки нужен опубликованный JSON-файл источника. В комплекте есть шаблон source.json — сначала заполни его и размести в GitHub Pages, затем вставь его публичный URL в script.js.</p></details>
-        <details><summary>Можно ли изменить оформление?</summary><p>Да. Основные цвета и эффекты находятся в style.css, а текст, ссылки и поведение кнопки — в index.html и script.js.</p></details>
+        <details><summary>Как добавить источник?</summary><p>Открой сайт на устройстве с AltStore Classic и нажми Add to AltStore. Для работы кнопки укажи URL опубликованного source.json в файле script.js.</p></details>
+        <details><summary>Почему кнопка пока не работает?</summary><p>Вставь публичную HTTPS-ссылку на source.json в script.js. Сам JSON тоже нужно опубликовать на GitHub Pages.</p></details>
+        <details><summary>Как изменить цвета или текст?</summary><p>Тексты находятся в index.html, цвета и размеры — в style.css, адрес источника — в script.js.</p></details>
       </div>
     </section>
   </main>
 
-  <footer class="footer"><div class="wrap footer-inner"><a class="brand footer-brand" href="#home"><img src="https://i.pinimg.com/736x/39/69/d1/3969d118e5b89d74e8fa1501a142aca3.jpg" alt=""><span>Kernel’s Source</span></a><span>Создано с вниманием к деталям.</span><a href="#home">Наверх ↑</a></div></footer>
+  <footer class="footer">
+    <div class="container footer-inner">
+      <a class="brand footer-brand" href="#home"><img src="https://i.pinimg.com/736x/39/69/d1/3969d118e5b89d74e8fa1501a142aca3.jpg" alt=""><span>Kernel’s Source</span></a>
+      <span>Просто. Чётко. По делу.</span>
+      <a class="back-top" href="#home">Наверх ↑</a>
+    </div>
+  </footer>
   <script src="script.js"></script>
 </body>
 </html>

@@ -1,7 +1,6 @@
 /*
- * 1. Опубликуй source.json в GitHub Pages.
- * 2. Вставь сюда его полный публичный HTTPS URL.
- * Пример: https://username.github.io/kernels-source/source.json
+ * 1. Опубликуй source.json на GitHub Pages.
+ * 2. Укажи здесь его полный публичный HTTPS URL.
  */
 const SOURCE_URL = "PASTE_YOUR_PUBLIC_SOURCE_JSON_URL_HERE";
 
@@ -16,11 +15,12 @@ document.querySelectorAll(".add-source").forEach((button) => {
     if (!target) {
       event.preventDefault();
       document.querySelector("#faq").scrollIntoView({ behavior: "smooth" });
-      const firstAnswer = document.querySelector(".faq-list details:nth-child(2)");
-      if (firstAnswer) firstAnswer.open = true;
+      const answer = document.querySelector(".faq-list details:nth-child(2)");
+      if (answer) answer.open = true;
       return;
     }
-    button.href = target;
+    event.preventDefault();
+    window.location.href = target;
   });
 });
 
