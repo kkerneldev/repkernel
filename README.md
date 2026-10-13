@@ -1,2 +1,2 @@
 # repkernel
-Nothing interesting just an repository...
+an altstore repository en/ru
