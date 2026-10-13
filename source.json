@@ -1,10 +1,72 @@
 {
-  "name": "Kernel’s Source",
-  "subtitle": "Your apps. Your source.",
-  "description": "Kernel’s Source for AltStore Classic.",
+  "name": "Kernel's source",
+  "subtitle": "App source by kernel!",
+  "description": "App source by kernel!\n\nCompatible with Feather, AltStore, Sidestore also with LiveContainer.",
+  "localizedDescriptions": {
+    "ru": "Сурс приложений от kernel!\n\nРаботает с Feather, AltStore, Sidestore и LiveContainer."
+  },
   "iconURL": "https://i.pinimg.com/736x/39/69/d1/3969d118e5b89d74e8fa1501a142aca3.jpg",
-  "website": "https://YOUR-USERNAME.github.io/YOUR-REPOSITORY/",
-  "tintColor": "#E3343F",
-  "apps": [],
-  "news": []
+  "headerURL": "https://i.pinimg.com/736x/4a/4b/06/4a4b06bb8b32c09d022f1027008a6a80.jpg",
+  "website": "https://rep.kerneldev.qzz.io",
+  "tintColor": "#FC5C04",
+  "featuredApps": [
+    "me.keet.HDRezka"
+  ],
+  "news": [
+    {
+      "title": "New UPDATE!",
+      "localizedTitles": {
+        "ru": "Апдейт!"
+      },
+      "identifier": "7D3AD3EC-A914-4A5F-AD8D-C7BE551E05EA",
+      "caption": "",
+      "date": "2026-10-13T15:57:29Z",
+      "tintColor": "#FF000C",
+      "imageURL": "https://i.pinimg.com/736x/4a/4b/06/4a4b06bb8b32c09d022f1027008a6a80.jpg",
+      "notify": true,
+      "url": "https://rep.kerneldev.qzz.io",
+      "appID": "me.keet.HDRezka"
+    }
+  ],
+  "apps": [
+    {
+      "name": "HDrezka",
+      "bundleIdentifier": "me.keet.HDRezka",
+      "developerName": "KernelDev",
+      "subtitle": "HDrezka for iOS",
+      "localizedSubtitles": {
+        "ru": "HDrezka "
+      },
+      "localizedDescription": "HDrezka for iOS",
+      "iconURL": "https://i.imgur.com/ZhtHgcj.png",
+      "tintColor": "#FC5C04",
+      "category": "other",
+      "screenshots": [
+        "https://github.com/kkerneldev/repkernel/blob/main/screenshots/hdrezka/IMG_3743.jpeg?raw=true",
+        "https://github.com/kkerneldev/repkernel/blob/main/screenshots/hdrezka/IMG_3744.jpeg?raw=true",
+        "https://github.com/kkerneldev/repkernel/blob/main/screenshots/hdrezka/IMG_3745.jpeg?raw=true",
+        "https://github.com/kkerneldev/repkernel/blob/main/screenshots/hdrezka/IMG_3746.jpeg?raw=true"
+      ],
+      "versions": [
+        {
+          "version": "1.6.0",
+          "buildVersion": "570",
+          "date": "2026-10-13T16:14:37Z",
+          "downloadURL": "https://github.com/kkerneldev/repkernel/releases/download/pre-release/hdrezka.ipa",
+          "size": 7172224,
+          "minOSVersion": "16.0",
+          "localizedDescription": "Bug fixes!",
+          "localizedDescriptions": {
+            "ru": "Баг фиксы!"
+          }
+        }
+      ],
+      "appPermissions": {
+        "entitlements": [],
+        "privacy": {
+          "NSPhotoLibraryUsageDescription": "Разрешите доступ к галерее для скачивания видео"
+        }
+      }
+    }
+  ]
 }
