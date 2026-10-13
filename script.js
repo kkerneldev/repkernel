@@ -1,22 +1,19 @@
-/*
- * 1. Опубликуй source.json на GitHub Pages.
- * 2. Укажи здесь его полный публичный HTTPS URL.
- */
+// Set this to the public HTTPS URL of your published source.json.
 const SOURCE_URL = "PASTE_YOUR_PUBLIC_SOURCE_JSON_URL_HERE";
 
-function getAddSourceUrl() {
+function altStoreURL() {
   if (!SOURCE_URL.startsWith("https://") || SOURCE_URL.includes("PASTE_YOUR")) return null;
   return `altstore-classic://source?url=${encodeURIComponent(SOURCE_URL)}`;
 }
 
-document.querySelectorAll(".add-source").forEach((button) => {
-  button.addEventListener("click", (event) => {
-    const target = getAddSourceUrl();
+document.querySelectorAll(".add-source").forEach((link) => {
+  link.addEventListener("click", (event) => {
+    const target = altStoreURL();
     if (!target) {
       event.preventDefault();
-      document.querySelector("#faq").scrollIntoView({ behavior: "smooth" });
-      const answer = document.querySelector(".faq-list details:nth-child(2)");
-      if (answer) answer.open = true;
+      document.querySelector("#source-hint").textContent =
+        "Before using this button, publish source.json and set its HTTPS URL in script.js.";
+      document.querySelector("#source-hint").classList.add("hint-error");
       return;
     }
     event.preventDefault();
@@ -24,11 +21,11 @@ document.querySelectorAll(".add-source").forEach((button) => {
   });
 });
 
-const menuButton = document.querySelector(".menu-toggle");
-const nav = document.querySelector("#nav-links");
+const menuButton = document.querySelector("#menu-button");
+const nav = document.querySelector("#navigation");
 menuButton?.addEventListener("click", () => {
-  const open = nav.classList.toggle("open");
-  menuButton.setAttribute("aria-expanded", String(open));
+  const isOpen = nav.classList.toggle("open");
+  menuButton.setAttribute("aria-expanded", String(isOpen));
 });
 nav?.querySelectorAll("a").forEach((link) => link.addEventListener("click", () => {
   nav.classList.remove("open");

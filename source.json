@@ -1,10 +1,10 @@
 {
   "name": "Kernel’s Source",
-  "subtitle": "Нужные проекты. В одном месте.",
-  "description": "Источник Kernel’s Source для AltStore Classic.",
+  "subtitle": "Your apps. Your source.",
+  "description": "Kernel’s Source for AltStore Classic.",
   "iconURL": "https://i.pinimg.com/736x/39/69/d1/3969d118e5b89d74e8fa1501a142aca3.jpg",
   "website": "https://YOUR-USERNAME.github.io/YOUR-REPOSITORY/",
-  "tintColor": "#E53945",
+  "tintColor": "#E3343F",
   "apps": [],
   "news": []
 }
