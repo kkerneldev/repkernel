@@ -80,9 +80,6 @@
           "NSSiriUsageDescription": "You can use Siri to send messages.",
           "NSSpeechRecognitionUsageDescription": "We need this to transcribe audio messages on your request."
         }
-      },
-      "patreon": {
-        "hidden": true
       }
     },
     {
@@ -116,9 +113,6 @@
         "privacy": {
           "NSPhotoLibraryUsageDescription": "Разрешите доступ к галерее для скачивания видео"
         }
-      },
-      "patreon": {
-        "hidden": true
       }
     }
   ]
