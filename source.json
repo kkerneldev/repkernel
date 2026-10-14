@@ -7,6 +7,7 @@
   "website": "https://rep.kerneldev.qzz.io",
   "tintColor": "#FC5C04",
   "featuredApps": [
+    "org.ayugram.app",
     "me.keet.HDRezka"
   ],
   "news": [
