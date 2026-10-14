@@ -30,7 +30,6 @@
     {
       "name": "AyuGram",
       "bundleIdentifier": "org.ayugram.app",
-      "marketplaceID": "",
       "developerName": "KernelDev",
       "subtitle": "AyuGram for iOS",
       "localizedSubtitles": {
@@ -73,7 +72,6 @@
     {
       "name": "HDrezka",
       "bundleIdentifier": "me.keet.HDRezka",
-      "marketplaceID": "",
       "developerName": "KernelDev",
       "subtitle": "HDrezka for iOS",
       "localizedDescription": "HDrezka for iOS",
