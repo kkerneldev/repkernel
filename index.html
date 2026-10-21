@@ -54,9 +54,7 @@ img{max-width:100%}
 .client-opt-btn .ci img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .client-opt-btn .ci svg{width:18px;height:18px}
 .client-opt-btn span.t{flex:1;text-align:left;margin-left:12px}
-.ss-badge{height:56px;width:auto;display:block;border-radius:12px}
 .get-altstore{margin-top:22px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;font-size:14px;color:var(--muted)}
-.get-altstore img{height:44px;width:auto;display:block}
 
 /* nav */
 nav{position:sticky;top:0;z-index:10;padding-top:env(safe-area-inset-top,0px);background:color-mix(in srgb,var(--bg) 88%,transparent);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
@@ -181,7 +179,6 @@ footer{border-top:1px solid var(--line);padding:28px 0 40px;color:var(--muted);f
     <div class="cta-row">
       <a class="badge-link" id="addBtn" href="#" aria-label="Add to Source">
         <svg id="addSvg" width="196" height="56" viewBox="0 0 196 56" aria-hidden="true"><rect width="196" height="56" rx="14" fill="#16151a"/><rect x=".5" y=".5" width="195" height="55" rx="13.5" fill="none" stroke="#fff" stroke-opacity=".18"/><clipPath id="ic"><rect x="12" y="10" width="36" height="36" rx="9"/></clipPath><rect x="12" y="10" width="36" height="36" rx="9" fill="#e11d2e"/><image id="badgeLogo" x="12" y="10" width="36" height="36" clip-path="url(#ic)" href=""/><text x="58" y="23" fill="#fff" fill-opacity=".7" font-family="Inter,sans-serif" font-size="12" font-weight="500">Add to</text><text x="58" y="42" fill="#fff" font-family="Inter,sans-serif" font-size="20" font-weight="700" letter-spacing="-.3" id="badgeText">AltStore</text></svg>
-        <img id="ssBadge" class="ss-badge hidden" alt="Add Source to SideStore">
       </a>
       <a class="btn" href="#how">How it works</a>
     </div>
@@ -218,7 +215,7 @@ footer{border-top:1px solid var(--line);padding:28px 0 40px;color:var(--muted);f
         <li><h3>Get an app</h3><p id="st3">Open the Browse tab, pick an app, and tap <code>Get</code>. The app signs and installs it automatically.</p></li>
       </ol>
       <p class="note" id="note">Free Apple IDs can keep three sideloaded apps active and need a refresh every 7 days. AltStore does this in the background while your device is on the same Wi-Fi as AltServer.</p>
-      <div class="get-altstore" id="getInst"><span>New to sideloading?</span><a id="instLink" href="https://altstore.io" target="_blank" rel="noopener"><img id="dlBadge" alt="Download on AltStore"><span id="instTxt" class="inst-txt hidden"></span></a></div>
+      <div class="get-altstore" id="getInst"><span>New to sideloading?</span><a id="instLink" class="inst-txt" href="https://altstore.io" target="_blank" rel="noopener"></a></div>
     </div>
   </section>
 </main>
@@ -239,9 +236,7 @@ let APPS = [
 ];
 
 const ASSETS = {
-  logo: { altstore:"assets/logos/AltStore-logo.png", sidestore:"assets/logos/sidestore-logo.png", feather:"assets/logos/feather-logo.png", scarlet:"assets/logos/scarlet-logo.png" },
-  addSidestore: { light:"assets/badges/light/add-source-to-sidestore-light.png", dark:"assets/badges/dark/add-source-to-sidestore-dark.png" },
-  getAltstore: { light:"assets/badges/light/DownloadBadge_light.png", dark:"assets/badges/dark/DownloadBadge_dark.png" }
+  logo: { altstore:"assets/logos/AltStore-logo.png", sidestore:"assets/logos/sidestore-logo.png", feather:"assets/logos/feather-logo.png", scarlet:"assets/logos/scarlet-logo.png" }
 };
 const enc = encodeURIComponent;
 const CLIENTS = {
@@ -270,8 +265,6 @@ function currentTheme(){ return store.get("theme") || (mq.matches ? "dark" : "li
 function applyTheme(){
   const t = currentTheme();
   document.documentElement.setAttribute("data-theme", t);
-  $("ssBadge").src = ASSETS.addSidestore[t];
-  $("dlBadge").src = ASSETS.getAltstore[t];
   const b = $("themeBtn");
   b.setAttribute("aria-label", t === "dark" ? "Switch to light theme" : "Switch to dark theme");
 }
@@ -293,7 +286,6 @@ function toggleTheme(){
 if (mq.addEventListener) mq.addEventListener("change", () => { if (!store.get("theme")) applyTheme(); });
 
 /* installer choice */
-let ssFail = false, altFail = false;
 let preferredClient = store.get("preferred_sideload_client");
 if (!CLIENTS[preferredClient]) preferredClient = null;
 const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent) || !!tg;
@@ -324,15 +316,11 @@ function getLink(a){
 
 function updateButtons(){
   const key = preferredClient && preferredClient !== "direct" ? preferredClient : "altstore";
-  const isSS = key === "sidestore";
   const addBtn = $("addBtn");
   addBtn.href = addLink();
   addBtn.setAttribute("aria-label", "Add source to " + CLIENTS[key].name);
-  const useSS = isSS && !ssFail;
   const isDirect = preferredClient === "direct";
   addBtn.classList.toggle("hidden", isDirect);
-  $("addSvg").classList.toggle("hidden", useSS);
-  $("ssBadge").classList.toggle("hidden", !useSS);
   const cl = CLIENTS[isDirect ? "direct" : key], nm = CLIENTS[key].name;
   $("pillTxt").textContent = cl.pill;
   $("st1").textContent = isDirect ? "Pick an app below and tap Get to download its .ipa file." : "On your device, press the top button. " + nm + " opens and asks to confirm the source.";
@@ -344,9 +332,7 @@ function updateButtons(){
     : "Free Apple IDs can keep three sideloaded apps active and need a refresh every 7 days. Keep " + nm + " installed so it can refresh your apps.";
   $("getInst").classList.toggle("hidden", isDirect);
   const il = $("instLink"); il.href = CLIENTS[key].site;
-  $("dlBadge").classList.toggle("hidden", key !== "altstore" || altFail);
-  const it = $("instTxt"); it.textContent = "Get " + nm + " \u2192";
-  it.classList.toggle("hidden", key === "altstore" && !altFail);
+  il.textContent = "Get " + nm + " \u2192";
   $("badgeLogo").setAttribute("href", ASSETS.logo[key]);
   $("badgeText").textContent = CLIENTS[key].name;
 
@@ -409,8 +395,6 @@ $("srcUrl").textContent = SOURCE_URL;
 $("yr").textContent = new Date().getFullYear();
 function setCount(){ $("count").textContent = APPS.length + (APPS.length === 1 ? " app" : " apps"); }
 setCount();
-$("ssBadge").onerror = function(){ ssFail = true; updateButtons(); };
-$("dlBadge").onerror = function(){ altFail = true; updateButtons(); };
 applyTheme();
 updateButtons();
 if (!preferredClient && isMobile) openModal();
