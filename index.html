@@ -4,7 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Kernel's Source — AltStore Classic repository</title>
-<!-- Telegram WebApp SDK -->
+<meta name="description" content="Community AltStore Classic source with HDRezka and AyuGram.">
+<meta name="theme-color" content="#e11d2e">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='24' fill='%23e11d2e'/%3E%3Ctext x='50' y='68' font-size='56' text-anchor='middle' fill='white' font-family='sans-serif' font-weight='800'%3EK%3C/text%3E%3C/svg%3E">
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,86 +16,91 @@
   --bg:#ffffff; --surface:#ffffff; --tint:#fff4f5; --line:#ececee; --line-strong:#e0e0e4;
   --text:#1f2023; --muted:#6b6d76; --red:#e11d2e; --red-dark:#bf1523; --red-soft:#ffe3e6;
   --shadow:0 1px 2px rgba(31,32,35,.04),0 8px 24px -12px rgba(31,32,35,.12);
-  --ring:rgba(225,29,46,.35);
-  color-scheme:light;
-  box-sizing:border-box; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+  --ring:rgba(225,29,46,.35); color-scheme:light;
 }
 @media (prefers-color-scheme:dark){
   :root:not([data-theme="light"]){
     --bg:#141316; --surface:#1b1a1e; --tint:#241719; --line:#2a292e; --line-strong:#38363d;
-    --text:#f3f2f4; --muted:#a2a1aa; --red:#ff3b4d; --red-dark:#e02a3c; --red-soft:#3a1a1e;
+    --text:#f3f2f4; --muted:#a2a1aa; --red:#ff3b4d; --red-dark:#ff6b79; --red-soft:#3a1a1e;
     --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px -12px rgba(0,0,0,.5); color-scheme:dark;
   }
 }
 :root[data-theme="dark"]{
   --bg:#141316; --surface:#1b1a1e; --tint:#241719; --line:#2a292e; --line-strong:#38363d;
-  --text:#f3f2f4; --muted:#a2a1aa; --red:#ff3b4d; --red-dark:#e02a3c; --red-soft:#3a1a1e;
+  --text:#f3f2f4; --muted:#a2a1aa; --red:#ff3b4d; --red-dark:#ff6b79; --red-soft:#3a1a1e;
   --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px -12px rgba(0,0,0,.5); color-scheme:dark;
 }
-html{scroll-padding-top:calc(72px + env(safe-area-inset-top,0px));scroll-behavior:smooth}
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}
+html{scroll-padding-top:72px;scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased;padding-bottom:env(safe-area-inset-bottom,0px);overflow-x:hidden}
+body.lock{overflow:hidden}
 a{color:inherit;text-decoration:none}
+img{max-width:100%}
 :focus-visible{outline:3px solid var(--ring);outline-offset:2px;border-radius:8px}
-.wrap{max-width:1040px;margin:0 auto;padding:0 24px}
+.wrap{max-width:1040px;margin:0 auto;padding:0 max(24px,env(safe-area-inset-left,0px)) 0 max(24px,env(safe-area-inset-right,0px))}
+.hidden{display:none!important}
 
-/* Onboarding Modal */
-.modal-overlay {
-  position: fixed; inset: 0; z-index: 1000;
-  background: rgba(0,0,0,0.7); backdrop-filter: blur(8px);
-  display: flex; align-items: center; justify-content: center; padding: 20px;
-}
-.modal-card {
-  background: var(--surface); border: 1px solid var(--line); border-radius: 24px;
-  padding: 32px 24px; max-width: 400px; width: 100%; text-align: center; box-shadow: var(--shadow);
-}
-.modal-card h2 { font-size: 22px; margin: 0 0 8px; }
-.modal-card p { font-size: 14px; color: var(--muted); margin: 0 0 24px; }
-.client-opt-btn {
-  width: 100%; padding: 14px 18px; border-radius: 14px; font-weight: 600; font-size: 15px;
-  border: 1px solid var(--line); background: var(--tint); color: var(--text);
-  cursor: pointer; margin-bottom: 10px; display: flex; align-items: center; justify-content: space-between;
-  transition: border-color .15s, background .15s;
-}
-.client-opt-btn:hover { border-color: var(--red); background: var(--red-soft); }
-
-.hidden { display: none !important; }
-.client-opt-btn img,.client-opt-btn svg.dl{width:30px;height:30px;border-radius:8px;flex:none;object-fit:cover}
-.client-opt-btn span{flex:1;text-align:left;margin-left:12px}
+/* modal */
+.modal-overlay{position:fixed;inset:0;z-index:1000;background:rgba(0,0,0,.7);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;padding:20px;overflow-y:auto}
+.modal-card{position:relative;background:var(--surface);border:1px solid var(--line);border-radius:24px;padding:32px 24px 24px;max-width:400px;width:100%;max-height:100%;overflow-y:auto;text-align:center;box-shadow:var(--shadow)}
+.modal-card h2{font-size:22px;margin:0 0 8px}
+.modal-card p{font-size:14px;color:var(--muted);margin:0 0 20px}
+.modal-x{position:absolute;top:10px;right:10px;width:34px;height:34px;border-radius:10px;border:0;background:none;color:var(--muted);font-size:22px;line-height:1;cursor:pointer}
+.modal-x:hover{background:var(--tint);color:var(--text)}
+.client-opt-btn{width:100%;padding:12px 16px;border-radius:14px;font:600 15px Inter,sans-serif;border:1px solid var(--line);background:var(--tint);color:var(--text);cursor:pointer;margin-bottom:10px;display:flex;align-items:center;transition:border-color .15s,background .15s}
+.client-opt-btn:hover{border-color:var(--red);background:var(--red-soft)}
+.client-opt-btn.sel{border-color:var(--red)}
+.client-opt-btn .ci{width:30px;height:30px;border-radius:8px;flex:none;display:grid;place-items:center;overflow:hidden;background:var(--red);color:#fff;font-weight:800;font-size:14px;position:relative}
+.client-opt-btn .ci img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.client-opt-btn .ci svg{width:18px;height:18px}
+.client-opt-btn span.t{flex:1;text-align:left;margin-left:12px}
 .ss-badge{height:56px;width:auto;display:block;border-radius:12px}
 .get-altstore{margin-top:22px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;font-size:14px;color:var(--muted)}
 .get-altstore img{height:44px;width:auto;display:block}
 
 /* nav */
-nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+nav{position:sticky;top:0;z-index:10;padding-top:env(safe-area-inset-top,0px);background:color-mix(in srgb,var(--bg) 88%,transparent);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
 .nav-in{display:flex;align-items:center;justify-content:space-between;height:64px}
 .brand{display:flex;align-items:center;gap:10px;font-weight:700;letter-spacing:-.01em}
-.logo{width:30px;height:30px;border-radius:9px;background:var(--red);display:grid;place-items:center;color:#fff;overflow:hidden}
-.logo img{width:100%;height:100%;object-fit:cover;display:block}
+.logo{width:30px;height:30px;border-radius:9px;background:var(--red);display:grid;place-items:center;color:#fff;font-weight:800;font-size:15px;overflow:hidden;position:relative}
+.logo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .nav-r{display:flex;align-items:center;gap:6px}
-.icon-btn{width:38px;height:38px;border-radius:10px;display:grid;place-items:center;color:var(--muted);border:1px solid transparent;background:none;cursor:pointer}
+.icon-btn{width:40px;height:40px;border-radius:10px;display:grid;place-items:center;color:var(--muted);border:1px solid transparent;background:none;cursor:pointer}
 .icon-btn:hover{color:var(--text);border-color:var(--line);background:var(--tint)}
 .nav-link{font-size:14px;color:var(--muted);padding:8px 12px;border-radius:10px}
 .nav-link:hover{color:var(--text);background:var(--tint)}
 
 /* hero */
-.hero{padding:72px 0 56px;text-align:center}
+.hero{padding:72px 24px 56px;text-align:center}
 .pill{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:500;color:var(--red-dark);background:var(--red-soft);padding:6px 12px;border-radius:99px}
 .pill i{width:6px;height:6px;border-radius:50%;background:var(--red)}
-h1{font-size:clamp(36px,6vw,64px);line-height:1.05;letter-spacing:-.04em;font-weight:800;margin:20px auto 16px;max-width:14ch}
+h1{font-size:clamp(34px,6vw,64px);line-height:1.06;letter-spacing:-.04em;font-weight:800;margin:20px auto 16px;max-width:14ch;text-wrap:balance}
 h1 span{color:var(--red)}
 .sub{font-size:clamp(15px,2vw,18px);color:var(--muted);max-width:52ch;margin:0 auto 28px}
 .cta-row{display:flex;gap:12px;justify-content:center;align-items:center;flex-wrap:wrap}
 .btn{display:inline-flex;align-items:center;gap:10px;font:600 15px Inter,sans-serif;padding:14px 22px;border-radius:14px;border:1px solid var(--line-strong);background:var(--surface);color:var(--text);cursor:pointer;transition:background .15s,border-color .15s,transform .15s}
 .btn:hover{background:var(--tint);border-color:var(--red)}
 .btn:active{transform:scale(.98)}
-.btn.primary{background:var(--red);border-color:var(--red);color:#fff;box-shadow:0 10px 24px -10px var(--red)}
-.btn.primary:hover{background:var(--red-dark);border-color:var(--red-dark)}
 .src{margin:36px auto 0;max-width:620px;background:var(--surface);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);padding:14px 14px 14px 20px;display:flex;align-items:center;gap:12px;text-align:left}
 .src code{flex:1;min-width:0;font:400 13px "JetBrains Mono",ui-monospace,monospace;color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.src button{flex:none;font:600 13px Inter,sans-serif;color:var(--red-dark);background:var(--red-soft);border:0;border-radius:10px;padding:9px 14px;cursor:pointer}
+.src button{flex:none;font:600 13px Inter,sans-serif;color:var(--red-dark);background:var(--red-soft);border:0;border-radius:10px;padding:10px 14px;cursor:pointer}
 .src button:hover{filter:brightness(.97)}
-
+::view-transition-old(root),::view-transition-new(root){animation:none;mix-blend-mode:normal}
+::view-transition-old(root){z-index:1}::view-transition-new(root){z-index:2}
+.theme-ic{overflow:visible}
+.theme-ic .core{transform-origin:12px 12px;transform:scale(1);transition:transform .6s cubic-bezier(.4,0,.2,1)}
+.theme-ic .cut{transform:translate(16px,-16px);transition:transform .6s cubic-bezier(.4,0,.2,1)}
+.theme-ic .rays{transform-origin:12px 12px;transition:transform .6s cubic-bezier(.4,0,.2,1),opacity .4s}
+:root[data-theme="light"] .theme-ic .core{transform:scale(1.55)}
+:root[data-theme="light"] .theme-ic .cut{transform:translate(0,0)}
+:root[data-theme="light"] .theme-ic .rays{transform:rotate(-90deg) scale(.4);opacity:0}
+:root[data-theme="dark"] .theme-ic .rays{transform:rotate(0) scale(1);opacity:1}
+.icon-btn.glow{animation:glow .9s ease-out}
+@keyframes glow{0%{box-shadow:0 0 0 0 var(--glow),0 0 12px 2px var(--glow)}100%{box-shadow:0 0 0 34px transparent,0 0 40px 22px transparent}}
+.cta-row .badge-link{display:flex;align-items:center;min-height:56px}
+.badge-link svg,.badge-link img{display:block}
+.inst-txt{font:600 14px Inter,sans-serif;color:var(--red-dark);background:var(--red-soft);padding:9px 16px;border-radius:99px}
+.inst-txt:hover{background:var(--red);color:#fff}
 .badge-link{display:inline-block;line-height:0;border-radius:12px;transition:opacity .15s,transform .15s}
 .badge-link:hover{opacity:.88}
 .badge-link:active{transform:scale(.98)}
@@ -104,23 +111,23 @@ section{padding:56px 0;border-top:1px solid var(--line)}
 h2{font-size:clamp(26px,4vw,34px);letter-spacing:-.03em;line-height:1.1;margin:0 0 8px}
 .sec-head p{margin:0;color:var(--muted);max-width:48ch}
 .count{font-size:14px;color:var(--muted)}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,280px),1fr));gap:16px}
 .card{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:20px;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:14px;transition:border-color .15s}
 .card:hover{border-color:var(--red)}
 .card-top{display:flex;gap:14px;align-items:center}
 .app-icon{position:relative;overflow:hidden;width:56px;height:56px;border-radius:14px;flex:none;display:grid;place-items:center;color:#fff;font-weight:800;font-size:22px;background:linear-gradient(145deg,var(--red),#7d0c17)}
 .app-icon img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.beta{display:inline-block;vertical-align:2px;margin-left:8px;font:700 11px Inter,sans-serif;letter-spacing:.02em;color:var(--red-dark);background:color-mix(in srgb,var(--red) 12%,transparent);border:1px solid color-mix(in srgb,var(--red) 32%,transparent);padding:1px 8px;border-radius:99px;backdrop-filter:blur(4px)}
+.beta{display:inline-block;vertical-align:2px;margin-left:8px;font:700 11px Inter,sans-serif;letter-spacing:.02em;color:var(--red-dark);background:color-mix(in srgb,var(--red) 12%,transparent);border:1px solid color-mix(in srgb,var(--red) 32%,transparent);padding:1px 8px;border-radius:99px}
 .card h3{margin:0;font-size:16px;letter-spacing:-.01em}
 .ver{font:400 12px "JetBrains Mono",monospace;color:var(--muted)}
 .card p{margin:0;color:var(--muted);font-size:14px;flex:1}
 .card-foot{display:flex;align-items:center;justify-content:space-between;gap:12px}
 .meta{font-size:13px;color:var(--muted)}
-.get{font:700 14px Inter,sans-serif;color:var(--red-dark);background:var(--red-soft);padding:8px 20px;border-radius:99px;transition:background .15s,color .15s}
+.get{font:700 14px Inter,sans-serif;color:var(--red-dark);background:var(--red-soft);padding:9px 22px;border-radius:99px;transition:background .15s,color .15s}
 .get:hover{background:var(--red);color:#fff}
 
 /* steps */
-.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;counter-reset:s;list-style:none;padding:0;margin:0}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:16px;counter-reset:s;list-style:none;padding:0;margin:0}
 .steps li{counter-increment:s;background:var(--tint);border-radius:20px;padding:20px;border:1px solid var(--line)}
 .steps li::before{content:counter(s);display:grid;place-items:center;width:30px;height:30px;border-radius:50%;background:var(--red);color:#fff;font-weight:700;font-size:13px;margin-bottom:14px}
 .steps h3{margin:0 0 6px;font-size:16px}
@@ -131,37 +138,34 @@ h2{font-size:clamp(26px,4vw,34px);letter-spacing:-.03em;line-height:1.1;margin:0
 footer{border-top:1px solid var(--line);padding:28px 0 40px;color:var(--muted);font-size:14px}
 .foot-in{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 .foot-in a:hover{color:var(--red)}
-.toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translate(-50%,20px);background:var(--text);color:var(--bg);padding:10px 18px;border-radius:12px;font-size:14px;font-weight:500;opacity:0;pointer-events:none;transition:.2s;z-index:2000}
+.foot-in .chg{color:var(--red-dark)}
+.toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translate(-50%,20px);max-width:calc(100% - 32px);text-align:center;background:var(--text);color:var(--bg);padding:10px 18px;border-radius:12px;font-size:14px;font-weight:500;opacity:0;pointer-events:none;transition:.2s;z-index:2000}
 .toast.on{opacity:1;transform:translate(-50%,0)}
-@media (max-width:560px){.hero{padding:48px 0 36px}.nav-link{display:none}}
+@media (max-width:560px){.hero{padding:48px 24px 36px}.nav-link{display:none}.src{padding:12px 12px 12px 16px}}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
 </style>
 </head>
 <body>
 
-<!-- Onboarding Modal for iOS / Telegram Users -->
-<div id="onboardingModal" class="modal-overlay hidden">
+<div id="onboardingModal" class="modal-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="mTitle">
   <div class="modal-card">
-    <h2>Choose Installer</h2>
+    <button class="modal-x" type="button" aria-label="Close" onclick="closeModal()">×</button>
+    <h2 id="mTitle">Choose installer</h2>
     <p>Select your sideloading client so the buttons open the right app.</p>
-    <button class="client-opt-btn" onclick="setClient('altstore')"><img src="assets/logos/AltStore-logo.png" alt=""><span>AltStore</span></button>
-    <button class="client-opt-btn" onclick="setClient('sidestore')"><img src="assets/logos/sidestore-logo.png" alt=""><span>SideStore</span></button>
-    <button class="client-opt-btn" onclick="setClient('feather')"><img src="assets/logos/feather-logo.png" alt=""><span>Feather</span></button>
-    <button class="client-opt-btn" onclick="setClient('scarlet')"><img src="assets/logos/scarlet-logo.png" alt=""><span>Scarlet</span></button>
-    <button class="client-opt-btn" onclick="setClient('direct')"><svg class="dl" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m0 0l-4-4m4 4l4-4M5 20h14"/></svg><span>Direct links / TrollStore</span></button>
+    <div id="clientList"></div>
   </div>
 </div>
 
 <nav>
   <div class="wrap nav-in">
     <a class="brand" href="#top" aria-label="Kernel's Source home">
-      <span class="logo" aria-hidden="true"><img src="https://i.pinimg.com/736x/39/69/d1/3969d118e5b89d74e8fa1501a142aca3.jpg" alt="" referrerpolicy="no-referrer" onerror="this.remove()"></span>
+      <span class="logo" aria-hidden="true">K<img src="https://i.pinimg.com/736x/39/69/d1/3969d118e5b89d74e8fa1501a142aca3.jpg" alt="" referrerpolicy="no-referrer" onerror="this.remove()"></span>
       Kernel's Source
     </a>
     <div class="nav-r">
       <a class="nav-link" href="#apps">Apps</a>
       <a class="nav-link" href="#how">How it works</a>
-      <button class="icon-btn" id="themeBtn" type="button" onclick="toggleTheme()"></button>
+      <button class="icon-btn" id="themeBtn" type="button" onclick="toggleTheme()"><svg class="theme-ic" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><mask id="moonMask"><rect x="-4" y="-4" width="32" height="32" fill="#fff"/><circle class="cut" cx="17" cy="8" r="5.5" fill="#000" stroke="none"/></mask><circle class="core" cx="12" cy="12" r="4.5" fill="currentColor" stroke="none" mask="url(#moonMask)"/><g class="rays"><path d="M12 2v2.2M12 19.8V22M4.9 4.9l1.5 1.5M17.6 17.6l1.5 1.5M2 12h2.2M19.8 12H22M4.9 19.1l1.5-1.5M17.6 6.4l1.5-1.5"/></g></svg></button>
       <a class="icon-btn" href="https://github.com/kkerneldev/repkernel" aria-label="View repository on GitHub" target="_blank" rel="noopener">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.1.79-.25.79-.56v-2c-3.2.7-3.87-1.37-3.87-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.03 1.76 2.69 1.25 3.35.96.1-.74.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.28 1.18-3.09-.12-.29-.51-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.78 0c2.2-1.49 3.17-1.18 3.17-1.18.62 1.59.23 2.76.11 3.05.74.81 1.18 1.83 1.18 3.09 0 4.42-2.69 5.39-5.25 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"/></svg>
       </a>
@@ -171,12 +175,12 @@ footer{border-top:1px solid var(--line);padding:28px 0 40px;color:var(--muted);f
 
 <main id="top">
   <header class="hero wrap">
-    <span class="pill"><i></i>AltStore Classic source</span>
+    <span class="pill"><i></i><span id="pillTxt">AltStore Classic source</span></span>
     <h1>Sideload more, <span>search less.</span></h1>
     <p class="sub">A community repository hosted on GitHub. Add it once and every app below shows up in your Browse tab with updates included.</p>
     <div class="cta-row">
       <a class="badge-link" id="addBtn" href="#" aria-label="Add to Source">
-        <svg id="addSvg" width="196" height="56" viewBox="0 0 196 56" aria-hidden="true"><rect width="196" height="56" rx="14" fill="#16151a"/><rect x=".5" y=".5" width="195" height="55" rx="13.5" fill="none" stroke="#fff" stroke-opacity=".18"/><clipPath id="ic"><rect x="12" y="10" width="36" height="36" rx="9"/></clipPath><image id="badgeLogo" x="12" y="10" width="36" height="36" clip-path="url(#ic)" href="assets/logos/AltStore-logo.png"/><text x="58" y="23" fill="#fff" fill-opacity=".7" font-family="Inter,sans-serif" font-size="12" font-weight="500">Add to</text><text x="58" y="42" fill="#fff" font-family="Inter,sans-serif" font-size="20" font-weight="700" letter-spacing="-.3" id="badgeText">AltStore</text></svg>
+        <svg id="addSvg" width="196" height="56" viewBox="0 0 196 56" aria-hidden="true"><rect width="196" height="56" rx="14" fill="#16151a"/><rect x=".5" y=".5" width="195" height="55" rx="13.5" fill="none" stroke="#fff" stroke-opacity=".18"/><clipPath id="ic"><rect x="12" y="10" width="36" height="36" rx="9"/></clipPath><rect x="12" y="10" width="36" height="36" rx="9" fill="#e11d2e"/><image id="badgeLogo" x="12" y="10" width="36" height="36" clip-path="url(#ic)" href=""/><text x="58" y="23" fill="#fff" fill-opacity=".7" font-family="Inter,sans-serif" font-size="12" font-weight="500">Add to</text><text x="58" y="42" fill="#fff" font-family="Inter,sans-serif" font-size="20" font-weight="700" letter-spacing="-.3" id="badgeText">AltStore</text></svg>
         <img id="ssBadge" class="ss-badge hidden" alt="Add Source to SideStore">
       </a>
       <a class="btn" href="#how">How it works</a>
@@ -209,151 +213,209 @@ footer{border-top:1px solid var(--line);padding:28px 0 40px;color:var(--muted);f
         </div>
       </div>
       <ol class="steps">
-        <li>
-          <h3>Tap Add Source</h3>
-          <p>On your device, press the top button. Your installer opens and asks to confirm the source.</p>
-        </li>
-        <li>
-          <h3>Or copy the link</h3>
-          <p>In your app, open <code>Sources</code>, tap <code>+</code>, and paste the source URL you copied above.</p>
-        </li>
-        <li>
-          <h3>Get an app</h3>
-          <p>Open the Browse tab, pick an app, and tap <code>Get</code>. The app signs and installs it automatically.</p>
-        </li>
+        <li><h3>Tap Add Source</h3><p id="st1">On your device, press the top button. Your installer opens and asks to confirm the source.</p></li>
+        <li><h3>Or copy the link</h3><p id="st2">In your app, open <code>Sources</code>, tap <code>+</code>, and paste the source URL you copied above.</p></li>
+        <li><h3>Get an app</h3><p id="st3">Open the Browse tab, pick an app, and tap <code>Get</code>. The app signs and installs it automatically.</p></li>
       </ol>
-      <p class="note">Free Apple IDs can keep three sideloaded apps active and need a refresh every 7 days. AltStore does this in the background while your device is on the same Wi-Fi as AltServer.</p>
-      <div class="get-altstore"><span>New to sideloading?</span><a href="https://altstore.io" target="_blank" rel="noopener"><img id="dlBadge" alt="Download on AltStore"></a></div>
+      <p class="note" id="note">Free Apple IDs can keep three sideloaded apps active and need a refresh every 7 days. AltStore does this in the background while your device is on the same Wi-Fi as AltServer.</p>
+      <div class="get-altstore" id="getInst"><span>New to sideloading?</span><a id="instLink" href="https://altstore.io" target="_blank" rel="noopener"><img id="dlBadge" alt="Download on AltStore"><span id="instTxt" class="inst-txt hidden"></span></a></div>
     </div>
   </section>
 </main>
 
 <footer>
   <div class="wrap foot-in">
-    <span>© <span id="yr"></span> Kernel's Source. Not affiliated with AltStore.</span>
-    <span><a href="#" onclick="resetClientSelection(); return false;" style="color:var(--red);">Change installer</a> · <a href="https://github.com/kkerneldev/repkernel" target="_blank" rel="noopener">GitHub repository</a></span>
+    <span>© <span id="yr"></span> Kernel's Source. Not affiliated with AltStore, SideStore, Feather or Scarlet.</span>
+    <span><a class="chg" href="#" onclick="openModal(); return false;">Change installer</a> · <a href="https://github.com/kkerneldev/repkernel" target="_blank" rel="noopener">GitHub repository</a></span>
   </div>
 </footer>
-<div class="toast" id="toast" role="status" aria-live="polite">Link copied</div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 <script>
-/* ---- Source Configuration ---- */
 const SOURCE_URL = "https://rep.kerneldev.qzz.io/source.json";
-const APPS = [
+let APPS = [
   { name:"HDRezka", version:"1.6.0", size:"7.2 MB", icon:"https://i.imgur.com/ZhtHgcj.png", play:true, desc:"Watch movies and series with a clean catalog and fast search.", ipa:"https://github.com/kkerneldev/repkernel/releases/download/pre-release/hdrezka.ipa" },
   { name:"AyuGram", beta:true, version:"12.9.2", size:"77.7 MB", icon:"https://i.imgur.com/mSWKz6H.png", desc:"A Telegram client with extended features and flexible settings. Currently in beta.", ipa:"https://github.com/kkerneldev/repkernel/releases/download/pre-release/AyuGram.ipa" }
 ];
-/* ------------------------------ */
 
 const ASSETS = {
   logo: { altstore:"assets/logos/AltStore-logo.png", sidestore:"assets/logos/sidestore-logo.png", feather:"assets/logos/feather-logo.png", scarlet:"assets/logos/scarlet-logo.png" },
   addSidestore: { light:"assets/badges/light/add-source-to-sidestore-light.png", dark:"assets/badges/dark/add-source-to-sidestore-dark.png" },
   getAltstore: { light:"assets/badges/light/DownloadBadge_light.png", dark:"assets/badges/dark/DownloadBadge_dark.png" }
 };
+const enc = encodeURIComponent;
 const CLIENTS = {
-  altstore:  { name:"AltStore",  link:u => "altstore://source?url=" + encodeURIComponent(u) },
-  sidestore: { name:"SideStore", link:u => "sidestore://source?url=" + encodeURIComponent(u) },
-  feather:   { name:"Feather",   link:u => "feather://source/" + u },
-  scarlet:   { name:"Scarlet",   link:u => "scarlet://add-source?url=" + encodeURIComponent(u) },
-  direct:    { name:"Direct",    link:null }
+  altstore:  { name:"AltStore", site:"https://altstore.io", pill:"AltStore Classic source",  add:u => "altstore://source?url=" + enc(u),   get:(u,ipa) => "altstore://install?url=" + enc(ipa) },
+  sidestore: { name:"SideStore", site:"https://sidestore.io", pill:"SideStore source", add:u => "sidestore://source?url=" + enc(u),  get:(u,ipa) => "sidestore://install?url=" + enc(ipa) },
+  feather:   { name:"Feather", site:"https://github.com/khcrysalis/Feather", pill:"Feather source",   add:u => "feather://source/" + u,            get:null },
+  scarlet:   { name:"Scarlet", site:"https://usescarlet.com", pill:"Scarlet source",   add:u => "scarlet://add-source?url=" + enc(u), get:null },
+  direct:    { name:"Direct links / TrollStore", pill:"Direct .ipa downloads", add:null, get:null }
 };
-const SUN = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>';
-const MOON = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>';
+const DL = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m0 0l-4-4m4 4l4-4M5 20h14"/></svg>';
+const esc = s => String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const $ = id => document.getElementById(id);
 
-// Safe storage (never throws)
 const store = {
   get(k){ try { return localStorage.getItem(k); } catch(e){ return null; } },
   set(k,v){ try { localStorage.setItem(k,v); } catch(e){} },
   del(k){ try { localStorage.removeItem(k); } catch(e){} }
 };
 
-// Telegram WebApp SDK
-const tg = window.Telegram ? window.Telegram.WebApp : null;
-if (tg) { tg.ready(); tg.expand(); }
+const tg = window.Telegram && window.Telegram.WebApp && window.Telegram.WebApp.initData ? window.Telegram.WebApp : null;
+if (tg) { try { tg.ready(); tg.expand(); } catch(e){} }
 
-// Theme: saved choice wins, otherwise follow the system
+/* theme */
 const mq = window.matchMedia("(prefers-color-scheme: dark)");
 function currentTheme(){ return store.get("theme") || (mq.matches ? "dark" : "light"); }
 function applyTheme(){
   const t = currentTheme();
   document.documentElement.setAttribute("data-theme", t);
-  document.getElementById("ssBadge").src = ASSETS.addSidestore[t];
-  document.getElementById("dlBadge").src = ASSETS.getAltstore[t];
-  const b = document.getElementById("themeBtn");
-  b.innerHTML = t === "dark" ? SUN : MOON;
+  $("ssBadge").src = ASSETS.addSidestore[t];
+  $("dlBadge").src = ASSETS.getAltstore[t];
+  const b = $("themeBtn");
   b.setAttribute("aria-label", t === "dark" ? "Switch to light theme" : "Switch to dark theme");
 }
-function toggleTheme(){ store.set("theme", currentTheme() === "dark" ? "light" : "dark"); applyTheme(); }
+function toggleTheme(){
+  const next = currentTheme() === "dark" ? "light" : "dark";
+  const btn = $("themeBtn"), r = btn.getBoundingClientRect();
+  const x = r.left + r.width / 2, y = r.top + r.height / 2;
+  const end = Math.hypot(Math.max(x, innerWidth - x), Math.max(y, innerHeight - y));
+  const swap = () => { store.set("theme", next); applyTheme(); };
+  btn.style.setProperty("--glow", next === "light" ? "#ffc933" : "#8b9bff");
+  btn.classList.remove("glow"); void btn.offsetWidth; btn.classList.add("glow");
+  if (!document.startViewTransition || matchMedia("(prefers-reduced-motion: reduce)").matches) { swap(); return; }
+  const t = document.startViewTransition(swap);
+  t.ready.then(() => document.documentElement.animate(
+    { clipPath: [`circle(0px at ${x}px ${y}px)`, `circle(${end}px at ${x}px ${y}px)`] },
+    { duration: 800, easing: "cubic-bezier(.22,.7,.2,1)", pseudoElement: "::view-transition-new(root)" }
+  )).catch(() => {});
+}
 if (mq.addEventListener) mq.addEventListener("change", () => { if (!store.get("theme")) applyTheme(); });
 
-// Installer choice
+/* installer choice */
+let ssFail = false, altFail = false;
 let preferredClient = store.get("preferred_sideload_client");
 if (!CLIENTS[preferredClient]) preferredClient = null;
-const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent) || (tg && tg.initData);
+const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent) || !!tg;
 
-function initClientLogic(){
-  if (!preferredClient && isMobile) document.getElementById("onboardingModal").classList.remove("hidden");
-  updateButtonSchemes();
+function renderClientList(){
+  $("clientList").innerHTML = Object.keys(CLIENTS).map(k => {
+    const icon = ASSETS.logo[k]
+      ? `${esc(CLIENTS[k].name[0])}<img src="${ASSETS.logo[k]}" alt="" onerror="this.remove()">`
+      : DL;
+    return `<button type="button" class="client-opt-btn${k === preferredClient ? " sel" : ""}" onclick="setClient('${k}')"><span class="ci">${icon}</span><span class="t">${esc(CLIENTS[k].name)}</span></button>`;
+  }).join("");
 }
-function setClient(c){
-  store.set("preferred_sideload_client", c);
-  preferredClient = c;
-  document.getElementById("onboardingModal").classList.add("hidden");
-  updateButtonSchemes();
-}
-function resetClientSelection(){
-  store.del("preferred_sideload_client");
-  preferredClient = null;
-  document.getElementById("onboardingModal").classList.remove("hidden");
-}
-function getDeepLink(){
+function openModal(){ renderClientList(); $("onboardingModal").classList.remove("hidden"); document.body.classList.add("lock"); }
+function closeModal(){ $("onboardingModal").classList.add("hidden"); document.body.classList.remove("lock"); }
+function setClient(c){ store.set("preferred_sideload_client", c); preferredClient = c; closeModal(); updateButtons(); }
+document.addEventListener("keydown", e => { if (e.key === "Escape") closeModal(); });
+$("onboardingModal").addEventListener("click", e => { if (e.target === e.currentTarget) closeModal(); });
+
+function addLink(){
   const c = CLIENTS[preferredClient];
-  return (c && c.link ? c.link : CLIENTS.altstore.link)(SOURCE_URL);
+  return (c && c.add ? c.add : CLIENTS.altstore.add)(SOURCE_URL);
+}
+function getLink(a){
+  if (preferredClient === "direct") return a.ipa;
+  const c = CLIENTS[preferredClient];
+  return c && c.get ? c.get(SOURCE_URL, a.ipa) : addLink();
 }
 
-function updateButtonSchemes(){
+function updateButtons(){
   const key = preferredClient && preferredClient !== "direct" ? preferredClient : "altstore";
-  const deep = getDeepLink();
-  const addBtn = document.getElementById("addBtn");
   const isSS = key === "sidestore";
-  addBtn.href = deep;
+  const addBtn = $("addBtn");
+  addBtn.href = addLink();
   addBtn.setAttribute("aria-label", "Add source to " + CLIENTS[key].name);
-  document.getElementById("addSvg").classList.toggle("hidden", isSS);
-  document.getElementById("ssBadge").classList.toggle("hidden", !isSS);
-  document.getElementById("badgeLogo").setAttribute("href", ASSETS.logo[key]);
-  document.getElementById("badgeText").textContent = CLIENTS[key].name;
+  const useSS = isSS && !ssFail;
+  const isDirect = preferredClient === "direct";
+  addBtn.classList.toggle("hidden", isDirect);
+  $("addSvg").classList.toggle("hidden", useSS);
+  $("ssBadge").classList.toggle("hidden", !useSS);
+  const cl = CLIENTS[isDirect ? "direct" : key], nm = CLIENTS[key].name;
+  $("pillTxt").textContent = cl.pill;
+  $("st1").textContent = isDirect ? "Pick an app below and tap Get to download its .ipa file." : "On your device, press the top button. " + nm + " opens and asks to confirm the source.";
+  $("st2").innerHTML = isDirect ? "Or add the source manually: copy the URL above and paste it into your installer\u2019s <code>Sources</code>." : "In " + nm + ", open <code>Sources</code>, tap <code>+</code>, and paste the source URL you copied above.";
+  $("st3").innerHTML = isDirect ? "Install the .ipa with TrollStore or your preferred signing tool." : "Open " + nm + ", pick an app, and tap <code>Get</code>. The app signs and installs it automatically.";
+  $("note").textContent = key === "altstore" && !isDirect
+    ? "Free Apple IDs can keep three sideloaded apps active and need a refresh every 7 days. AltStore does this in the background while your device is on the same Wi-Fi as AltServer."
+    : isDirect ? "Apps installed with TrollStore don\u2019t expire. With a signing tool, free Apple IDs need a refresh every 7 days."
+    : "Free Apple IDs can keep three sideloaded apps active and need a refresh every 7 days. Keep " + nm + " installed so it can refresh your apps.";
+  $("getInst").classList.toggle("hidden", isDirect);
+  const il = $("instLink"); il.href = CLIENTS[key].site;
+  $("dlBadge").classList.toggle("hidden", key !== "altstore" || altFail);
+  const it = $("instTxt"); it.textContent = "Get " + nm + " \u2192";
+  it.classList.toggle("hidden", key === "altstore" && !altFail);
+  $("badgeLogo").setAttribute("href", ASSETS.logo[key]);
+  $("badgeText").textContent = CLIENTS[key].name;
 
-  const esc = s => s.replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
-  document.getElementById("grid").innerHTML = APPS.map(a => `
+  $("grid").innerHTML = APPS.map(a => `
     <article class="card">
       <div class="card-top">
-        <div class="app-icon" aria-hidden="true">${a.play ? '<svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.5-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5z"/></svg>' : esc(a.name[0])}${a.icon ? `<img src="${esc(a.icon)}" alt="" referrerpolicy="no-referrer" onerror="this.remove()">` : ''}</div>
+        <div class="app-icon" aria-hidden="true">${a.play ? '<svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.5-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5z"/></svg>' : esc(a.name[0])}${a.icon ? `<img src="${esc(a.icon)}" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">` : ''}</div>
         <div><h3>${esc(a.name)}${a.beta ? '<span class="beta">Beta</span>' : ''}</h3><span class="ver">${esc(a.version)}</span></div>
       </div>
       <p>${esc(a.desc)}</p>
       <div class="card-foot">
         <span class="meta">${esc(a.size)}</span>
-        <a class="get" href="${esc(preferredClient === 'direct' ? a.ipa : deep)}" aria-label="Get ${esc(a.name)}">Get</a>
+        <a class="get" href="${esc(getLink(a))}" aria-label="Get ${esc(a.name)}">Get</a>
       </div>
     </article>`).join("");
 }
 
-// Initial UI Setup
-document.getElementById("srcUrl").textContent = SOURCE_URL;
-document.getElementById("yr").textContent = new Date().getFullYear();
-document.getElementById("count").textContent = APPS.length + (APPS.length === 1 ? " app" : " apps");
+/* toast */
+let tt;
+function showToast(msg){
+  const t = $("toast"); t.textContent = msg; t.classList.add("on");
+  clearTimeout(tt); tt = setTimeout(() => t.classList.remove("on"), 2600);
+}
 
-applyTheme();
-initClientLogic();
-
-// Copy functionality
-const toast = document.getElementById("toast");
-document.getElementById("copyBtn").addEventListener("click", async () => {
-  try { await navigator.clipboard.writeText(SOURCE_URL); toast.textContent = "Link copied"; }
-  catch (e) { toast.textContent = "Select the link and copy it manually"; }
-  toast.classList.add("on");
-  setTimeout(() => toast.classList.remove("on"), 1800);
+/* custom-scheme links: hint if nothing happens (e.g. inside Telegram or on desktop) */
+document.addEventListener("click", e => {
+  const a = e.target.closest("a[href]");
+  if (!a || /^(https?:|#)/.test(a.getAttribute("href"))) return;
+  let left = false;
+  const onHide = () => { left = true; };
+  document.addEventListener("visibilitychange", onHide, { once:true });
+  window.addEventListener("blur", onHide, { once:true });
+  setTimeout(() => { if (!left) showToast("Nothing opened? Copy the source link and add it manually."); }, 1800);
 });
+
+/* copy */
+$("copyBtn").addEventListener("click", async () => {
+  try { await navigator.clipboard.writeText(SOURCE_URL); showToast("Link copied"); }
+  catch (e) {
+    try {
+      const r = document.createRange(); r.selectNodeContents($("srcUrl"));
+      const s = getSelection(); s.removeAllRanges(); s.addRange(r);
+      document.execCommand("copy") ? showToast("Link copied") : showToast("Select the link and copy it manually");
+    } catch (_) { showToast("Select the link and copy it manually"); }
+  }
+});
+
+/* init */
+$("srcUrl").textContent = SOURCE_URL;
+$("yr").textContent = new Date().getFullYear();
+function setCount(){ $("count").textContent = APPS.length + (APPS.length === 1 ? " app" : " apps"); }
+setCount();
+$("ssBadge").onerror = function(){ ssFail = true; updateButtons(); };
+$("dlBadge").onerror = function(){ altFail = true; updateButtons(); };
+applyTheme();
+updateButtons();
+if (!preferredClient && isMobile) openModal();
+
+/* pull the app list from source.json so versions never go stale (hardcoded APPS stays as fallback) */
+const DESC = { "org.ayugram.app":"A Telegram client with extended features and flexible settings. Currently in beta.", "me.keet.HDRezka":"Watch movies and series with a clean catalog and fast search." };
+fetch("source.json", { cache:"no-cache" }).then(r => r.ok ? r.json() : Promise.reject()).then(j => {
+  const list = (j.apps || []).filter(a => a.versions && a.versions[0]).map(a => {
+    const v = a.versions[0];
+    return { name:a.name, beta:!!a.beta, version:v.version, icon:a.iconURL, ipa:v.downloadURL,
+      size:(v.size/1048576).toFixed(1) + " MB", play:a.bundleIdentifier === "me.keet.HDRezka",
+      desc:DESC[a.bundleIdentifier] || a.localizedDescription || a.subtitle || "" };
+  });
+  if (list.length) { APPS = list; setCount(); updateButtons(); }
+}).catch(() => {});
 </script>
 </body>
 </html>
