@@ -58,6 +58,11 @@ a{color:inherit;text-decoration:none}
 .client-opt-btn:hover { border-color: var(--red); background: var(--red-soft); }
 
 .hidden { display: none !important; }
+.client-opt-btn img,.client-opt-btn svg.dl{width:30px;height:30px;border-radius:8px;flex:none;object-fit:cover}
+.client-opt-btn span{flex:1;text-align:left;margin-left:12px}
+.ss-badge{height:56px;width:auto;display:block;border-radius:12px}
+.get-altstore{margin-top:22px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;font-size:14px;color:var(--muted)}
+.get-altstore img{height:44px;width:auto;display:block}
 
 /* nav */
 nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
@@ -138,16 +143,12 @@ footer{border-top:1px solid var(--line);padding:28px 0 40px;color:var(--muted);f
 <div id="onboardingModal" class="modal-overlay hidden">
   <div class="modal-card">
     <h2>Choose Installer</h2>
-    <p>Select your sideloading client to optimize direct 1-click links.</p>
-    <button class="client-opt-btn" onclick="setClient('altstore')">
-      <span>AltStore / SideStore</span> 📱
-    </button>
-    <button class="client-opt-btn" onclick="setClient('scarlet')">
-      <span>Scarlet / Feather</span> 🦊
-    </button>
-    <button class="client-opt-btn" onclick="setClient('direct')">
-      <span>Direct Links / TrollStore</span> ⚡
-    </button>
+    <p>Select your sideloading client so the buttons open the right app.</p>
+    <button class="client-opt-btn" onclick="setClient('altstore')"><img src="assets/logos/AltStore-logo.png" alt=""><span>AltStore</span></button>
+    <button class="client-opt-btn" onclick="setClient('sidestore')"><img src="assets/logos/sidestore-logo.png" alt=""><span>SideStore</span></button>
+    <button class="client-opt-btn" onclick="setClient('feather')"><img src="assets/logos/feather-logo.png" alt=""><span>Feather</span></button>
+    <button class="client-opt-btn" onclick="setClient('scarlet')"><img src="assets/logos/scarlet-logo.png" alt=""><span>Scarlet</span></button>
+    <button class="client-opt-btn" onclick="setClient('direct')"><svg class="dl" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m0 0l-4-4m4 4l4-4M5 20h14"/></svg><span>Direct links / TrollStore</span></button>
   </div>
 </div>
 
@@ -160,6 +161,7 @@ footer{border-top:1px solid var(--line);padding:28px 0 40px;color:var(--muted);f
     <div class="nav-r">
       <a class="nav-link" href="#apps">Apps</a>
       <a class="nav-link" href="#how">How it works</a>
+      <button class="icon-btn" id="themeBtn" type="button" onclick="toggleTheme()"></button>
       <a class="icon-btn" href="https://github.com/kkerneldev/repkernel" aria-label="View repository on GitHub" target="_blank" rel="noopener">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.1.79-.25.79-.56v-2c-3.2.7-3.87-1.37-3.87-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.03 1.76 2.69 1.25 3.35.96.1-.74.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.28 1.18-3.09-.12-.29-.51-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.78 0c2.2-1.49 3.17-1.18 3.17-1.18.62 1.59.23 2.76.11 3.05.74.81 1.18 1.83 1.18 3.09 0 4.42-2.69 5.39-5.25 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"/></svg>
       </a>
@@ -174,7 +176,8 @@ footer{border-top:1px solid var(--line);padding:28px 0 40px;color:var(--muted);f
     <p class="sub">A community repository hosted on GitHub. Add it once and every app below shows up in your Browse tab with updates included.</p>
     <div class="cta-row">
       <a class="badge-link" id="addBtn" href="#" aria-label="Add to Source">
-        <svg width="196" height="56" viewBox="0 0 196 56" aria-hidden="true"><rect width="196" height="56" rx="14" fill="#16151a"/><rect x=".5" y=".5" width="195" height="55" rx="13.5" fill="none" stroke="#fff" stroke-opacity=".18"/><clipPath id="ic"><rect x="12" y="10" width="36" height="36" rx="9"/></clipPath><image x="12" y="10" width="36" height="36" clip-path="url(#ic)" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHAAAABwCAIAAABJgmMcAAAVpUlEQVR42u1dW29c13Vea+19LnO/kBxySFOUbOvmyFYcW7HsyLcoRfvQos1Li/Y1TZrmVzQP6WvTAinaAgWaouhrUaAPaYAmsWzLli3HtmRbsmTH5nV4J4ec27nsvfpwZqghOUPOHA6HTKCDAWa4OHPO3t9Z9732Onj5h38LD4/eHZIBAAABeNf/HhJDECl441ZgPySGINJDOHpLrIv8Q1B6yaEPj94bpeN/YBsGOXaAHmsQcRuS2ACW+SGgXeLIDJpZ6wZ2GABZ/y8hEmLwtYcivz+Unq8RIWoaCctMWKZtSEkECL7SNd8vOe5Gza24PjNLQccN1mPEoQjgKm0QPZJOjKbi6YhlSYGIdUvKgQYAZnaULlZrc8VSYaPs+VoKOnYcehyCDU/rsWT88aFMyrYAQGntaQbWD/Qn1GVeIubisVwi9mjN+WxpbbZYIiTCbWc+qhnJI3flEEAxC8Snx3Lj6aQG9pQOxB8bhqnpu/WTeFoDc9w0nxkfySU2bxeWldYCkY+VH9pyNIdKBADFbAj6+kT+RCblKaU0Az6Asd3PEQARFbPjq/F04vJE3hCkmPs5+JZEYoCtF+z6cKjEOjSIz4yPDMQiNd/fArLzcyKi46tM1L50Ik8NDj2qGfGRR0q+1hfyg4OxiOMr2ibdXfkG6PgqG7Uv5Id8rfE4GKX+H4Tg+OpkNnUik3R8hU3qLzSm45nEaqX6xWrRkkIf0cSOhkMRwNecsK3zwwO+0tgLpkJEX+nzwwNJ2/IVHxWfHg2gDMAMF0YGTSE085b5PuChmQ0hLowM8tE5+9uMUn9egOAqdWogNZyIekoh9oyZENFTKpeInhpIu0oBQv9ndwQc6iudjtjncllPacBeiyaip/TZXCYVsXx1BAaqrxy6xUdP5gcFoW64jb29hGaWRE+ODOEuL+p3kENdpc7kMgOxiKc04qEwECJ6Sg/GI6eHMq5Sv5tGiRu5j+FE7PHBjKsU4GGKI6Kr1OnBK3f29vL1X1/u3O3dJvJ3v31k/u2X+3/0A1fvh32924T/4Icf3P33n29e/9vf/A3gO/9mP2f3e4/v+5u3O7s4v/v/3p5p9n+v2p958eXv4O3/5p331n/01783/3j6w1f5v+6s5t1/+99955e/3m9v33/4E/8d528f8/11i/8975a6j6v3a//1z733N9c/3/30d2979u//8e/31+1vvX9l6uv+O149f6974MvS3b/fvv7e3d2O74/v+/v4eI7sL7587o3/+a39rf/85m9p/9e1/e+/s/5e//w75N32mS97d195u29f+/p/f3u/4/3ff9e3f/f5869s29/8/v/mP+f+/c//fNne3n+7+23v/P/+/feX34w4L/3gX39++9f33z35/m9p+e0vPn/7S4/z4A/e++r/94fLd7e3D///7ffx699+39/84O+/+/e/fvvT+/3v9/f9/v/9+e8vv///N/3tD6//49ff/d/z7e1/9x1feP/7j/7432+f34e/e++/u3//7f0322c3j84//d+5pX//2O959//s/9/ff/vd2/d3X98ff3vv/d9+88X3f31sffvP37j9f9j/20/vNf16/vffvv/+P/v7fv9/e///u7ff94O08L/e3/v9j+/e32+3H/39/fe/v/e9X/381X/2xR/e2v27m+///v+eX/7sN///X59f49m8ffj/u3//r893/8//f/z+57ffPfjz++3/8X//9vbbzfdvv//l/9x/+23/6e/849fe+f/84pfff7/v1s+/f/u7/9x2/9/3+7v3f/+vX//2n/+/73s++742eXmI1d9uE3c18b2v57e3/9s///6p9//45XvfPfv98fuf/e2Pfv/+/v1/++6v//D+/Xf3f3j5fXw8R9Y3//p3/e+/v9/312e/f/36e//x5394+eLbb9+9ff3m+de3r1/f/vxP396+eXf53sM/34mX16/f/P/6N5f/s3t///bbN2/ePnh8v1/8/uuvb/z41e3v331/+/7p29e3v/3817fvPv/y9r3vf/93/3H14vUf/4p333333e/+/Nf/8mX32//u3/znf3p15///+L+/X/z89e/3X335+atvvvru+cv/8vX3X/35m5ev3/zqtz/+2XfPf/3bN988+/bLz3/3zfNvf/35p3/y+r//66evf///8dsv/ve//Obbb774/fPnn//h/u3rt6/+/rsvvnr+u+fPf3H7y//53Tevf//iy/d+/O3rX3376ptnn/3q/S/ev3/9/Kvf//b/fPl0+etfffm3L7/5zeef/vbd56/vfvv1s9e/e//N+/uX3//m/3z5y4vnP//mly8+/1f/38uvnr16+e2rt8++ePblbz7//PNffPX0y9fPfv/s+2evf/X1y+cvv//Nq29/88W3X/3um89ff/3889fPvvrmyzs/4+M5Anw8By3XqC91A/1x0/mX3z//+N0ffvuHz3/3zVfffvO/v3r95t3fPvn++Yvv/92rt8++ff76D89/f//bb198++bLN++ff3z2ze+/v33++9uXXz3/+9s3f3j54unXX7x68u3zV9/+/fOH7/534x1X/+7J1//1s/e/f//5p4/e33v9xRfvPvvi1Te/f/31m/fvPv/8s6fffvPs1bPv37x48fXzT1+///Th3bNvX37x/PP3L1/c/f6nn/z05a/uvvv0y6f/8OT3f/rw7LMXf/yHbz9///m//OH5V59/+mzv93+/vf/82e++ePPN5589vv38p/efffLi6VdfffXJzz/87e//8/u3/4L/A9uI86l+/RzOAAAAAElFTkSuQmCC"/><text x="58" y="23" fill="#fff" fill-opacity=".7" font-family="Inter,sans-serif" font-size="12" font-weight="500">Add to</text><text x="58" y="42" fill="#fff" font-family="Inter,sans-serif" font-size="20" font-weight="700" letter-spacing="-.3" id="badgeText">AltStore</text></svg>
+        <svg id="addSvg" width="196" height="56" viewBox="0 0 196 56" aria-hidden="true"><rect width="196" height="56" rx="14" fill="#16151a"/><rect x=".5" y=".5" width="195" height="55" rx="13.5" fill="none" stroke="#fff" stroke-opacity=".18"/><clipPath id="ic"><rect x="12" y="10" width="36" height="36" rx="9"/></clipPath><image id="badgeLogo" x="12" y="10" width="36" height="36" clip-path="url(#ic)" href="assets/logos/AltStore-logo.png"/><text x="58" y="23" fill="#fff" fill-opacity=".7" font-family="Inter,sans-serif" font-size="12" font-weight="500">Add to</text><text x="58" y="42" fill="#fff" font-family="Inter,sans-serif" font-size="20" font-weight="700" letter-spacing="-.3" id="badgeText">AltStore</text></svg>
+        <img id="ssBadge" class="ss-badge hidden" alt="Add Source to SideStore">
       </a>
       <a class="btn" href="#how">How it works</a>
     </div>
@@ -220,6 +223,7 @@ footer{border-top:1px solid var(--line);padding:28px 0 40px;color:var(--muted);f
         </li>
       </ol>
       <p class="note">Free Apple IDs can keep three sideloaded apps active and need a refresh every 7 days. AltStore does this in the background while your device is on the same Wi-Fi as AltServer.</p>
+      <div class="get-altstore"><span>New to sideloading?</span><a href="https://altstore.io" target="_blank" rel="noopener"><img id="dlBadge" alt="Download on AltStore"></a></div>
     </div>
   </section>
 </main>
@@ -236,64 +240,89 @@ footer{border-top:1px solid var(--line);padding:28px 0 40px;color:var(--muted);f
 /* ---- Source Configuration ---- */
 const SOURCE_URL = "https://rep.kerneldev.qzz.io/source.json";
 const APPS = [
-  { name:"HDRezka", version:"1.6.0", size:"25 MB", icon:"https://i.imgur.com/ZhtHgcj.png", play:true, desc:"Watch movies and series with a clean catalog and fast search.", ipa:"https://github.com/kkerneldev/repkernel/releases/download/hdrezka-1.6.0/HDRezka.ipa" },
-  { name:"AyuGram", beta:true, version:"12.9.2", size:"75 MB", icon:"https://i.imgur.com/mSWKz6H.png", desc:"A Telegram client with extended features and flexible settings. Currently in beta.", ipa:"https://github.com/kkerneldev/repkernel/releases/download/ayugram-12.9.2/AyuGram.ipa" }
+  { name:"HDRezka", version:"1.6.0", size:"7.2 MB", icon:"https://i.imgur.com/ZhtHgcj.png", play:true, desc:"Watch movies and series with a clean catalog and fast search.", ipa:"https://github.com/kkerneldev/repkernel/releases/download/pre-release/hdrezka.ipa" },
+  { name:"AyuGram", beta:true, version:"12.9.2", size:"77.7 MB", icon:"https://i.imgur.com/mSWKz6H.png", desc:"A Telegram client with extended features and flexible settings. Currently in beta.", ipa:"https://github.com/kkerneldev/repkernel/releases/download/pre-release/AyuGram.ipa" }
 ];
 /* ------------------------------ */
 
-// Initialize Telegram WebApp SDK
-const tg = window.Telegram ? window.Telegram.WebApp : null;
-if (tg) {
-  tg.ready();
-  tg.expand();
-}
+const ASSETS = {
+  logo: { altstore:"assets/logos/AltStore-logo.png", sidestore:"assets/logos/sidestore-logo.png", feather:"assets/logos/feather-logo.png", scarlet:"assets/logos/scarlet-logo.png" },
+  addSidestore: { light:"assets/badges/light/add-source-to-sidestore-light.png", dark:"assets/badges/dark/add-source-to-sidestore-dark.png" },
+  getAltstore: { light:"assets/badges/light/DownloadBadge_light.png", dark:"assets/badges/dark/DownloadBadge_dark.png" }
+};
+const CLIENTS = {
+  altstore:  { name:"AltStore",  link:u => "altstore://source?url=" + encodeURIComponent(u) },
+  sidestore: { name:"SideStore", link:u => "sidestore://source?url=" + encodeURIComponent(u) },
+  feather:   { name:"Feather",   link:u => "feather://source/" + u },
+  scarlet:   { name:"Scarlet",   link:u => "scarlet://add-source?url=" + encodeURIComponent(u) },
+  direct:    { name:"Direct",    link:null }
+};
+const SUN = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>';
+const MOON = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>';
 
-let preferredClient = localStorage.getItem("preferred_sideload_client");
+// Safe storage (never throws)
+const store = {
+  get(k){ try { return localStorage.getItem(k); } catch(e){ return null; } },
+  set(k,v){ try { localStorage.setItem(k,v); } catch(e){} },
+  del(k){ try { localStorage.removeItem(k); } catch(e){} }
+};
+
+// Telegram WebApp SDK
+const tg = window.Telegram ? window.Telegram.WebApp : null;
+if (tg) { tg.ready(); tg.expand(); }
+
+// Theme: saved choice wins, otherwise follow the system
+const mq = window.matchMedia("(prefers-color-scheme: dark)");
+function currentTheme(){ return store.get("theme") || (mq.matches ? "dark" : "light"); }
+function applyTheme(){
+  const t = currentTheme();
+  document.documentElement.setAttribute("data-theme", t);
+  document.getElementById("ssBadge").src = ASSETS.addSidestore[t];
+  document.getElementById("dlBadge").src = ASSETS.getAltstore[t];
+  const b = document.getElementById("themeBtn");
+  b.innerHTML = t === "dark" ? SUN : MOON;
+  b.setAttribute("aria-label", t === "dark" ? "Switch to light theme" : "Switch to dark theme");
+}
+function toggleTheme(){ store.set("theme", currentTheme() === "dark" ? "light" : "dark"); applyTheme(); }
+if (mq.addEventListener) mq.addEventListener("change", () => { if (!store.get("theme")) applyTheme(); });
+
+// Installer choice
+let preferredClient = store.get("preferred_sideload_client");
+if (!CLIENTS[preferredClient]) preferredClient = null;
 const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent) || (tg && tg.initData);
 
-// Client Setup Logic
-function initClientLogic() {
-  if (!preferredClient && isMobile) {
-    document.getElementById("onboardingModal").classList.remove("hidden");
-  } else {
-    updateButtonSchemes();
-  }
+function initClientLogic(){
+  if (!preferredClient && isMobile) document.getElementById("onboardingModal").classList.remove("hidden");
+  updateButtonSchemes();
 }
-
-function setClient(client) {
-  localStorage.setItem("preferred_sideload_client", client);
-  preferredClient = client;
+function setClient(c){
+  store.set("preferred_sideload_client", c);
+  preferredClient = c;
   document.getElementById("onboardingModal").classList.add("hidden");
   updateButtonSchemes();
 }
-
-function resetClientSelection() {
-  localStorage.removeItem("preferred_sideload_client");
+function resetClientSelection(){
+  store.del("preferred_sideload_client");
   preferredClient = null;
   document.getElementById("onboardingModal").classList.remove("hidden");
 }
-
-function getDeepLink() {
-  if (preferredClient === "scarlet") {
-    return "scarlet://add-source?url=" + encodeURIComponent(SOURCE_URL);
-  }
-  return "altstore://source?url=" + encodeURIComponent(SOURCE_URL);
+function getDeepLink(){
+  const c = CLIENTS[preferredClient];
+  return (c && c.link ? c.link : CLIENTS.altstore.link)(SOURCE_URL);
 }
 
-function updateButtonSchemes() {
-  const addBtn = document.getElementById("addBtn");
-  const badgeText = document.getElementById("badgeText");
+function updateButtonSchemes(){
+  const key = preferredClient && preferredClient !== "direct" ? preferredClient : "altstore";
   const deep = getDeepLink();
-
+  const addBtn = document.getElementById("addBtn");
+  const isSS = key === "sidestore";
   addBtn.href = deep;
-  
-  if (preferredClient === "scarlet") {
-    if (badgeText) badgeText.textContent = "Scarlet";
-  } else {
-    if (badgeText) badgeText.textContent = "AltStore";
-  }
+  addBtn.setAttribute("aria-label", "Add source to " + CLIENTS[key].name);
+  document.getElementById("addSvg").classList.toggle("hidden", isSS);
+  document.getElementById("ssBadge").classList.toggle("hidden", !isSS);
+  document.getElementById("badgeLogo").setAttribute("href", ASSETS.logo[key]);
+  document.getElementById("badgeText").textContent = CLIENTS[key].name;
 
-  // Update App Get Buttons
   const esc = s => s.replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
   document.getElementById("grid").innerHTML = APPS.map(a => `
     <article class="card">
@@ -314,6 +343,7 @@ document.getElementById("srcUrl").textContent = SOURCE_URL;
 document.getElementById("yr").textContent = new Date().getFullYear();
 document.getElementById("count").textContent = APPS.length + (APPS.length === 1 ? " app" : " apps");
 
+applyTheme();
 initClientLogic();
 
 // Copy functionality
