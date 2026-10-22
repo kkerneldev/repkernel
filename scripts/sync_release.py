@@ -5,11 +5,14 @@ For every app in source.json the script:
   1. finds the release asset whose file name matches the app's downloadURL,
   2. downloads the IPA and reads version / minimum iOS from its Info.plist,
   3. updates version, date, size, sha256 (+ release notes) in source.json,
-  4. if the version changed: adds an entry to news.json and draws assets/news/<bundle>-<version>.png.
+  4. if the version changed: adds an entry to news.json and to source.json["news"] (AltStore's News tab)
+     and draws assets/news/<bundle>-<version>.png.
 
 Re-running with nothing new changes nothing. Environment:
   GITHUB_REPOSITORY  owner/name (set by GitHub Actions)     GITHUB_TOKEN  optional, raises API limits
-  NEWS_LANG          language of the card label: ru (default) or en
+  NEWS_LANG          language of the card label and news titles: ru (default) or en
+  SITE_URL           where the site is hosted (default https://rep.kerneldev.qzz.io), used for news image links
+  NEWS_NOTIFY        "true" makes AltStore show a notification for each news item (default false)
 Notes for the news: text of the release that holds the IPA, or notes/<bundleId>.txt if that file exists.
 Usage:  python3 scripts/sync_release.py [--source source.json] [--dry-run]
 """
@@ -112,7 +115,31 @@ def find_asset(releases, filename):
     return best
 
 
-def process_app(app, asset, release, ipa, sha, lang, news, now_iso, dry):
+def add_source_news(source, app, entry, lang):
+    """AltStore's own News tab: adds an item to source.json["news"] (same card as image)."""
+    site = os.environ.get("SITE_URL", "https://rep.kerneldev.qzz.io").rstrip("/")
+    caption = "; ".join(entry["notes"].splitlines()) if entry["notes"] else (
+        "Доступна новая версия приложения" if lang == "ru" else "A new version is available")
+    if len(caption) > 240:
+        caption = caption[:237].rstrip() + "…"
+    title = f"{entry['app']} {entry['version']} " + ("— новая версия" if lang == "ru" else "is out")
+    item = {
+        "title": title,
+        "identifier": f"{entry['id']}-{entry['version']}",
+        "caption": caption,
+        "date": entry["date"][:10],
+        "tintColor": "E11D2E",
+        "imageURL": f"{site}/{entry['image']}",
+        "notify": os.environ.get("NEWS_NOTIFY", "false").lower() == "true",
+        "url": f"{site}/#app={urllib.parse.quote(entry['id'])}",
+        "appID": entry["id"],
+    }
+    items = [n for n in source.get("news", []) if n.get("identifier") != item["identifier"]]
+    items.insert(0, item)
+    source["news"] = items[:NEWS_LIMIT]
+
+
+def process_app(source, app, asset, release, ipa, sha, lang, news, now_iso, dry):
     """Update one app in place. Returns a short status string."""
     info = read_plist(ipa)
     version = str(info.get("CFBundleShortVersionString") or info.get("CFBundleVersion") or "").strip()
@@ -149,6 +176,7 @@ def process_app(app, asset, release, ipa, sha, lang, news, now_iso, dry):
     news["items"].sort(key=lambda e: e["date"], reverse=True)
     del news["items"][NEWS_LIMIT:]
     news["updated"] = now_iso
+    add_source_news(source, app, entry, lang)
     if not dry:
         icon = None
         if app.get("iconURL"):
@@ -189,7 +217,7 @@ def main():
         asset, release = found
         try:
             ipa, sha = download(asset["browser_download_url"], token)
-            status = process_app(app, asset, release, ipa, sha, lang, news, now_iso, dry)
+            status = process_app(source, app, asset, release, ipa, sha, lang, news, now_iso, dry)
         except Exception as e:
             print(f"{app.get('name')}: ERROR {e}")
             continue
