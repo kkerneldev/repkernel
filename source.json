@@ -58,11 +58,12 @@
         {
           "version": "12.9.2",
           "buildVersion": "5",
-          "date": "2026-10-14T12:58:00+04:00",
+          "date": "2026-10-14T13:01:02Z",
           "downloadURL": "https://github.com/kkerneldev/repkernel/releases/download/pre-release/AyuGram.ipa",
-          "size": 77700000,
-          "minOSVersion": "12.0",
-          "localizedDescription": "Bug fixes!"
+          "size": 77659697,
+          "minOSVersion": "13.0",
+          "localizedDescription": "Bug fixes!",
+          "sha256": "1c782f8e6650b7d8d8e5ac2fbeecbcee93de096551a3ba8b6659c42fd01900e1"
         }
       ],
       "appPermissions": {
@@ -101,11 +102,12 @@
         {
           "version": "1.6.0",
           "buildVersion": "570",
-          "date": "2026-10-13T16:14:37Z",
+          "date": "2026-10-13T16:02:52Z",
           "downloadURL": "https://github.com/kkerneldev/repkernel/releases/download/pre-release/hdrezka.ipa",
           "size": 7172224,
           "minOSVersion": "16.0",
-          "localizedDescription": "Bug fixes!"
+          "localizedDescription": "Bug fixes!",
+          "sha256": "16cedda272855187554d389af7bc5b4c07b6234456aef92912103bd330aeb215"
         }
       ],
       "appPermissions": {
