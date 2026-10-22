@@ -1,0 +1,14 @@
+{
+  "name": "Kernel's Source",
+  "short_name": "Kernel's Source",
+  "description": "Community AltStore / SideStore source with HDRezka and AyuGram.",
+  "start_url": ".",
+  "scope": ".",
+  "display": "standalone",
+  "background_color": "#141316",
+  "theme_color": "#e11d2e",
+  "icons": [
+    { "src": "assets/icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "assets/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" }
+  ]
+}
