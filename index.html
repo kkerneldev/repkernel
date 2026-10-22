@@ -94,7 +94,13 @@ nav{position:sticky;top:0;z-index:10;padding-top:env(safe-area-inset-top,0px);ba
 .nav-r{display:flex;align-items:center;gap:6px}
 .icon-btn{width:40px;height:40px;border-radius:10px;display:grid;place-items:center;color:var(--muted);border:1px solid transparent;background:none;cursor:pointer}
 .icon-btn:hover{color:var(--text);border-color:var(--line);background:var(--tint)}
-.lang-btn{font:700 13px Inter,sans-serif;letter-spacing:.02em}
+.lang-btn{font:700 13px Inter,sans-serif;letter-spacing:.02em;overflow:hidden}
+.lb{display:inline-block;will-change:transform}
+/* language wave: ring that travels with the reveal circle */
+.lang-wave{position:fixed;pointer-events:none;border-radius:50%;z-index:3000;view-transition-name:lang-wave;transform:scale(.001);opacity:0;
+  background:radial-gradient(circle closest-side,transparent 92%,color-mix(in srgb,var(--red) 10%,transparent) 96%,color-mix(in srgb,var(--red) 55%,transparent) 99%,transparent 100%)}
+::view-transition-group(lang-wave),::view-transition-new(lang-wave){animation:none;mix-blend-mode:normal}
+::view-transition-old(lang-wave){display:none}
 .nav-link{font-size:14px;color:var(--muted);padding:8px 12px;border-radius:10px}
 .nav-link:hover{color:var(--text);background:var(--tint)}
 
@@ -287,7 +293,7 @@ footer{border-top:1px solid var(--line);padding:28px 0 40px;color:var(--muted);f
       <a class="nav-link" href="#apps" data-i18n="nav_apps">Apps</a>
       <a class="nav-link" href="#how" data-i18n="nav_how">How it works</a>
       <a class="nav-link" href="#faq" data-i18n="nav_faq">FAQ</a>
-      <button class="icon-btn lang-btn" id="langBtn" type="button" onclick="toggleLang()">RU</button>
+      <button class="icon-btn lang-btn" id="langBtn" type="button" onclick="toggleLang()"><span class="lb" id="langLbl">RU</span></button>
       <button class="icon-btn" id="themeBtn" type="button" onclick="toggleTheme()"><svg class="theme-ic" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><mask id="moonMask"><rect x="-4" y="-4" width="32" height="32" fill="#fff"/><circle class="cut" cx="17" cy="8" r="5.5" fill="#000" stroke="none"/></mask><circle class="core" cx="12" cy="12" r="4.5" fill="currentColor" stroke="none" mask="url(#moonMask)"/><g class="rays"><path d="M12 2v2.2M12 19.8V22M4.9 4.9l1.5 1.5M17.6 17.6l1.5 1.5M2 12h2.2M19.8 12H22M4.9 19.1l1.5-1.5M17.6 6.4l1.5-1.5"/></g></svg></button>
       <a class="icon-btn" href="https://github.com/kkerneldev/repkernel" data-i18n-aria="gh_aria" aria-label="View repository on GitHub" target="_blank" rel="noopener">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.1.79-.25.79-.56v-2c-3.2.7-3.87-1.37-3.87-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.03 1.76 2.69 1.25 3.35.96.1-.74.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.28 1.18-3.09-.12-.29-.51-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.78 0c2.2-1.49 3.17-1.18 3.17-1.18.62 1.59.23 2.76.11 3.05.74.81 1.18 1.83 1.18 3.09 0 4.42-2.69 5.39-5.25 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"/></svg>
@@ -765,7 +771,7 @@ function applyI18n(){
   document.querySelectorAll("[data-i18n-ph]").forEach(el => { el.placeholder = t(el.dataset.i18nPh); });
   document.querySelectorAll("[data-i18n-aria]").forEach(el => { el.setAttribute("aria-label", t(el.dataset.i18nAria)); });
   $("copyright").textContent = t("copyright", { y:new Date().getFullYear() });
-  const lb = $("langBtn"); lb.textContent = lang === "ru" ? "EN" : "RU"; lb.setAttribute("aria-label", t("lang_aria"));
+  $("langLbl").textContent = lang === "ru" ? "EN" : "RU"; $("langBtn").setAttribute("aria-label", t("lang_aria"));
   const m = document.querySelector('meta[name="description"]');
   applyTheme();
 }
@@ -773,7 +779,45 @@ function renderAll(){
   applyI18n(); updateButtons(); setCount(); renderToolbar(); renderGrid(); renderLatest(); renderDetail();
   if (!$("onboardingModal").classList.contains("hidden")) renderClientList();
 }
-function toggleLang(){ lang = lang === "ru" ? "en" : "ru"; store.set("lang", lang); renderAll(); }
+/* Language switch: a wave runs from the EN/RU button; each text changes when the wave reaches it
+   (the new language is revealed through a growing circle, like the theme switch). */
+function toggleLang(){
+  const next = lang === "ru" ? "en" : "ru";
+  const btn = $("langBtn"), lbl = $("langLbl"), r = btn.getBoundingClientRect();
+  const x = r.left + r.width / 2, y = r.top + r.height / 2;
+  const end = Math.hypot(Math.max(x, innerWidth - x), Math.max(y, innerHeight - y));
+  const DUR = 1500, EASE = "cubic-bezier(.4,.25,.55,.9)";
+  let ring = null;
+  const swap = () => {
+    lang = next; store.set("lang", lang); renderAll();
+    if (document.startViewTransition && !ring) {
+      ring = document.createElement("div");
+      ring.className = "lang-wave";
+      ring.style.cssText = `left:${x - end}px;top:${y - end}px;width:${end * 2}px;height:${end * 2}px`;
+      document.body.appendChild(ring);
+    }
+  };
+  /* the button itself: label rolls in, soft red pulse */
+  const rollLabel = () => {
+    try { $("langLbl").animate([{ transform:"translateY(80%) scale(.55)", opacity:0 }, { transform:"none", opacity:1 }], { duration:480, easing:"cubic-bezier(.2,.9,.3,1.25)" }); } catch(e){}
+    btn.style.setProperty("--glow", "#ff3b4d");
+    btn.classList.remove("glow"); void btn.offsetWidth; btn.classList.add("glow");
+  };
+  if (!document.startViewTransition || matchMedia("(prefers-reduced-motion: reduce)").matches) { swap(); rollLabel(); return; }
+  if (btn.dataset.busy) return;
+  btn.dataset.busy = "1";
+  const vt = document.startViewTransition(swap);
+  vt.ready.then(() => {
+    document.documentElement.animate(
+      { clipPath: [`circle(0px at ${x}px ${y}px)`, `circle(${end}px at ${x}px ${y}px)`] },
+      { duration: DUR, easing: EASE, pseudoElement: "::view-transition-new(root)" });
+    if (ring) ring.animate(
+      [{ transform:"scale(.001)", opacity:1 }, { transform:"scale(1)", opacity:1, offset:.8 }, { transform:"scale(1)", opacity:0 }],
+      { duration: DUR, easing: EASE, fill:"forwards" });
+    rollLabel();
+  }).catch(() => {});
+  vt.finished.finally(() => { if (ring) ring.remove(); delete btn.dataset.busy; });
+}
 
 /* ---------- theme ---------- */
 const mq = window.matchMedia("(prefers-color-scheme: dark)");
