@@ -24,6 +24,9 @@ import news_card
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 NEWS_LIMIT = 30
+# FORCE_NEWS=true: make a news item for the *current* version of every app that has none yet
+# (use once to fill the news for what is already published; re-running never duplicates).
+FORCE_NEWS = os.environ.get("FORCE_NEWS", "").strip().lower() in ("1", "true", "yes")
 MONTHS_RU = ["января", "февраля", "марта", "апреля", "мая", "июня", "июля", "августа", "сентября", "октября", "ноября", "декабря"]
 MONTHS_EN = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
 
@@ -127,8 +130,8 @@ def add_source_news(source, app, entry, lang):
         "title": title,
         "identifier": f"{entry['id']}-{entry['version']}",
         "caption": caption,
-        "date": entry["date"][:10],
-        "tintColor": "E11D2E",
+        "date": entry["date"],
+        "tintColor": "#E11D2E",
         "imageURL": f"{site}/{entry['image']}",
         "notify": os.environ.get("NEWS_NOTIFY", "false").lower() == "true",
         "url": f"{site}/#app={urllib.parse.quote(entry['id'])}",
@@ -152,10 +155,14 @@ def process_app(source, app, asset, release, ipa, sha, lang, news, now_iso, dry)
     modern = bool(app.get("versions"))
     v = app["versions"][0] if modern else app   # else: legacy flat format
     prev_version, prev_sha = v.get("version"), v.get("sha256")
-    if prev_version == version and prev_sha == sha:
+    have_news = any(e["id"] == bundle and e["version"] == version for e in news.get("items", []))
+    force = FORCE_NEWS and not have_news
+    if prev_version == version and prev_sha == sha and not force:
         return "up to date"
 
     notes = read_notes(bundle, release)
+    if force and not notes:  # same version: the text already in source.json describes it
+        notes = clean_notes(v.get("localizedDescription" if modern else "versionDescription") or "")
     v.update({"version": version, "size": len(ipa), "sha256": sha, "downloadURL": v.get("downloadURL") or asset["browser_download_url"]})
     v["date" if modern else "versionDate"] = date
     if min_os:
@@ -165,7 +172,7 @@ def process_app(source, app, asset, release, ipa, sha, lang, news, now_iso, dry)
     if modern and "version" in app:  # some sources mirror the latest at top level
         app["version"] = version
 
-    changed_version = prev_version is not None and prev_version != version
+    changed_version = (prev_version is not None and prev_version != version) or force
     if not changed_version:
         return f"refreshed {version} (hash/size only)"
 
@@ -185,7 +192,8 @@ def process_app(source, app, asset, release, ipa, sha, lang, news, now_iso, dry)
             except Exception as e:  # the card falls back to a letter icon
                 print("  icon not loaded:", e)
         news_card.make_card(os.path.join(ROOT, image_rel), app.get("name") or "App", version, notes, icon, lang, date_text(date, lang))
-    return f"NEW {prev_version} -> {version}, card {image_rel}"
+    what = f"{version} (first news for the current version)" if prev_version == version else f"{prev_version} -> {version}"
+    return f"NEW {what}, card {image_rel}"
 
 
 def main():

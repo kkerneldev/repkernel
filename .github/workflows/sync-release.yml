@@ -7,6 +7,11 @@ on:
   schedule:
     - cron: "0 */6 * * *"      # a fixed "pre-release" tag doesn't always fire release events, so check regularly too
   workflow_dispatch:
+    inputs:
+      force_news:
+        description: "Create news for the CURRENT versions too (run once to fill the news)"
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -31,6 +36,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NEWS_LANG: ru               # label on the card: ru or en
+          FORCE_NEWS: ${{ github.event.inputs.force_news }}
         run: python3 scripts/sync_release.py
 
       - name: Commit changes
