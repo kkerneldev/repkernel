@@ -274,6 +274,7 @@ footer{border-top:1px solid var(--line);padding:28px 0 40px;color:var(--muted);f
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important;animation:none!important}}
 </style>
+<link rel="stylesheet" href="assets/offline.css">
 </head>
 <body>
 
@@ -435,6 +436,7 @@ footer{border-top:1px solid var(--line);padding:28px 0 40px;color:var(--muted);f
 </footer>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
+<script src="assets/offline.js"></script>
 <script src="assets/qr.js"></script>
 <script>
 /* ---------- config ---------- */
@@ -1000,7 +1002,7 @@ async function loadSource(){
   loading = true; $("errBar").classList.add("hidden"); setCount(); renderToolbar(); renderGrid(); renderLatest();
   const ctl = new AbortController(), timer = setTimeout(() => ctl.abort(), 8000);
   try {
-    const r = await fetch("source.json", { cache:"no-cache", signal:ctl.signal });
+    const r = await window.fetchCatalogue("source.json", { cache:"no-cache", signal:ctl.signal });
     if (!r.ok) throw 0;
     const j = await r.json();
     const list = (j.apps || []).map(normApp).filter(Boolean);
@@ -1013,6 +1015,8 @@ async function loadSource(){
   applyDownloads();
   renderAll(); openFromHash();
 }
+
+window.addEventListener("catalogue-reconnect", () => { loadSource(); loadNews(); loadDownloads(); });
 
 /* ---------- init ---------- */
 lang = pickLang();

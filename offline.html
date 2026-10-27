@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Offline — Kernel's Source</title>
+<style>
+:root{color-scheme:light dark}body{margin:0;min-height:100vh;display:grid;place-items:center;font:16px/1.6 system-ui,sans-serif;padding:24px;box-sizing:border-box}main{max-width:420px}a{color:#e11d2e}p{opacity:.75}
+</style>
+</head>
+<body>
+<main><h1 id="title">You’re offline</h1><p id="hint">This page hasn’t been saved. Open the saved catalogue or try again when you’re online.</p><a id="home" href="./index.html">Open catalogue</a></main>
+<script>
+if (navigator.serviceWorker?.controller) {
+  document.getElementById("home").href = new URL("index.html", navigator.serviceWorker.controller.scriptURL).href;
+}
+let ru = /^ru\b/i.test(navigator.language || "");
+try { const saved = localStorage.getItem("lang"); if (saved === "ru" || saved === "en") ru = saved === "ru"; } catch (_) {}
+document.documentElement.lang = ru ? "ru" : "en";
+if (ru) {
+  document.title = "Офлайн — Kernel's Source";
+  document.getElementById("title").textContent = "Нет подключения";
+  document.getElementById("hint").textContent = "Эта страница не сохранена. Откройте сохранённый каталог или попробуйте снова, когда появится интернет.";
+  document.getElementById("home").textContent = "Открыть каталог";
+}
+</script>
+</body>
+</html>

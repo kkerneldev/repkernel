@@ -7,10 +7,12 @@
 <meta name="theme-color" content="#e11d2e">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='24' fill='%23e11d2e'/%3E%3Ctext x='50' y='68' font-size='56' text-anchor='middle' fill='white' font-family='sans-serif' font-weight='800'%3EK%3C/text%3E%3C/svg%3E">
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
+@font-face{font-family:Inter;font-weight:400;font-style:normal;font-display:swap;src:url(assets/fonts/inter-400.woff) format("woff")}
+@font-face{font-family:Inter;font-weight:500;font-style:normal;font-display:swap;src:url(assets/fonts/inter-500.woff) format("woff")}
+@font-face{font-family:Inter;font-weight:600;font-style:normal;font-display:swap;src:url(assets/fonts/inter-600.woff) format("woff")}
+@font-face{font-family:Inter;font-weight:700;font-style:normal;font-display:swap;src:url(assets/fonts/inter-700.woff) format("woff")}
+@font-face{font-family:Inter;font-weight:800;font-style:normal;font-display:swap;src:url(assets/fonts/inter-800.woff) format("woff")}
 :root{
   --bg:#ffffff; --surface:#ffffff; --tint:#fff4f5; --line:#ececee; --line-strong:#e0e0e4;
   --text:#1f2023; --muted:#6b6d76; --red:#e11d2e; --red-dark:#bf1523; --red-soft:#ffe3e6;
@@ -128,29 +130,31 @@ footer{margin-top:56px;border-top:1px solid var(--line);padding:28px 0 40px;colo
 @media (max-width:560px){.nav-link{display:none}.ahead{gap:16px}.aicon{width:88px;height:88px;border-radius:21px;font-size:36px}.shots img{height:320px}.stat b{font-size:13px}}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
 </style>
+<link rel="stylesheet" href="assets/offline.css">
 </head>
 <body>
 
 <div id="onboardingModal" class="modal-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="mTitle">
   <div class="modal-card">
-    <button class="modal-x" type="button" aria-label="Close" onclick="closeModal()">×</button>
-    <h2 id="mTitle">Choose installer</h2>
-    <p>Select your sideloading client so the buttons open the right app.</p>
+    <button class="modal-x" type="button" data-en-aria="Close" aria-label="Close" onclick="closeModal()">×</button>
+    <h2 id="mTitle" data-en="Choose installer">Choose installer</h2>
+    <p data-en="Select your sideloading client so the buttons open the right app.">Select your sideloading client so the buttons open the right app.</p>
     <div id="clientList"></div>
   </div>
 </div>
 
 <nav>
   <div class="wrap nav-in">
-    <a class="brand" href="index.html" aria-label="Kernel's Source home">
+    <a class="brand" href="index.html" data-en-aria="Kernel's Source home" aria-label="Kernel's Source home">
       <span class="logo" aria-hidden="true">K<img src="https://i.pinimg.com/736x/39/69/d1/3969d118e5b89d74e8fa1501a142aca3.jpg" alt="" referrerpolicy="no-referrer" onerror="this.remove()"></span>
       Kernel's Source
     </a>
     <div class="nav-r">
-      <a class="nav-link" href="index.html#apps">Apps</a>
-      <a class="nav-link" href="index.html#how">How it works</a>
+      <a class="nav-link" href="index.html#apps" data-en="Apps">Apps</a>
+      <a class="nav-link" href="index.html#how" data-en="How it works">How it works</a>
+      <button class="icon-btn" id="langBtn" type="button" onclick="toggleLang()">RU</button>
       <button class="icon-btn" id="themeBtn" type="button" onclick="toggleTheme()"><svg class="theme-ic" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><mask id="moonMask"><rect x="-4" y="-4" width="32" height="32" fill="#fff"/><circle class="cut" cx="17" cy="8" r="5.5" fill="#000" stroke="none"/></mask><circle class="core" cx="12" cy="12" r="4.5" fill="currentColor" stroke="none" mask="url(#moonMask)"/><g class="rays"><path d="M12 2v2.2M12 19.8V22M4.9 4.9l1.5 1.5M17.6 17.6l1.5 1.5M2 12h2.2M19.8 12H22M4.9 19.1l1.5-1.5M17.6 6.4l1.5-1.5"/></g></svg></button>
-      <a class="icon-btn" href="https://github.com/kkerneldev/repkernel" aria-label="View repository on GitHub" target="_blank" rel="noopener">
+      <a class="icon-btn" href="https://github.com/kkerneldev/repkernel" data-en-aria="View repository on GitHub" aria-label="View repository on GitHub" target="_blank" rel="noopener">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.1.79-.25.79-.56v-2c-3.2.7-3.87-1.37-3.87-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.03 1.76 2.69 1.25 3.35.96.1-.74.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.28 1.18-3.09-.12-.29-.51-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.78 0c2.2-1.49 3.17-1.18 3.17-1.18.62 1.59.23 2.76.11 3.05.74.81 1.18 1.83 1.18 3.09 0 4.42-2.69 5.39-5.25 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"/></svg>
       </a>
     </div>
@@ -158,18 +162,19 @@ footer{margin-top:56px;border-top:1px solid var(--line);padding:28px 0 40px;colo
 </nav>
 
 <main class="wrap" id="main">
-  <a class="back" href="index.html#apps">‹ All apps</a>
+  <a class="back" href="index.html#apps" data-en="‹ All apps">‹ All apps</a>
   <div id="app"><div class="state">Loading…</div></div>
 </main>
 
 <footer>
   <div class="wrap foot-in">
-    <span>© <span id="yr"></span> Kernel's Source. Not affiliated with AltStore, SideStore, Feather or Scarlet.</span>
-    <span><a class="chg" href="#" onclick="openModal(); return false;">Change installer</a> · <a href="https://github.com/kkerneldev/repkernel" target="_blank" rel="noopener">GitHub repository</a></span>
+    <span>© <span id="yr"></span> <span data-en="Kernel's Source. Not affiliated with AltStore, SideStore, Feather or Scarlet.">Kernel's Source. Not affiliated with AltStore, SideStore, Feather or Scarlet.</span></span>
+    <span><a class="chg" href="#" onclick="openModal(); return false;" data-en="Change installer">Change installer</a> · <a href="https://github.com/kkerneldev/repkernel" target="_blank" rel="noopener" data-en="GitHub repository">GitHub repository</a></span>
   </div>
 </footer>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
+<script src="assets/offline.js"></script>
 <script>
 const SOURCE_URL = "https://rep.kerneldev.qzz.io/source.json";
 const LOGOS = { altstore:"assets/logos/AltStore-logo.png", sidestore:"assets/logos/sidestore-logo.png", feather:"assets/logos/feather-logo.png", scarlet:"assets/logos/scarlet-logo.png" };
@@ -188,6 +193,43 @@ const store = {
   get(k){ try { return localStorage.getItem(k); } catch(e){ return null; } },
   set(k,v){ try { localStorage.setItem(k,v); } catch(e){} }
 };
+
+const TEXT = {
+  "App":"Приложение", "Close":"Закрыть", "Choose installer":"Выберите установщик",
+  "Select your sideloading client so the buttons open the right app.":"Выберите клиент для установки, чтобы кнопки открывали нужное приложение.",
+  "Kernel's Source home":"Главная Kernel's Source", "Apps":"Приложения", "How it works":"Как это работает",
+  "View repository on GitHub":"Открыть репозиторий на GitHub", "‹ All apps":"‹ Все приложения",
+  "Kernel's Source. Not affiliated with AltStore, SideStore, Feather or Scarlet.":"Kernel's Source. Не связан с AltStore, SideStore, Feather или Scarlet.",
+  "Change installer":"Сменить установщик", "GitHub repository":"Репозиторий GitHub",
+  "Switch to light theme":"Включить светлую тему", "Switch to dark theme":"Включить тёмную тему",
+  "Direct links / TrollStore":"Прямые ссылки / TrollStore", "Version":"Версия", "Size":"Размер", "Updated":"Обновлено",
+  "Beta":"Бета", "Get":"Скачать", "Preview":"Скриншоты", "What’s New":"Что нового", "Description":"Описание",
+  "more":"ещё", "less":"свернуть", "Version history":"История версий", "Loading…":"Загрузка…",
+  "App not found":"Приложение не найдено", "We couldn’t find that app in the source.":"Не удалось найти это приложение в источнике.",
+  "Back to all apps":"К списку приложений", "Opening in your browser…":"Открываем в браузере…",
+  "Copy the source link and add it manually.":"Скопируйте ссылку на источник и добавьте его вручную.",
+  "Nothing opened? Add the source from the main page manually.":"Ничего не открылось? Добавьте источник вручную с главной страницы.",
+  "Couldn’t load the source":"Не удалось загрузить источник", "Check your connection and reload the page.":"Проверьте подключение и обновите страницу."
+};
+const savedLang = store.get("lang");
+let lang = ["ru", "en"].includes(savedLang) ? savedLang : (/^ru\b/i.test(navigator.language || "") ? "ru" : "en");
+const tr = text => lang === "ru" ? (TEXT[text] || text) : text;
+function localized(obj, field, translations){
+  return (obj[translations] && (obj[translations][lang] || obj[translations].en)) || obj[field] || "";
+}
+function translateStatic(){
+  document.documentElement.lang = lang;
+  document.querySelectorAll("[data-en]").forEach(el => { el.textContent = tr(el.dataset.en); });
+  document.querySelectorAll("[data-en-aria]").forEach(el => { el.setAttribute("aria-label", tr(el.dataset.enAria)); });
+  $("langBtn").textContent = lang === "ru" ? "EN" : "RU";
+  $("langBtn").setAttribute("aria-label", lang === "ru" ? "Switch to English" : "Переключить на русский");
+}
+function toggleLang(){
+  lang = lang === "ru" ? "en" : "ru"; store.set("lang", lang);
+  translateStatic(); applyTheme(); renderClientList();
+  if (APP) render(); else renderState();
+}
+
 const tg = window.Telegram && window.Telegram.WebApp && window.Telegram.WebApp.initData ? window.Telegram.WebApp : null;
 if (tg) { try { tg.ready(); tg.expand(); } catch(e){} }
 
@@ -197,7 +239,7 @@ function currentTheme(){ return store.get("theme") || (mq.matches ? "dark" : "li
 function applyTheme(){
   const t = currentTheme();
   document.documentElement.setAttribute("data-theme", t);
-  $("themeBtn").setAttribute("aria-label", t === "dark" ? "Switch to light theme" : "Switch to dark theme");
+  $("themeBtn").setAttribute("aria-label", tr(t === "dark" ? "Switch to light theme" : "Switch to dark theme"));
 }
 function toggleTheme(){
   const next = currentTheme() === "dark" ? "light" : "dark";
@@ -222,7 +264,7 @@ if (!CLIENTS[preferredClient]) preferredClient = null;
 function renderClientList(){
   $("clientList").innerHTML = Object.keys(CLIENTS).map(k => {
     const icon = LOGOS[k] ? `${esc(CLIENTS[k].name[0])}<img src="${LOGOS[k]}" alt="" onerror="this.remove()">` : DL;
-    return `<button type="button" class="client-opt-btn${k === preferredClient ? " sel" : ""}" onclick="setClient('${k}')"><span class="ci">${icon}</span><span class="t">${esc(CLIENTS[k].name)}</span></button>`;
+    return `<button type="button" class="client-opt-btn${k === preferredClient ? " sel" : ""}" onclick="setClient('${k}')"><span class="ci">${icon}</span><span class="t">${esc(tr(CLIENTS[k].name))}</span></button>`;
   }).join("");
 }
 function openModal(){ renderClientList(); $("onboardingModal").classList.remove("hidden"); document.body.classList.add("lock"); }
@@ -241,14 +283,18 @@ function getLink(ipa){
 }
 
 /* helpers */
-const fmtDate = x => { const d = new Date(x); return isNaN(d) ? "" : d.toLocaleDateString("en", { month:"short", day:"numeric", year:"numeric" }); };
-const fmtSize = n => n ? (n / 1048576).toFixed(1) + " MB" : "";
+const fmtDate = x => { const d = new Date(x); return isNaN(d) ? "" : d.toLocaleDateString(lang, { month:"short", day:"numeric", year:"numeric" }); };
+const fmtSize = n => n ? new Intl.NumberFormat(lang, {minimumFractionDigits:1, maximumFractionDigits:1}).format(n / 1048576) + (lang === "ru" ? " МБ" : " MB") : "";
 
 /* page */
 let APP = null;
-function notFound(){
-  document.title = "App not found — Kernel's Source";
-  $("app").innerHTML = '<div class="state"><h1>App not found</h1><p>We couldn\u2019t find that app in the source. <a href="index.html#apps">Back to all apps</a></p></div>';
+let pageState = "loading";
+function renderState(){
+  const title = pageState === "missing" ? "App not found" : pageState === "error" ? "Couldn’t load the source" : "App";
+  document.title = tr(title) + " — Kernel's Source";
+  $("app").innerHTML = pageState === "loading" ? '<div class="state">' + esc(tr("Loading…")) + '</div>' :
+    '<div class="state"><h1>' + esc(tr(title)) + '</h1><p>' + esc(tr(pageState === "missing" ? "We couldn’t find that app in the source." : "Check your connection and reload the page.")) +
+    ' <a href="index.html#apps">' + esc(tr("Back to all apps")) + '</a></p></div>';
 }
 function render(){
   const a = APP, v = a.versions[0];
@@ -256,36 +302,37 @@ function render(){
   const shots = (a.screenshotURLs || a.screenshots || []).map(x => typeof x === "string" ? x : (x && x.imageURL)).filter(Boolean);
   const date = fmtDate(v.date || v.versionDate), size = fmtSize(v.size);
   const stats = [["Version", v.version], ["Size", size], ["Updated", date], ["iOS", v.minOSVersion ? v.minOSVersion + "+" : ""]].filter(s => s[1]);
-  const notes = (v.localizedDescription || "").trim();
-  const desc = (a.localizedDescription || a.subtitle || "").trim();
+  const notes = localized(v, "localizedDescription", "localizedDescriptions").trim();
+  const subtitle = localized(a, "subtitle", "localizedSubtitles");
+  const desc = (localized(a, "localizedDescription", "localizedDescriptions") || subtitle).trim();
   const older = a.versions.slice(1);
   $("app").innerHTML = `
     <div class="ahead">
       <div class="aicon" aria-hidden="true">${esc(a.name[0])}${a.iconURL ? `<img src="${esc(a.iconURL)}" alt="" referrerpolicy="no-referrer" onerror="this.remove()">` : ""}</div>
       <div class="ainfo">
-        <h1>${esc(a.name)}${a.beta ? '<span class="beta">Beta</span>' : ""}</h1>
-        ${a.subtitle ? `<p class="sub">${esc(a.subtitle)}</p>` : ""}
+        <h1>${esc(a.name)}${a.beta ? '<span class="beta">' + esc(tr("Beta")) + '</span>' : ""}</h1>
+        ${subtitle ? `<p class="sub">${esc(subtitle)}</p>` : ""}
         ${a.developerName ? `<p class="dev">${esc(a.developerName)}</p>` : ""}
-        <a class="get" href="${esc(getLink(v.downloadURL))}" aria-label="Get ${esc(a.name)}">Get</a>
+        <a class="get" href="${esc(getLink(v.downloadURL))}" aria-label="${esc(tr("Get") + " " + a.name)}">${esc(tr("Get"))}</a>
       </div>
     </div>
-    <div class="stats">${stats.map(s => `<div class="stat"><small>${esc(s[0])}</small><b>${esc(s[1])}</b></div>`).join("")}</div>
-    ${shots.length ? `<div class="blk"><h2>Preview</h2><div class="shots">${shots.map(u => `<img src="${esc(u)}" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">`).join("")}</div></div>` : ""}
-    ${notes ? `<div class="blk"><div class="blk-head"><h2>What\u2019s New</h2><span>Version ${esc(v.version)}${date ? " \u00b7 " + esc(date) : ""}</span></div><p class="txt">${esc(notes)}</p></div>` : ""}
-    ${desc ? `<div class="blk" id="descBlk"><h2>Description</h2><div class="clamp" id="descBox"><p class="txt">${esc(desc)}</p></div><button class="more hidden" id="moreBtn" type="button">more</button></div>` : ""}
-    ${older.length ? `<div class="blk"><h2>Version history</h2><div class="vlist">${older.map(o => `
-      <div class="vrow"><div><h3>${esc(o.version)}</h3><div class="meta">${esc([fmtDate(o.date || o.versionDate), fmtSize(o.size)].filter(Boolean).join(" \u00b7 "))}</div>${o.localizedDescription ? `<p class="txt">${esc(o.localizedDescription.trim())}</p>` : ""}</div>
-      <a class="vget" href="${esc(getLink(o.downloadURL))}" aria-label="Get version ${esc(o.version)}">Get</a></div>`).join("")}</div></div>` : ""}`;
+    <div class="stats">${stats.map(s => `<div class="stat"><small>${esc(tr(s[0]))}</small><b>${esc(s[1])}</b></div>`).join("")}</div>
+    ${shots.length ? `<div class="blk"><h2>${esc(tr("Preview"))}</h2><div class="shots">${shots.map(u => `<img src="${esc(u)}" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">`).join("")}</div></div>` : ""}
+    ${notes ? `<div class="blk"><div class="blk-head"><h2>${esc(tr("What’s New"))}</h2><span>${esc(tr("Version"))} ${esc(v.version)}${date ? " \u00b7 " + esc(date) : ""}</span></div><p class="txt">${esc(notes)}</p></div>` : ""}
+    ${desc ? `<div class="blk" id="descBlk"><h2>${esc(tr("Description"))}</h2><div class="clamp" id="descBox"><p class="txt">${esc(desc)}</p></div><button class="more hidden" id="moreBtn" type="button">${esc(tr("more"))}</button></div>` : ""}
+    ${older.length ? `<div class="blk"><h2>${esc(tr("Version history"))}</h2><div class="vlist">${older.map(o => `
+      <div class="vrow"><div><h3>${esc(o.version)}</h3><div class="meta">${esc([fmtDate(o.date || o.versionDate), fmtSize(o.size)].filter(Boolean).join(" \u00b7 "))}</div>${localized(o, "localizedDescription", "localizedDescriptions") ? `<p class="txt">${esc(localized(o, "localizedDescription", "localizedDescriptions").trim())}</p>` : ""}</div>
+      <a class="vget" href="${esc(getLink(o.downloadURL))}" aria-label="${esc(tr("Get") + " " + tr("Version") + " " + o.version)}">${esc(tr("Get"))}</a></div>`).join("")}</div></div>` : ""}`;
   const box = $("descBox"), btn = $("moreBtn");
   if (box && btn && box.scrollHeight > box.clientHeight + 2) {
     btn.classList.remove("hidden");
-    btn.onclick = () => { const open = box.classList.toggle("clamp") === false; btn.textContent = open ? "less" : "more"; };
+    btn.onclick = () => { const open = box.classList.toggle("clamp") === false; btn.textContent = tr(open ? "less" : "more"); };
   }
 }
 
 /* toast + custom-scheme handling */
 let tt;
-function showToast(msg){ const t = $("toast"); t.textContent = msg; t.classList.add("on"); clearTimeout(tt); tt = setTimeout(() => t.classList.remove("on"), 2600); }
+function showToast(msg){ const t = $("toast"); t.textContent = tr(msg); t.classList.add("on"); clearTimeout(tt); tt = setTimeout(() => t.classList.remove("on"), 2600); }
 document.addEventListener("click", e => {
   const a = e.target.closest("a[href]");
   if (!a) return;
@@ -307,12 +354,18 @@ document.addEventListener("click", e => {
 
 /* init */
 $("yr").textContent = new Date().getFullYear();
+translateStatic();
 applyTheme();
+renderState();
 const q = new URLSearchParams(location.search).get("id");
-fetch("source.json", { cache:"no-cache" }).then(r => r.ok ? r.json() : Promise.reject()).then(j => {
+function loadApp(){
+return window.fetchCatalogue("source.json", { cache:"no-cache" }).then(r => r.ok ? r.json() : Promise.reject()).then(j => {
   const app = (j.apps || []).find(a => a.bundleIdentifier === q || a.name === q);
-  if (app && app.versions && app.versions[0]) { APP = app; render(); } else notFound();
-}).catch(notFound);
+  if (app && app.versions && app.versions[0]) { APP = app; render(); } else { pageState = "missing"; renderState(); }
+}).catch(() => { if (!APP) { pageState = "error"; renderState(); } });
+}
+loadApp();
+window.addEventListener("catalogue-reconnect", loadApp);
 </script>
 </body>
 </html>

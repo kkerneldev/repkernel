@@ -1,0 +1,2 @@
+#offline-status{border-bottom:1px solid var(--line,#ececee);background:var(--tint,#fff4f5);color:var(--muted,#6b6d76);font:500 12px/1.5 Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;padding:8px max(24px,env(safe-area-inset-left,0px));text-align:center;overflow-wrap:anywhere}
+#offline-status[data-offline="true"]{color:var(--text,#1f2023)}
