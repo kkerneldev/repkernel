@@ -1,6 +1,6 @@
 /* Bump the version when changing the offline shell. */
 const PREFIX = "kernels-source-";
-const VERSION = "v2";
+const VERSION = "v3";
 const SHELL = PREFIX + "shell-" + VERSION;
 const DATA = PREFIX + "data-" + VERSION;
 const IMAGES = PREFIX + "images-" + VERSION;

@@ -453,7 +453,6 @@ footer{border-top:1px solid var(--line);padding:28px 0 40px;color:var(--muted);f
 /* ---------- config ---------- */
 const SOURCE_URL   = "https://rep.kerneldev.qzz.io/source.json";
 const CANON_URL    = "https://rep.kerneldev.qzz.io/";
-const GITHUB_REPO  = "kkerneldev/repkernel";   // used for the download counter
 const TELEGRAM_URL = "";                        // e.g. "https://t.me/yourchannel"  (empty = hidden)
 const DONATE_URL   = "";                        // e.g. a Boosty / Ko-fi / BuyMeACoffee link (empty = hidden)
 const SEARCH_MIN   = 4;                         // search + category filters appear once the source has this many apps
@@ -688,7 +687,7 @@ function detailHTML(a){
   if (a.sizeBytes) rows.push([t("d_size"), esc(fmtSize(a.sizeBytes))]);
   if (a.minOS) rows.push([t("d_min"), esc(t("d_min_v", { v:a.minOS }))]);
   if (a.date) rows.push([t("d_upd"), esc(fullDate(a.date) || a.date)]);
-  if (a.downloads) rows.push([t("d_dl"), esc(fmtNum(a.downloads))]);
+
   if (a.id) rows.push([t("d_bundle"), `<span style="font:400 12px var(--mono);font-weight:400">${esc(a.id)}</span>`]);
   const sha = a.sha ? `<div class="wide"><dt>${esc(t("d_sha"))}</dt><dd class="hash"><code>${esc(a.sha)}</code><button type="button" data-copy="${esc(a.sha)}">${esc(t("copy_sm"))}</button></dd></div>` : "";
   const hist = (a.versions || []).slice(0, 8).map(v => `<li><span><b>${esc(v.version)}</b>${v.date ? " · " + esc(ago(v.date)) : ""}${v.size ? " · " + esc(fmtSize(v.size)) : ""}</span>${safeUrl(v.ipa) ? `<a href="${esc(safeUrl(v.ipa))}" rel="noopener">${esc(t("d_ipa"))} ↓</a>` : ""}</li>`).join("");
@@ -704,7 +703,7 @@ function detailHTML(a){
     ${appDesc(a) ? `<p class="d-desc">${esc(appDesc(a))}</p>` : ""}
     ${shots.length ? `<div class="d-sec"><h4>${esc(t("d_shots"))}</h4><div class="shots">${shots.map(s => `<img src="${esc(s)}" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">`).join("")}</div></div>` : ""}
     <div class="d-sec"><h4>${esc(t("d_notes"))}</h4>${notes}</div>
-    <div class="d-sec"><h4>${esc(t("d_info"))}</h4><dl class="info">${rows.map(r => `<div><dt>${esc(r[0])}</dt><dd>${r[1]}</dd></div>`).join("")}${sha}</dl></div>
+    <div class="d-sec"><h4>${esc(t("d_info"))}</h4><dl class="info">${rows.map(r => `<div><dt>${esc(r[0])}</dt><dd>${r[1]}</dd></div>`).join("")}<div data-download-row="${esc(a.id)}"${Number.isSafeInteger(a.downloads) ? "" : " hidden"}><dt>${esc(t("d_dl"))}</dt><dd data-download-value="${esc(a.id)}">${Number.isSafeInteger(a.downloads) ? esc(new Intl.NumberFormat(lang).format(a.downloads)) : ""}</dd></div>${sha}</dl></div>
     ${hist ? `<div class="d-sec"><h4>${esc(t("d_hist"))}</h4><ul class="hist">${hist}</ul></div>` : ""}`;
 }
 function renderDetail(){
@@ -736,10 +735,10 @@ function cardHTML(a){
       <span><span class="h">${esc(a.name)}${a.beta ? '<span class="beta">Beta</span>' : ""}</span><span class="ver">${esc(a.version)}</span></span>
     </button>
     <p>${esc(appDesc(a))}</p>
-    ${a.screenshots.length ? `<button class="card-preview" type="button" data-open="${esc(a.id)}" aria-label="${esc(a.name + " — " + t("details"))}">${a.screenshots.slice(0,2).map((shot, i) => `<img src="${esc(safeAssetUrl(shot))}" alt="" loading="lazy" class="preview-shot shot-${i}" onerror="this.remove()">`).join("")}<span class="preview-arrow" aria-hidden="true">↗</span></button>` : ""}
+    ${(a.screenshots || []).length ? `<button class="card-preview" type="button" data-open="${esc(a.id)}" aria-label="${esc(a.name + " — " + t("details"))}">${a.screenshots.slice(0,2).map((shot, i) => `<img src="${esc(safeAssetUrl(shot))}" alt="" loading="lazy" class="preview-shot shot-${i}" onerror="this.remove()">`).join("")}<span class="preview-arrow" aria-hidden="true">↗</span></button>` : ""}
 
     <div class="card-foot">
-      <span class="meta">${a.sizeBytes ? `<span>${esc(fmtSize(a.sizeBytes))}</span>` : ""}${when ? `<span>${esc(t("updated", { d:when }))}</span>` : ""}${a.downloads ? `<span title="${esc(t("dl_title"))}">↓ ${esc(fmtNum(a.downloads))}</span>` : ""}</span>
+      <span class="meta">${a.sizeBytes ? `<span>${esc(fmtSize(a.sizeBytes))}</span>` : ""}${when ? `<span>${esc(t("updated", { d:when }))}</span>` : ""}<span data-download-row="${esc(a.id)}" title="${esc(t("dl_title"))}"${Number.isSafeInteger(a.downloads) ? "" : " hidden"}>↓ <span data-download-value="${esc(a.id)}">${Number.isSafeInteger(a.downloads) ? esc(new Intl.NumberFormat(lang).format(a.downloads)) : ""}</span></span></span>
       <span class="acts">
         <button type="button" class="ico-sm" data-share="${esc(a.id)}" aria-label="${esc(t("share"))}" title="${esc(t("share"))}">${ICON_SHARE}</button>
         <a class="get" href="${esc(getLink(a))}" aria-label="${esc(t("get_aria", { nm:a.name }))}">${esc(t("get"))}</a>
@@ -989,30 +988,94 @@ function normApp(a){
       const prefix = "https://github.com/kkerneldev/repkernel/blob/main/screenshots/";
       return shot.startsWith(prefix) ? "screenshots/" + shot.slice(prefix.length).split("?")[0] : shot;
     }), category:CATS[a.bundleIdentifier] || "other",
-    play:a.bundleIdentifier === "me.keet.HDRezka", desc:a.localizedDescription || a.subtitle || "", versions:vs, downloads:0 };
+    play:a.bundleIdentifier === "me.keet.HDRezka", desc:a.localizedDescription || a.subtitle || "", versions:vs, downloads:null };
 }
-let DL_BY_NAME = null;
+// Counts belong to one asset in one release, never to a filename across releases.
+const DOWNLOAD_INTERVAL = 120000;
+const DOWNLOAD_CACHE_KEY = "release_file_downloads_v2";
+let DOWNLOAD_COUNTS = {}, DOWNLOAD_CHECKED = {}, downloadsBusy = false, downloadsRetryAt = 0;
+try {
+  const saved = JSON.parse(sessionStorage.getItem(DOWNLOAD_CACHE_KEY) || "null");
+  if (saved && saved.counts && typeof saved.counts === "object") DOWNLOAD_COUNTS = saved.counts;
+} catch (_) {}
+function releaseFile(raw){
+  try {
+    const u = new URL(raw);
+    if (u.protocol !== "https:" || u.hostname !== "github.com") return null;
+    const match = /^\/([^/]+)\/([^/]+)\/releases\/download\/([^/]+)\/([^/]+)$/.exec(u.pathname);
+    if (!match) return null;
+    const [, owner, repo, encodedTag, encodedName] = match;
+    const tag = decodeURIComponent(encodedTag), name = decodeURIComponent(encodedName);
+    return {
+      endpoint:"https://api.github.com/repos/" + owner + "/" + repo + "/releases/tags/" + encodeURIComponent(tag),
+      name, key:JSON.stringify([owner.toLowerCase(), repo.toLowerCase(), tag, name])
+    };
+  } catch (_) { return null; }
+}
 function applyDownloads(){
-  if (!DL_BY_NAME) return;
+  const byId = new Map();
   APPS.forEach(a => {
-    let n = ""; try { n = decodeURIComponent(String(a.ipa || "").split("?")[0].split("/").pop()); } catch(e){}
-    a.downloads = DL_BY_NAME[n] || 0;
+    const file = releaseFile(a.ipa), count = file && DOWNLOAD_COUNTS[file.key];
+    a.downloads = Number.isSafeInteger(count) && count >= 0 ? count : null;
+    byId.set(a.id, a.downloads);
   });
-  renderGrid(); renderLatest(); renderDetail();
+  // Update the numbers in place so polling doesn't reset screenshots, focus or modal scroll.
+  document.querySelectorAll("[data-download-row]").forEach(el => {
+    el.hidden = !Number.isSafeInteger(byId.get(el.dataset.downloadRow));
+  });
+  document.querySelectorAll("[data-download-value]").forEach(el => {
+    const count = byId.get(el.dataset.downloadValue);
+    el.textContent = Number.isSafeInteger(count) ? new Intl.NumberFormat(lang).format(count) : "";
+  });
 }
 async function loadDownloads(){
-  const key = "dl_cache_v1";
-  try { const c = JSON.parse(sessionStorage.getItem(key) || "null"); if (c && Date.now() - c.t < 3600e3) { DL_BY_NAME = c.m; applyDownloads(); return; } } catch(e){}
+  applyDownloads();
+  if (downloadsBusy || document.hidden || !navigator.onLine || Date.now() < downloadsRetryAt) return;
+  const groups = new Map();
+  APPS.forEach(a => {
+    const file = releaseFile(a.ipa);
+    if (!file) return;
+    if (!groups.has(file.endpoint)) groups.set(file.endpoint, []);
+    groups.get(file.endpoint).push(file);
+  });
+  downloadsBusy = true;
   try {
-    const r = await fetch(`https://api.github.com/repos/${GITHUB_REPO}/releases?per_page=100`, { headers:{ Accept:"application/vnd.github+json" } });
-    if (!r.ok) return;
-    const m = {};
-    for (const rel of await r.json()) for (const as of (rel.assets || [])) m[as.name] = (m[as.name] || 0) + (as.download_count || 0);
-    DL_BY_NAME = m;
-    try { sessionStorage.setItem(key, JSON.stringify({ t:Date.now(), m })); } catch(e){}
+    for (const [endpoint, files] of groups) {
+      if (Date.now() - (DOWNLOAD_CHECKED[endpoint] || 0) < DOWNLOAD_INTERVAL) continue;
+      const ctl = new AbortController(), timer = setTimeout(() => ctl.abort(), 10000);
+      try {
+        const response = await fetch(endpoint, {
+          cache:"no-cache", signal:ctl.signal, headers:{Accept:"application/vnd.github+json"}
+        });
+        DOWNLOAD_CHECKED[endpoint] = Date.now();
+        if (response.status === 403 || response.status === 429) {
+          const retryAfter = Number(response.headers.get("Retry-After"));
+          const reset = Number(response.headers.get("X-RateLimit-Reset")) * 1000;
+          downloadsRetryAt = Math.max(Date.now() + DOWNLOAD_INTERVAL,
+            Number.isFinite(retryAfter) ? Date.now() + retryAfter * 1000 : 0,
+            Number.isFinite(reset) ? reset : 0);
+          break;
+        }
+        if (!response.ok) continue;
+        const release = await response.json();
+        if (!Array.isArray(release.assets)) continue;
+        for (const file of files) {
+          const asset = release.assets.find(asset => asset.name === file.name);
+          if (asset && Number.isSafeInteger(asset.download_count) && asset.download_count >= 0) {
+            DOWNLOAD_COUNTS[file.key] = asset.download_count;
+          } else { delete DOWNLOAD_COUNTS[file.key]; }
+        }
+      } catch (_) {
+        DOWNLOAD_CHECKED[endpoint] = Date.now();
+      } finally { clearTimeout(timer); }
+    }
+    try { sessionStorage.setItem(DOWNLOAD_CACHE_KEY, JSON.stringify({counts:DOWNLOAD_COUNTS})); } catch (_) {}
     applyDownloads();
-  } catch(e){}
+  } finally { downloadsBusy = false; }
 }
+setInterval(loadDownloads, DOWNLOAD_INTERVAL);
+document.addEventListener("visibilitychange", () => { if (!document.hidden) loadDownloads(); });
+window.addEventListener("focus", loadDownloads);
 async function loadNews(){
   try {
     const r = await fetch("news.json", { cache:"no-cache" });
@@ -1038,6 +1101,7 @@ async function loadSource(){
   loading = false;
   applyDownloads();
   renderAll(); openFromHash();
+  loadDownloads();
 }
 
 window.addEventListener("catalogue-reconnect", () => { loadSource(); loadNews(); loadDownloads(); });

@@ -30,3 +30,12 @@ A first-ever visit without a connection cannot load the site.
 Bump VERSION in sw.js when changing the offline shell; an updated worker takes
 over after existing site tabs close. Browsers may evict cached data under storage
 pressure.
+
+
+Download counters read GitHub release assets' download_count for the exact tag
+and IPA filename in each app's downloadURL. Files with the same name in other
+releases are not added together. Counts refresh every two minutes while the
+page is visible and online, and when returning to an eligible tab.
+GitHub API errors retain the last known count; API rate-limit responses pause
+requests until the retry window. Re-uploading/deleting a release asset changes
+its GitHub counter; this is not a lifetime app-install count.
