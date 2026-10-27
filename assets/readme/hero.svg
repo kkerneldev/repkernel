@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="420" viewBox="0 0 1200 420" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1200" y2="420" gradientUnits="userSpaceOnUse"><stop stop-color="#1b171c"/><stop offset="1" stop-color="#141316"/></linearGradient>
+    <linearGradient id="tile" x1="813" y1="110" x2="980" y2="280" gradientUnits="userSpaceOnUse"><stop stop-color="#ff6674"/><stop offset="1" stop-color="#ce1238"/></linearGradient>
+    <radialGradient id="glow"><stop stop-color="#e11d2e" stop-opacity=".23"/><stop offset="1" stop-color="#e11d2e" stop-opacity="0"/></radialGradient>
+  </defs>
+  <rect width="1200" height="420" rx="28" fill="url(#bg)"/>
+  <circle cx="900" cy="210" r="250" fill="url(#glow)"/>
+  <rect x="56" y="44" width="30" height="30" rx="9" fill="#e11d2e"/>
+  <text x="71" y="66" fill="white" text-anchor="middle" font-family="Inter,Arial,sans-serif" font-size="23" font-weight="800">K</text>
+  <text x="100" y="65" fill="#f3f2f4" font-family="Inter,Arial,sans-serif" font-size="19" font-weight="700">Kernel’s Source</text>
+  <text x="56" y="167" fill="#f3f2f4" font-family="Inter,Arial,sans-serif" font-size="66" font-weight="800" letter-spacing="-3">Sideload more.</text>
+  <text x="56" y="241" fill="#ff5669" font-family="Inter,Arial,sans-serif" font-size="66" font-weight="800" letter-spacing="-3">Search less.</text>
+  <text x="59" y="289" fill="#aaa4af" font-family="Inter,Arial,sans-serif" font-size="18">A small source. A little more freedom for your iPhone.</text>
+  <rect x="56" y="329" width="110" height="30" rx="15" stroke="#41323b"/>
+  <circle cx="72" cy="344" r="3" fill="#ff5669"/>
+  <text x="85" y="349" fill="#e3d9df" font-family="Inter,Arial,sans-serif" font-size="12">RU / EN</text>
+  <text x="184" y="349" fill="#aaa4af" font-family="Inter,Arial,sans-serif" font-size="12" letter-spacing="1.5">ALTSTORE · SIDESTORE · FEATHER · SCARLET</text>
+  <ellipse cx="904" cy="206" rx="216" ry="123" transform="rotate(-28 904 206)" stroke="#663144" stroke-opacity=".6"/>
+  <ellipse cx="904" cy="206" rx="143" ry="178" transform="rotate(-28 904 206)" stroke="#663144" stroke-opacity=".6"/>
+  <g transform="rotate(-9 902 204)">
+    <rect x="830" y="132" width="148" height="148" rx="38" fill="#100d12" opacity=".4" transform="translate(0 14)"/>
+    <rect x="830" y="126" width="148" height="148" rx="38" fill="url(#tile)" stroke="#ff99a4" stroke-opacity=".35"/>
+    <text x="904" y="235" fill="white" text-anchor="middle" font-family="Inter,Arial,sans-serif" font-size="100" font-weight="800" letter-spacing="-4">K</text>
+  </g>
+  <g transform="rotate(-12 782 106)">
+    <rect x="725" y="84" width="122" height="38" rx="13" fill="#252131" stroke="#50416d"/>
+    <circle cx="744" cy="103" r="4" fill="#ad8aff"/>
+    <text x="758" y="108" fill="#e9e1fa" font-family="Inter,Arial,sans-serif" font-size="14" font-weight="600">AyuGram</text>
+  </g>
+  <g transform="rotate(10 1045 289)">
+    <rect x="980" y="268" width="128" height="38" rx="13" fill="#30201b" stroke="#75432d"/>
+    <circle cx="999" cy="287" r="4" fill="#ff7a39"/>
+    <text x="1013" y="292" fill="#ffe1ce" font-family="Inter,Arial,sans-serif" font-size="14" font-weight="600">HDrezka</text>
+  </g>
+  <path d="M1041 91v14m-7-7h14M767 294v10m-5-5h10" stroke="#ff5669" stroke-width="2" stroke-linecap="round"/>
+  <text x="904" y="376" fill="#94818c" text-anchor="middle" font-family="Inter,Arial,sans-serif" font-size="10" letter-spacing="3">YOUR IPHONE. YOUR APPS.</text>
+</svg>
