@@ -131,8 +131,9 @@ footer{margin-top:56px;border-top:1px solid var(--line);padding:28px 0 40px;colo
 @media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
 </style>
 <link rel="stylesheet" href="assets/offline.css">
+<link rel="stylesheet" href="assets/showcase.css">
 </head>
-<body>
+<body class="app-page">
 
 <div id="onboardingModal" class="modal-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="mTitle">
   <div class="modal-card">
@@ -146,7 +147,7 @@ footer{margin-top:56px;border-top:1px solid var(--line);padding:28px 0 40px;colo
 <nav>
   <div class="wrap nav-in">
     <a class="brand" href="index.html" data-en-aria="Kernel's Source home" aria-label="Kernel's Source home">
-      <span class="logo" aria-hidden="true">K<img src="https://i.pinimg.com/736x/39/69/d1/3969d118e5b89d74e8fa1501a142aca3.jpg" alt="" referrerpolicy="no-referrer" onerror="this.remove()"></span>
+      <span class="logo" aria-hidden="true">K</span>
       Kernel's Source
     </a>
     <div class="nav-r">
@@ -298,8 +299,14 @@ function renderState(){
 }
 function render(){
   const a = APP, v = a.versions[0];
+  const accent = a.bundleIdentifier === "org.ayugram.app" ? "#6385dc" : a.bundleIdentifier === "me.keet.HDRezka" ? "#ef702e" : "#e11d2e";
+  document.getElementById("main").style.setProperty("--app-accent", accent);
+  const localIcon = ["org.ayugram.app", "me.keet.HDRezka"].includes(a.bundleIdentifier) ? "assets/apps/" + a.bundleIdentifier + ".png" : a.iconURL;
   document.title = a.name + " \u2014 Kernel's Source";
-  const shots = (a.screenshotURLs || a.screenshots || []).map(x => typeof x === "string" ? x : (x && x.imageURL)).filter(Boolean);
+  const shots = (a.screenshotURLs || a.screenshots || []).map(x => typeof x === "string" ? x : (x && x.imageURL)).filter(Boolean).map(shot => {
+    const prefix = "https://github.com/kkerneldev/repkernel/blob/main/screenshots/";
+    return shot.startsWith(prefix) ? "screenshots/" + shot.slice(prefix.length).split("?")[0] : shot;
+  });
   const date = fmtDate(v.date || v.versionDate), size = fmtSize(v.size);
   const stats = [["Version", v.version], ["Size", size], ["Updated", date], ["iOS", v.minOSVersion ? v.minOSVersion + "+" : ""]].filter(s => s[1]);
   const notes = localized(v, "localizedDescription", "localizedDescriptions").trim();
@@ -308,7 +315,7 @@ function render(){
   const older = a.versions.slice(1);
   $("app").innerHTML = `
     <div class="ahead">
-      <div class="aicon" aria-hidden="true">${esc(a.name[0])}${a.iconURL ? `<img src="${esc(a.iconURL)}" alt="" referrerpolicy="no-referrer" onerror="this.remove()">` : ""}</div>
+      <div class="aicon" aria-hidden="true">${esc(a.name[0])}${localIcon ? `<img src="${esc(localIcon)}" alt="" referrerpolicy="no-referrer" onerror="this.remove()">` : ""}</div>
       <div class="ainfo">
         <h1>${esc(a.name)}${a.beta ? '<span class="beta">' + esc(tr("Beta")) + '</span>' : ""}</h1>
         ${subtitle ? `<p class="sub">${esc(subtitle)}</p>` : ""}

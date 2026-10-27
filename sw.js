@@ -1,6 +1,6 @@
 /* Bump the version when changing the offline shell. */
 const PREFIX = "kernels-source-";
-const VERSION = "v1";
+const VERSION = "v2";
 const SHELL = PREFIX + "shell-" + VERSION;
 const DATA = PREFIX + "data-" + VERSION;
 const IMAGES = PREFIX + "images-" + VERSION;
@@ -8,7 +8,8 @@ const ROOT = new URL("./", self.location.href);
 const url = path => new URL(path, ROOT).href;
 const CORE = [
   "index.html", "app.html", "offline.html", "assets/offline.js", "assets/offline.css",
-  "manifest.webmanifest", "assets/qr.js",
+  "manifest.webmanifest", "assets/qr.js", "assets/showcase.css",
+  "assets/apps/org.ayugram.app.png", "assets/apps/me.keet.HDRezka.png",
   ...[400, 500, 600, 700, 800].map(weight => "assets/fonts/inter-" + weight + ".woff"),
   "assets/icons/icon-192.png", "assets/icons/icon-512.png",
   "assets/logos/AltStore-logo.png", "assets/logos/sidestore-logo.png",

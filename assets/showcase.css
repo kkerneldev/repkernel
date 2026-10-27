@@ -1,0 +1,132 @@
+/* Kernel's Source — an app-first showcase. Shared with standalone app pages. */
+.wrap{max-width:1160px}
+nav{border-bottom-color:color-mix(in srgb,var(--line) 65%,transparent)}
+.nav-in{height:76px}
+.brand{font-weight:800;letter-spacing:-.035em}
+.logo{border-radius:10px;background:linear-gradient(145deg,#ff6570,#cc1738);box-shadow:0 4px 14px #e11d2e26}
+.hero{padding-top:64px;padding-bottom:72px;text-align:left}
+.hero-layout{display:grid;grid-template-columns:1.15fr 1fr;gap:40px;align-items:center}
+.hero-copy{min-width:0}
+.hero h1{font-size:clamp(44px,5.7vw,76px);max-width:12ch;margin:24px 0;letter-spacing:-.065em;line-height:1.02}
+.hero .sub{max-width:44ch;margin:0 0 28px;font-size:16px;line-height:1.75}
+.hero .cta-row{justify-content:flex-start}
+.hero .btn{border-radius:16px;background:transparent;font-size:14px}
+.hero .pill{background:transparent;border:1px solid var(--line-strong);color:var(--muted);font-size:12px;padding:7px 12px}
+.hero .src{margin:28px 0 0;box-shadow:none;border-radius:14px;padding:9px 10px 9px 14px;background:color-mix(in srgb,var(--surface) 80%,var(--tint))}
+.hero .src code{font-size:11px}
+.hero .desk{margin:16px 0 0;padding:0;gap:14px;border:0;background:transparent}
+.hero .desk .qr{width:70px;height:70px;border-radius:9px}
+.hero .desk h3{font-size:13px}
+.hero .desk p{font-size:12px;max-width:38ch}
+.hero-art{position:relative;height:470px;isolation:isolate;min-width:0}
+.hero-art::before{content:"";position:absolute;inset:25px -20px 0;background:radial-gradient(ellipse,#f3799633,transparent 67%);z-index:-1}
+.orbit{position:absolute;left:50%;top:49%;border:1px solid color-mix(in srgb,var(--red) 12%,var(--line));border-radius:50%;transform:translate(-50%,-50%) rotate(-28deg)}
+.orbit-one{width:430px;height:325px}
+.orbit-two{width:330px;height:425px}
+.kernel-tile{position:absolute;left:39%;top:38%;width:128px;height:128px;border-radius:32px;display:grid;place-items:center;background:linear-gradient(145deg,#ff6674,#ce1238);color:white;font-size:76px;font-weight:800;letter-spacing:-.06em;transform:rotate(-8deg);box-shadow:0 28px 54px -18px #b5204e66,inset 0 1px 2px #ffffff80}
+.kernel-tile span{position:absolute;top:143px;width:150px;text-align:center;font-size:11px;letter-spacing:.02em;color:var(--muted)}
+.floating-app{position:absolute;display:block;transition:transform .25s}
+.floating-app img{display:block;width:142px;height:142px;object-fit:cover;border-radius:33px;box-shadow:0 24px 42px -20px #11111188;border:1px solid #ffffff22}
+.floating-app span{display:block;text-align:center;margin-top:13px;color:var(--text);font-size:12px;font-weight:600}
+.float-ayu{top:13%;left:8%;transform:rotate(-13deg)}
+.float-rezka{right:-1%;bottom:14%;transform:rotate(12deg)}
+.float-ayu:hover{transform:rotate(-6deg) translateY(-7px)}
+.float-rezka:hover{transform:rotate(5deg) translateY(-7px)}
+.art-spark{position:absolute;color:var(--red);font-size:32px;font-weight:400}
+.spark-one{top:14%;right:13%}.spark-two{bottom:14%;left:13%;font-size:20px;opacity:.45}
+.art-caption{position:absolute;bottom:0;left:0;right:0;text-align:center;font-size:9px;letter-spacing:.24em;color:var(--muted)}
+section{padding:72px 0}
+h2{font-size:clamp(28px,3.5vw,42px);letter-spacing:-.045em}
+.sec-head{margin-bottom:32px}
+.sec-head p{font-size:14px}
+.count{border:1px solid var(--line);padding:5px 12px;border-radius:99px;font-size:12px}
+.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
+.card{position:relative;gap:16px;padding:30px 30px 24px;border-radius:30px;border:1px solid color-mix(in srgb,var(--app-accent) 18%,var(--line));background:linear-gradient(155deg,color-mix(in srgb,var(--app-accent) 10%,var(--surface)),var(--surface) 70%);box-shadow:none;overflow:hidden;transition:transform .25s,border-color .25s,box-shadow .25s}
+.card:hover{transform:translateY(-4px);border-color:color-mix(in srgb,var(--app-accent) 55%,var(--line));box-shadow:0 24px 60px -44px var(--app-accent)}
+.card .app-icon{width:66px;height:66px;border-radius:17px;box-shadow:0 7px 18px -12px #0008}
+.card .h{font-size:25px;letter-spacing:-.04em}
+.card .ver{font-family:inherit;font-size:12px;margin-top:4px}
+.card p{font-size:14px;line-height:1.7;flex:none;min-height:48px;max-width:42ch}
+.card .beta{font-size:9px;vertical-align:middle}
+.card-preview{display:block;position:relative;flex:1;min-height:280px;width:100%;margin:0;border:0;border-radius:18px 18px 0 0;background:radial-gradient(ellipse at 50% 90%,color-mix(in srgb,var(--app-accent) 18%,transparent),transparent 72%);overflow:hidden;cursor:pointer}
+.preview-shot{position:absolute;top:22px;width:44%;height:auto;max-width:200px;border-radius:19px;box-shadow:0 16px 40px -12px #0006;border:3px solid #27272b;transition:transform .35s;pointer-events:none}
+.shot-0{left:12%;transform:rotate(-9deg)}
+.shot-1{right:10%;top:50px;transform:rotate(9deg)}
+.card-preview:hover .shot-0{transform:translateY(-8px) rotate(-6deg)}
+.card-preview:hover .shot-1{transform:translateY(-5px) rotate(6deg)}
+.preview-arrow{position:absolute;bottom:12px;right:8px;width:32px;height:32px;border-radius:50%;display:grid;place-items:center;background:var(--surface);border:1px solid var(--line);font-size:18px;color:var(--muted)}
+.card-foot{border-top:1px solid var(--line);padding-top:18px;margin-top:0;gap:10px}
+.card .meta{font-size:11px;flex:1 1 140px}
+.card .get{background:var(--text);color:var(--bg);padding:10px 23px;font-size:13px}
+.card .get:hover{background:var(--red);color:white}
+.news{gap:24px}.nc{border-radius:24px;box-shadow:none}.nc .nb{padding:18px 20px}
+.steps{gap:24px}.steps li{padding:28px;background:var(--surface);border-radius:24px}
+.steps li::before{background:var(--red-soft);color:var(--red-dark);width:38px;height:38px;margin-bottom:24px;font-size:14px}
+.faq{max-width:none;display:grid;grid-template-columns:1fr 1fr;gap:0 24px;align-items:start}
+.faq details{border-width:0 0 1px;border-radius:0;padding:0 2px}
+.faq summary{font-size:14px;padding:22px 0}
+.modal-overlay{background:#0d0a15a6}
+.modal-card.wide{max-width:760px;border-radius:30px;padding:36px}
+.d-head .app-icon{width:84px;height:84px;border-radius:22px}
+.d-head h2{font-size:32px}
+.d-sec{margin-top:30px}
+.d-sec .shots img{border-radius:22px}
+.app-page .ahead{margin-top:24px;padding:38px;border-radius:30px;background:linear-gradient(120deg,color-mix(in srgb,var(--app-accent) 13%,var(--surface)),var(--surface));border:1px solid var(--line)}
+.app-page .aicon{box-shadow:0 15px 35px -22px #0008}
+.app-page .ainfo h1{font-size:clamp(30px,4.8vw,52px);letter-spacing:-.055em}
+.app-page .get{background:var(--text);color:var(--bg)}
+.app-page .stats{margin-top:24px;box-shadow:none;border-radius:22px}
+.app-page .stat{padding:20px 8px}
+.app-page .blk{margin-top:44px}
+.app-page .blk h2{font-size:28px}
+.app-page .shots img{border-radius:24px}
+@media(min-width:1300px){.hero-art{height:510px}.floating-app img{width:160px;height:160px}.float-ayu{left:8%}.float-rezka{right:0}}
+@media(max-width:800px){
+  .hero-layout{gap:12px;grid-template-columns:1.2fr 1fr}
+  .hero h1{font-size:54px}.hero-art{height:380px}
+  .floating-app img{width:105px;height:105px;border-radius:25px}
+  .kernel-tile{width:95px;height:95px;border-radius:25px;font-size:58px;left:34%}
+  .kernel-tile span{top:110px;font-size:9px}
+  .orbit-one{width:270px;height:230px}.orbit-two{width:220px;height:310px}
+  .float-ayu{left:0}.float-rezka{right:0}
+  .hero .desk{display:none}
+  .card{padding:24px 22px 20px}.card .h{font-size:22px}
+  .card-preview{min-height:240px}
+}
+@media(max-width:600px){
+  .nav-in{height:66px}.brand{font-size:14px}.nav-r{gap:0}.icon-btn{width:36px}
+  .hero{padding-top:34px;padding-bottom:44px}
+  .hero-layout{display:flex;flex-direction:column-reverse;gap:26px}
+  .hero-art{width:100%;height:250px;flex:none;max-width:370px;overflow:clip}
+  .hero-art::before{inset:0}
+  .orbit-one{width:290px;height:190px}.orbit-two{width:220px;height:240px}
+  .floating-app img{width:93px;height:93px;border-radius:23px}
+  .float-ayu{top:10%;left:8%}.float-rezka{right:4%;bottom:12%}
+  .kernel-tile{width:90px;height:90px;left:39%;top:32%;border-radius:24px;font-size:56px}
+  .kernel-tile span{display:none}.floating-app span{font-size:10px;margin-top:8px}
+  .art-caption{font-size:8px;bottom:0}.spark-one{top:3%;right:18%;font-size:24px}.spark-two{bottom:10%;left:17%}
+  .hero-copy{width:100%;text-align:center}
+  .hero h1{font-size:clamp(40px,11vw,58px);max-width:13ch;margin:20px auto}
+  .hero .sub{font-size:14px;margin:0 auto 24px;max-width:37ch}
+  .hero .cta-row{justify-content:center;gap:10px}
+  .hero .btn{padding:16px 14px;font-size:12px}
+  .hero .src{margin-top:24px}.hero .src code{font-size:10px}
+  .hero .src button{font-size:11px;padding:9px 10px}
+  section{padding:44px 0}.sec-head{margin-bottom:24px}.sec-head p{font-size:13px}
+  .grid{grid-template-columns:1fr;gap:20px}
+  .card{padding:26px 24px 22px;border-radius:26px}
+  .card .h{font-size:26px}.card p{min-height:0}
+  .card-preview{min-height:290px}
+  .preview-shot{max-width:190px}
+  .faq{grid-template-columns:1fr}
+  .steps{gap:14px}.steps li{padding:24px}
+  .modal-card.wide{padding:28px 20px}
+  .d-head h2{font-size:26px}.d-head .app-icon{width:64px;height:64px;border-radius:17px}
+  .app-page .ahead{padding:24px 20px;gap:16px;border-radius:24px}
+  .app-page .aicon{width:76px;height:76px;border-radius:19px}
+  .app-page .ainfo h1{font-size:30px}
+  .app-page .get{padding:9px 22px}
+  .app-page .stat{padding:16px 5px}
+  .app-page .stat small{font-size:9px}
+}
+@media(prefers-reduced-motion:reduce){.floating-app,.card,.preview-shot{transition:none}.card:hover{transform:none}}
